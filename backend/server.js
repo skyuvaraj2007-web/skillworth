@@ -1,3 +1,6 @@
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+require('dotenv').config(); // also loads local .env if present
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -18,12 +21,15 @@ if (!fs.existsSync(uploadsDir)) {
 }
 app.use('/uploads', express.static(uploadsDir));
 
+const { isSupabaseConfigured } = require('./database/supabaseClient');
+
 // Health Check
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
-    application: 'SkillWorth ? Recognition of Prior Learning Platform',
+    application: 'SkillWorth — Recognition of Prior Learning Platform',
     version: '1.0.0',
+    supabaseConnected: Boolean(isSupabaseConfigured),
     timestamp: new Date().toISOString()
   });
 });

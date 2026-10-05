@@ -3,6 +3,7 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const QRCode = require('qrcode');
 const rplMappingService = require('../services/rplMappingService');
+const supabaseSync = require('./supabaseSync');
 
 const IS_VERCEL = Boolean(process.env.VERCEL);
 const DEFAULT_DB_PATH = path.resolve(__dirname, '../../data/skillworth_db.json');
@@ -611,6 +612,7 @@ class SkillworthDatabase {
     };
     data.users.push(userRecord);
     this.write(data);
+    supabaseSync.syncUser(userRecord, profile).catch(() => {});
 
     return {
       success: true,
@@ -714,6 +716,7 @@ class SkillworthDatabase {
 
     data.evidence.push(newEvidence);
     this.write(data);
+    supabaseSync.syncEvidence(newEvidence).catch(() => {});
     return { success: true, evidence: newEvidence };
   }
 
@@ -796,6 +799,7 @@ class SkillworthDatabase {
         standards: 'ISO/IEC 17024 Compliant Recognition of Prior Learning'
       };
       data.credentials.push(credential);
+      supabaseSync.syncCredential(credential).catch(() => {});
     }
 
     this.write(data);
@@ -1424,6 +1428,9 @@ class SkillworthDatabase {
     });
 
     this.write(data);
+    supabaseSync.syncAssessment(assessment).catch(() => {});
+    if (credential) supabaseSync.syncCredential(credential).catch(() => {});
+    if (app) supabaseSync.syncApplication(app).catch(() => {});
     return { success: true, assessment, credential, application: app };
   }
 
@@ -1839,6 +1846,7 @@ class SkillworthDatabase {
     };
 
     data.evidence.push(newEvidence);
+    supabaseSync.syncEvidence(newEvidence).catch(() => {});
 
     req.status = 'EVIDENCE_SUBMITTED';
     req.submittedEvidenceId = evId;
@@ -2285,6 +2293,7 @@ class SkillworthDatabase {
     });
 
     this.write(data);
+    supabaseSync.syncApplication(application).catch(() => {});
     return { success: true, application };
   }
 
@@ -2912,6 +2921,7 @@ class SkillworthDatabase {
     const data = this.read();
     const notif = this.addNotification(data, notifData);
     this.write(data);
+    supabaseSync.syncNotification(notif).catch(() => {});
     return notif;
   }
 
