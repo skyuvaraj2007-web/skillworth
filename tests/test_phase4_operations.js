@@ -200,13 +200,14 @@ async function runPhase4Tests() {
   });
 
   // TEST 8: Institution schedules assessment
-  const runRandDays = (Math.floor(Date.now() / 1000) % 300) + 10;
+  const runRandDays = Math.floor(Math.random() * 500) + 20;
   const d1 = new Date(Date.now() + runRandDays * 86400000);
-  const d2 = new Date(Date.now() + (runRandDays + 4) * 86400000);
+  const d2 = new Date(Date.now() + (runRandDays + 5) * 86400000);
   const testScheduleDate = d1.toISOString().split('T')[0];
-  const testScheduleTime = '10:00 AM';
+  const uniqueMinute = String(Math.floor(Math.random() * 50) + 10).padStart(2, '0');
+  const testScheduleTime = `10:${uniqueMinute} AM`;
   const rescheduledDate = d2.toISOString().split('T')[0];
-  const rescheduledTime = '02:00 PM';
+  const rescheduledTime = `02:${uniqueMinute} PM`;
 
   await test('TEST 8: Institution schedules assessment date, time & centre', async () => {
     const schedRes = await fetch(`${BASE_URL}/api/rpl/applications/${application1Id}/schedule`, {

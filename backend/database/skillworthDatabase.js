@@ -4,7 +4,10 @@ const bcrypt = require('bcryptjs');
 const QRCode = require('qrcode');
 const rplMappingService = require('../services/rplMappingService');
 
-const DB_PATH = path.resolve(__dirname, '../../data/skillworth_db.json');
+const IS_VERCEL = Boolean(process.env.VERCEL);
+const DEFAULT_DB_PATH = path.resolve(__dirname, '../../data/skillworth_db.json');
+const VERCEL_DB_PATH = path.resolve('/tmp', 'skillworth_db.json');
+const DB_PATH = IS_VERCEL ? VERCEL_DB_PATH : DEFAULT_DB_PATH;
 
 const INITIAL_SKILLS = [
   {
@@ -199,12 +202,24 @@ class SkillworthDatabase {
   }
 
   ensureDbInitialized() {
-    const dir = path.dirname(this.dbPath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+    try {
+      const dir = path.dirname(this.dbPath);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+    } catch (err) {
+      // Ignore if dir cannot be created in read-only filesystem
     }
 
     if (!fs.existsSync(this.dbPath)) {
+      if (fs.existsSync(DEFAULT_DB_PATH)) {
+        try {
+          fs.copyFileSync(DEFAULT_DB_PATH, this.dbPath);
+          return;
+        } catch (e) {
+          // Fallback to in-code initialization
+        }
+      }
       const demoPasswordHash = bcrypt.hashSync('SkillWorth@2026', 10);
       const initialData = {
         meta: {
@@ -443,7 +458,11 @@ class SkillworthDatabase {
   }
 
   write(data) {
-    fs.writeFileSync(this.dbPath, JSON.stringify(data, null, 2), 'utf8');
+    try {
+      fs.writeFileSync(this.dbPath, JSON.stringify(data, null, 2), 'utf8');
+    } catch (err) {
+      console.warn('[SkillWorth DB] Warning: File write failed in serverless context:', err.message);
+    }
   }
 
   async registerUser(userData) {

@@ -1,8 +1,7 @@
 {
   "scripts": {
     "build": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
-    "start": "npm start --prefix backend",
-    "test": "npm --prefix backend test"
+    "test": "node tests/run_all_tests.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

@@ -1,9 +1,9 @@
 /**
- * Vercel Serverless Function Entrypoint for Skill Nexus Express API
+ * Vercel Serverless Function Entrypoint for SkillWorth Express API
  */
 let app;
 try {
-  app = require('../backend/src/server');
+  app = require('../backend/server');
 } catch (err) {
   console.error('[CRITICAL] Vercel Serverless Function failed to load backend server:', err);
   const express = require('express');

@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "node src/server.js",
-    "test": "node tests/verify_phase_2_5.js"
+    "start": "node server.js",
+    "test": "node ../tests/run_all_tests.js"
   },
   "keywords": [],
   "author": "",
