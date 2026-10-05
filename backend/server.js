@@ -35,6 +35,7 @@ app.use('/api/evidence', require('./routes/evidence'));
 app.use('/api/assessments', require('./routes/assessments'));
 app.use('/api/assessor', require('./routes/assessor'));
 app.use('/api/credentials', require('./routes/credentials'));
+app.use('/api/rpl', require('./routes/rpl'));
 
 // Global error handler
 app.use((err, req, res, next) => {

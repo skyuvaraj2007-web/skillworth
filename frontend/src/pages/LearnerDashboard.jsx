@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { api } from '../services/api';
+import RplWorkerModule from '../components/RplWorkerModule';
 
 export default function LearnerDashboard({ setActivePage }) {
   const { user } = useAuth();
@@ -208,6 +209,13 @@ export default function LearnerDashboard({ setActivePage }) {
         >
           <span className="material-symbols-outlined">verified</span>
           <span>4. My Credentials ({credentials.length})</span>
+        </button>
+        <button
+          className={`sw-tab-btn ${activeTab === 'rpl' ? 'active' : ''}`}
+          onClick={() => setActiveTab('rpl')}
+        >
+          <span className="material-symbols-outlined">handyman</span>
+          <span>5. {t('rpl.tabLabel')}</span>
         </button>
       </div>
 
@@ -644,6 +652,13 @@ export default function LearnerDashboard({ setActivePage }) {
               )}
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ================= TAB 5: RPL ASSESSMENT (NSQF) ================= */}
+      {activeTab === 'rpl' && (
+        <div className="sw-tab-content">
+          <RplWorkerModule user={user} />
         </div>
       )}
     </div>

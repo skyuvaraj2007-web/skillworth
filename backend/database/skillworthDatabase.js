@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
+const rplMappingService = require('../services/rplMappingService');
 
 const DB_PATH = path.resolve(__dirname, '../../data/skillworth_db.json');
 
@@ -344,9 +345,15 @@ class SkillworthDatabase {
     try {
       this.ensureDbInitialized();
       const content = fs.readFileSync(this.dbPath, 'utf8');
-      return JSON.parse(content);
+      const data = JSON.parse(content);
+      if (!data.rpl_qualification_packs) data.rpl_qualification_packs = [];
+      if (!data.rpl_experience_declarations) data.rpl_experience_declarations = [];
+      if (!data.rpl_assessments) data.rpl_assessments = [];
+      if (!data.assessment_audit_logs) data.assessment_audit_logs = [];
+      if (!data.rpl_checklists) data.rpl_checklists = [];
+      return data;
     } catch (e) {
-      return { users: [], learner_profiles: [], institution_profiles: [], industry_profiles: [], assessors: [], skills: [], competencies: [], evidence: [], assessments: [], assessment_questions: [], assessment_attempts: [], assessment_answers: [], assessment_results: [], credentials: [], notifications: [] };
+      return { users: [], learner_profiles: [], institution_profiles: [], industry_profiles: [], assessors: [], skills: [], competencies: [], evidence: [], assessments: [], assessment_questions: [], assessment_attempts: [], assessment_answers: [], assessment_results: [], credentials: [], notifications: [], rpl_qualification_packs: [], rpl_experience_declarations: [], rpl_assessments: [], assessment_audit_logs: [], rpl_checklists: [] };
     }
   }
 
@@ -771,6 +778,368 @@ class SkillworthDatabase {
 
   getSkills() {
     return this.read().skills;
+  }
+
+  // ================= RPL (Recognition of Prior Learning) Methods =================
+  getQualificationPacks() {
+    const data = this.read();
+    const servicePacks = rplMappingService.getQualificationPacks();
+    return (data.rpl_qualification_packs && data.rpl_qualification_packs.length > 0)
+      ? data.rpl_qualification_packs
+      : servicePacks;
+  }
+
+  getQualificationPackById(idOrCode) {
+    const packs = this.getQualificationPacks();
+    return packs.find(p => p.id === idOrCode || p.qpCode === idOrCode) || null;
+  }
+
+  submitExperienceDeclaration(declarationData) {
+    const data = this.read();
+    const id = 'DEC-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+    
+    // AI analysis
+    const aiAnalysis = rplMappingService.analyzeExperienceDeclaration(
+      declarationData.declarationText || declarationData.voiceTranscript || '',
+      declarationData
+    );
+
+    const record = {
+      id,
+      declarationId: id,
+      learnerId: declarationData.learnerId,
+      learnerName: declarationData.learnerName || 'Candidate',
+      yearsOfExperience: declarationData.yearsOfExperience || 0,
+      jobRole: declarationData.jobRole || '',
+      industry: declarationData.industry || '',
+      workplaceType: declarationData.workplaceType || 'Informal / Workshop',
+      tasksPerformed: declarationData.tasksPerformed || '',
+      toolsUsed: declarationData.toolsUsed || '',
+      machinesUsed: declarationData.machinesUsed || '',
+      responsibilities: declarationData.responsibilities || '',
+      previousTraining: declarationData.previousTraining || '',
+      apprenticeshipExperience: declarationData.apprenticeshipExperience || '',
+      existingCertificates: declarationData.existingCertificates || '',
+      location: declarationData.location || '',
+      languages: declarationData.languages || ['English', 'Tamil'],
+      selfDescribedSkills: declarationData.selfDescribedSkills || '',
+      voiceTranscript: declarationData.voiceTranscript || '',
+      inputMethod: declarationData.inputMethod || 'text',
+      aiAnalysis,
+      status: 'PENDING_WORKER_CONFIRMATION',
+      submittedAt: new Date().toISOString()
+    };
+
+    if (!data.rpl_experience_declarations) data.rpl_experience_declarations = [];
+    data.rpl_experience_declarations.push(record);
+
+    // Audit log
+    this.addAuditLog(data, {
+      assessmentId: null,
+      userId: declarationData.learnerId,
+      userName: declarationData.learnerName,
+      action: 'WORKER_EXPERIENCE_DECLARED',
+      details: `Declared experience in ${declarationData.jobRole || 'trade'} (${declarationData.yearsOfExperience || 0} years)`
+    });
+
+    this.write(data);
+    return { success: true, declaration: record, aiAnalysis };
+  }
+
+  startRplAssessment(assessmentData) {
+    const data = this.read();
+    const qp = this.getQualificationPackById(assessmentData.qpId || assessmentData.qpCode) || rplMappingService.getQualificationPacks()[0];
+    const assessmentId = 'RPL-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+
+    // Map competencies from QP
+    const competencies = (qp.competencies || []).map(c => ({
+      id: c.id,
+      code: c.code,
+      name: c.name,
+      weight: c.weight,
+      description: c.description,
+      performanceCriteria: c.performanceCriteria,
+      requiredEvidence: c.requiredEvidence,
+      status: 'NOT_STARTED',
+      evidenceItems: [],
+      score: null,
+      assessorRemarks: null,
+      aiObservation: null
+    }));
+
+    // Build checklists
+    const checklists = [];
+    (qp.competencies || []).forEach(comp => {
+      (comp.assessmentChecklist || []).forEach(item => {
+        checklists.push({
+          id: item.id,
+          competencyId: comp.id,
+          competencyCode: comp.code,
+          task: item.task,
+          criteria: item.criteria,
+          score: null, // 0 to 4
+          remarks: '',
+          aiSuggestedScore: null,
+          acceptedAi: null,
+          overrideReason: ''
+        });
+      });
+    });
+
+    const record = {
+      id: assessmentId,
+      assessmentId,
+      learnerId: assessmentData.learnerId,
+      learnerName: assessmentData.learnerName,
+      trade: qp.trade,
+      jobRole: qp.jobRole,
+      qualificationPackId: qp.id,
+      qpCode: qp.qpCode,
+      nsqfLevel: qp.nsqfLevel,
+      status: 'EVIDENCE_COLLECTION', // EVIDENCE_COLLECTION, UNDER_ASSESSMENT, COMPLETED, RECOMMENDED_FOR_CERTIFICATION
+      assessorId: assessmentData.assessorId || 'usr_demo_assessor_01',
+      assessorName: assessmentData.assessorName || 'Dr. S. Meenakshi Sundaram',
+      declarationId: assessmentData.declarationId || null,
+      competencies,
+      checklists,
+      totalScore: 0,
+      maxScore: checklists.length * 4,
+      percentage: 0,
+      competencyProfile: {
+        competent: [],
+        partiallyDemonstrated: [],
+        additionalEvidenceRequired: [],
+        notYetDemonstrated: []
+      },
+      finalRecommendation: null, // RECOMMENDED_FOR_CERTIFICATION, FURTHER_EVIDENCE_REQUIRED, NOT_YET_COMPETENT
+      assessorFinalRemarks: null,
+      credentialId: null,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    if (!data.rpl_assessments) data.rpl_assessments = [];
+    data.rpl_assessments.push(record);
+
+    this.addAuditLog(data, {
+      assessmentId,
+      userId: assessmentData.learnerId,
+      userName: assessmentData.learnerName,
+      action: 'RPL_ASSESSMENT_INITIATED',
+      details: `Initiated RPL assessment for ${qp.trade} (${qp.qpCode}, NSQF Level ${qp.nsqfLevel})`
+    });
+
+    this.write(data);
+    return { success: true, assessment: record };
+  }
+
+  getMyRplAssessment(learnerId) {
+    const data = this.read();
+    const assessments = (data.rpl_assessments || []).filter(a => a.learnerId === learnerId);
+    if (assessments.length === 0) return null;
+    return assessments[assessments.length - 1]; // Latest
+  }
+
+  getAllRplAssessments(filters = {}) {
+    const data = this.read();
+    let list = data.rpl_assessments || [];
+    if (filters.trade) list = list.filter(a => a.trade.toLowerCase().includes(filters.trade.toLowerCase()));
+    if (filters.status) list = list.filter(a => a.status === filters.status);
+    if (filters.assessorId) list = list.filter(a => a.assessorId === filters.assessorId);
+    return list;
+  }
+
+  getRplAssessmentById(assessmentId) {
+    const data = this.read();
+    const assessment = (data.rpl_assessments || []).find(a => a.id === assessmentId || a.assessmentId === assessmentId);
+    if (!assessment) return null;
+
+    // Attach learner's submitted evidence
+    const evidence = (data.evidence || []).filter(e => e.learnerId === assessment.learnerId);
+    const auditLogs = (data.assessment_audit_logs || []).filter(l => l.assessmentId === assessment.id);
+
+    return {
+      ...assessment,
+      evidenceList: evidence,
+      auditLogs
+    };
+  }
+
+  submitChecklistEvaluation(assessmentId, evaluationData) {
+    const data = this.read();
+    const idx = (data.rpl_assessments || []).findIndex(a => a.id === assessmentId || a.assessmentId === assessmentId);
+    if (idx === -1) return { success: false, message: 'Assessment record not found.' };
+
+    const assessment = data.rpl_assessments[idx];
+    const { scores, acceptedAi, overrideReason, assessorId, assessorName } = evaluationData;
+
+    // Update checklists
+    let earned = 0;
+    (assessment.checklists || []).forEach(chk => {
+      if (scores && scores[chk.id] !== undefined) {
+        chk.score = Number(scores[chk.id]);
+        chk.acceptedAi = acceptedAi ? Boolean(acceptedAi[chk.id]) : true;
+        if (overrideReason && overrideReason[chk.id]) {
+          chk.overrideReason = overrideReason[chk.id];
+        }
+      }
+      earned += (chk.score || 0);
+    });
+
+    assessment.totalScore = earned;
+    const maxScore = (assessment.checklists.length * 4) || 1;
+    assessment.percentage = Math.round((earned / maxScore) * 100);
+    assessment.status = 'UNDER_ASSESSMENT';
+    assessment.updatedAt = new Date().toISOString();
+
+    // Recompute competencies status
+    (assessment.competencies || []).forEach(comp => {
+      const compChecklists = assessment.checklists.filter(c => c.competencyId === comp.id);
+      const compEarned = compChecklists.reduce((acc, c) => acc + (c.score || 0), 0);
+      const compMax = (compChecklists.length * 4) || 1;
+      const compPct = (compEarned / compMax) * 100;
+
+      if (compPct >= 75) comp.status = 'COMPETENT';
+      else if (compPct >= 50) comp.status = 'PARTIALLY_DEMONSTRATED';
+      else comp.status = 'NOT_YET_DEMONSTRATED';
+      comp.score = Math.round(compPct);
+    });
+
+    this.addAuditLog(data, {
+      assessmentId: assessment.id,
+      userId: assessorId || 'usr_assessor',
+      userName: assessorName || 'Authorized Assessor',
+      action: 'CHECKLIST_EVALUATION_RECORDED',
+      details: `Evaluated checklist. Total score: ${assessment.totalScore}/${maxScore} (${assessment.percentage}%). AI Overrides: ${Object.keys(overrideReason || {}).length}`
+    });
+
+    this.write(data);
+    return { success: true, assessment };
+  }
+
+  submitRplFinalDecision(assessmentId, decisionData) {
+    const data = this.read();
+    const idx = (data.rpl_assessments || []).findIndex(a => a.id === assessmentId || a.assessmentId === assessmentId);
+    if (idx === -1) return { success: false, message: 'Assessment record not found.' };
+
+    const assessment = data.rpl_assessments[idx];
+    const { decision, remarks, assessorId, assessorName } = decisionData;
+
+    assessment.finalRecommendation = decision; // RECOMMENDED_FOR_CERTIFICATION, FURTHER_EVIDENCE_REQUIRED, NOT_YET_COMPETENT
+    assessment.assessorFinalRemarks = remarks;
+    assessment.status = 'COMPLETED';
+    assessment.updatedAt = new Date().toISOString();
+
+    // Rebuild competency profile categories
+    const profile = {
+      competent: [],
+      partiallyDemonstrated: [],
+      additionalEvidenceRequired: [],
+      notYetDemonstrated: []
+    };
+
+    (assessment.competencies || []).forEach(c => {
+      if (c.status === 'COMPETENT') profile.competent.push(c.name);
+      else if (c.status === 'PARTIALLY_DEMONSTRATED') profile.partiallyDemonstrated.push(c.name);
+      else profile.notYetDemonstrated.push(c.name);
+    });
+
+    if (decision === 'FURTHER_EVIDENCE_REQUIRED') {
+      profile.additionalEvidenceRequired.push('Safety standards & Live operational de-energization confirmation');
+    }
+
+    assessment.competencyProfile = profile;
+
+    let credential = null;
+    // Issue verified credential if recommended
+    if (decision === 'RECOMMENDED_FOR_CERTIFICATION') {
+      const credentialId = 'SW-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+      assessment.credentialId = credentialId;
+
+      credential = {
+        id: credentialId,
+        credentialId,
+        learnerId: assessment.learnerId,
+        learnerName: assessment.learnerName,
+        skillName: `${assessment.trade} (NSQF Level ${assessment.nsqfLevel})`,
+        skillLevel: `NSQF Level ${assessment.nsqfLevel}`,
+        qualificationPack: assessment.qpCode,
+        institutionName: 'SkillWorth National Assessment Institute',
+        assessmentDate: new Date().toLocaleDateString('en-GB'),
+        verifiedByAssessor: assessorName || 'Dr. S. Meenakshi Sundaram',
+        status: 'VALID',
+        standards: 'ISO/IEC 17024 & NSQF Standardized RPL Certification',
+        issuedAt: new Date().toISOString()
+      };
+
+      if (!data.credentials) data.credentials = [];
+      data.credentials.push(credential);
+    }
+
+    this.addAuditLog(data, {
+      assessmentId: assessment.id,
+      userId: assessorId,
+      userName: assessorName,
+      action: 'FINAL_RPL_DECISION_SUBMITTED',
+      details: `Assessor submitted final decision: ${decision}. Credential ID: ${assessment.credentialId || 'None'}`
+    });
+
+    this.write(data);
+    return { success: true, assessment, credential };
+  }
+
+  syncRplOfflineData(syncPayload) {
+    const data = this.read();
+    const { clientTimestamp, offlineRecords } = syncPayload;
+    const conflicts = [];
+    const synced = [];
+
+    (offlineRecords || []).forEach(rec => {
+      const serverRec = (data.rpl_assessments || []).find(a => a.id === rec.assessmentId);
+      if (serverRec && new Date(serverRec.updatedAt).getTime() > new Date(clientTimestamp).getTime()) {
+        conflicts.push({
+          assessmentId: rec.assessmentId,
+          reason: 'Server version is newer than client baseline',
+          serverVersion: serverRec,
+          clientVersion: rec
+        });
+      } else {
+        if (serverRec) {
+          Object.assign(serverRec, rec.data);
+          serverRec.updatedAt = new Date().toISOString();
+          synced.push(serverRec.id);
+        }
+      }
+    });
+
+    this.addAuditLog(data, {
+      assessmentId: null,
+      userId: syncPayload.assessorId || 'system_sync',
+      userName: 'Offline Synchronization Engine',
+      action: 'OFFLINE_RECORDS_SYNCED',
+      details: `Synced ${synced.length} records. Conflicts detected: ${conflicts.length}`
+    });
+
+    this.write(data);
+    return { success: true, syncedCount: synced.length, conflicts };
+  }
+
+  addAuditLog(data, { assessmentId, userId, userName, action, details }) {
+    if (!data.assessment_audit_logs) data.assessment_audit_logs = [];
+    data.assessment_audit_logs.push({
+      id: 'LOG-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase(),
+      assessmentId: assessmentId || null,
+      userId: userId || 'anonymous',
+      userName: userName || 'User',
+      action,
+      details,
+      timestamp: new Date().toISOString()
+    });
+  }
+
+  getAssessmentAuditLogs(assessmentId) {
+    const data = this.read();
+    return (data.assessment_audit_logs || []).filter(l => !assessmentId || l.assessmentId === assessmentId);
   }
 }
 

@@ -128,5 +128,126 @@ export const api = {
       headers: { ...getAuthHeader() }
     });
     return res.json();
+  },
+
+  // RPL (Recognition of Prior Learning)
+  async getQualificationPacks() {
+    const res = await fetch('/api/rpl/qualification-packs');
+    return res.json();
+  },
+
+  async getQualificationPack(id) {
+    const res = await fetch('/api/rpl/qualification-packs/' + encodeURIComponent(id));
+    return res.json();
+  },
+
+  async analyzeExperience(declarationText, voiceTranscript, structuredFields) {
+    const res = await fetch('/api/rpl/experience/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ declarationText, voiceTranscript, structuredFields })
+    });
+    return res.json();
+  },
+
+  async submitExperience(declarationData) {
+    const res = await fetch('/api/rpl/experience', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(declarationData)
+    });
+    return res.json();
+  },
+
+  async getMyRplAssessment() {
+    const res = await fetch('/api/rpl/my-assessment', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async startRplAssessment(qpId, declarationId) {
+    const res = await fetch('/api/rpl/assessment/start', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify({ qpId, declarationId })
+    });
+    return res.json();
+  },
+
+  async getAssessorRplAssessments(filters = {}) {
+    const params = new URLSearchParams(filters).toString();
+    const res = await fetch('/api/rpl/assessor/assessments?' + params, {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async getRplAssessmentDetails(assessmentId) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId), {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async submitChecklistScore(assessmentId, data) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/checklist-score', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async submitRplDecision(assessmentId, decision, remarks) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/decision', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify({ decision, remarks })
+    });
+    return res.json();
+  },
+
+  async getRplReport(assessmentId) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/report');
+    return res.json();
+  },
+
+  async checkEvidenceQuality(evidenceItem, competencyCode) {
+    const res = await fetch('/api/rpl/evidence/quality-check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ evidenceItem, competencyCode })
+    });
+    return res.json();
+  },
+
+  async getAssessorConsistencyAnalytics() {
+    const res = await fetch('/api/rpl/analytics/assessor-consistency');
+    return res.json();
+  },
+
+  async syncOfflineData(offlineRecords, clientTimestamp) {
+    const res = await fetch('/api/rpl/sync', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify({ offlineRecords, clientTimestamp })
+    });
+    return res.json();
   }
 };

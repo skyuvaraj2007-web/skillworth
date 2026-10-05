@@ -104,6 +104,28 @@
       "profileId": "LRN-NR9NL1",
       "verificationStatus": "ACTIVE",
       "createdAt": "2026-10-05T13:44:33.431Z"
+    },
+    {
+      "id": "usr_1791208958962_ylqfh",
+      "userId": "usr_1791208958962_ylqfh",
+      "email": "candidate_1791208958955@university.edu",
+      "passwordHash": "$2b$10$3OaQuNpF..tWULyrAkUqXOydi0WDG6slIYrDCXXUioINnd4OhAVFu",
+      "role": "LEARNER",
+      "preferredLanguage": "en",
+      "profileId": "LRN-HFWGVR",
+      "verificationStatus": "ACTIVE",
+      "createdAt": "2026-10-05T14:02:39.050Z"
+    },
+    {
+      "id": "usr_1791208996135_33dav",
+      "userId": "usr_1791208996135_33dav",
+      "email": "candidate_1791208996123@university.edu",
+      "passwordHash": "$2b$10$.jdf6n1fsUA2us0SJ2xAhuzAnpSpL.YTJZEkbUMkeDXlEdzDOD4XG",
+      "role": "LEARNER",
+      "preferredLanguage": "en",
+      "profileId": "LRN-HXGCT2",
+      "verificationStatus": "ACTIVE",
+      "createdAt": "2026-10-05T14:03:16.235Z"
     }
   ],
   "learner_profiles": [
@@ -284,6 +306,56 @@
       "areasOfInterest": [],
       "preferredLanguage": "en",
       "createdAt": "2026-10-05T13:44:33.431Z"
+    },
+    {
+      "id": "LRN-HFWGVR",
+      "learnerId": "LRN-HFWGVR",
+      "userId": "usr_1791208958962_ylqfh",
+      "fullName": "Ravi Chandran",
+      "email": "candidate_1791208958955@university.edu",
+      "mobile": "",
+      "dob": "",
+      "profilePhoto": "",
+      "collegeName": "Coimbatore Institute of Technology",
+      "department": "Information Technology",
+      "degree": "B.Tech",
+      "specialization": "",
+      "currentYear": "3rd Year",
+      "studentId": "CIT-2026-IT",
+      "graduationYear": "2026",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "city": "Coimbatore",
+      "primarySkill": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "areasOfInterest": [],
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T14:02:39.050Z"
+    },
+    {
+      "id": "LRN-HXGCT2",
+      "learnerId": "LRN-HXGCT2",
+      "userId": "usr_1791208996135_33dav",
+      "fullName": "Ravi Chandran",
+      "email": "candidate_1791208996123@university.edu",
+      "mobile": "",
+      "dob": "",
+      "profilePhoto": "",
+      "collegeName": "Coimbatore Institute of Technology",
+      "department": "Information Technology",
+      "degree": "B.Tech",
+      "specialization": "",
+      "currentYear": "3rd Year",
+      "studentId": "CIT-2026-IT",
+      "graduationYear": "2026",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "city": "Coimbatore",
+      "primarySkill": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "areasOfInterest": [],
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T14:03:16.235Z"
     }
   ],
   "institution_profiles": [
@@ -478,7 +550,7 @@
         "decision": "APPROVE",
         "feedback": "Candidate successfully demonstrated token bucket rate limiter with sliding window counters.",
         "assessorName": "Dr. S. Meenakshi Sundaram",
-        "decidedAt": "2026-10-05T13:44:33.584Z"
+        "decidedAt": "2026-10-05T14:03:16.286Z"
       },
       "submittedAt": "2026-10-05T10:41:51.049Z"
     }
@@ -668,6 +740,40 @@
       "aiSummary": "AI performance telemetry confirms 100% alignment with ISO 17024 competency matrix. Practical task answers forwarded to lead assessor for validation.",
       "assessorDecision": "APPROVE",
       "submittedAt": "2026-10-05T13:44:33.468Z"
+    },
+    {
+      "id": "RES-GS9Q65",
+      "attemptId": "ATT-HM2QUA",
+      "assessmentId": "asm_py_intermediate",
+      "assessmentTitle": "Python Software Engineering Skill Verification Protocol",
+      "learnerId": "LRN-HFWGVR",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "totalScore": 80,
+      "maxScore": 80,
+      "percentage": 100,
+      "passed": true,
+      "aiSummary": "AI performance telemetry confirms 100% alignment with ISO 17024 competency matrix. Practical task answers forwarded to lead assessor for validation.",
+      "assessorDecision": "APPROVE",
+      "submittedAt": "2026-10-05T14:02:39.069Z"
+    },
+    {
+      "id": "RES-L2F5NC",
+      "attemptId": "ATT-RK8MWY",
+      "assessmentId": "asm_py_intermediate",
+      "assessmentTitle": "Python Software Engineering Skill Verification Protocol",
+      "learnerId": "LRN-HXGCT2",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "totalScore": 80,
+      "maxScore": 80,
+      "percentage": 100,
+      "passed": true,
+      "aiSummary": "AI performance telemetry confirms 100% alignment with ISO 17024 competency matrix. Practical task answers forwarded to lead assessor for validation.",
+      "assessorDecision": "APPROVE",
+      "submittedAt": "2026-10-05T14:03:16.251Z"
     }
   ],
   "credentials": [
@@ -865,7 +971,781 @@
       "issueDate": "2026-10-05T13:44:33.584Z",
       "validity": "PERMANENT",
       "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-3AGXQG",
+      "credentialId": "SW-3AGXQG",
+      "learnerId": "LRN-HFWGVR",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "verifiedByAssessor": "Authorized Lead Assessor",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T14:02:39.156Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-53BU2N",
+      "credentialId": "SW-53BU2N",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth Verified Institution",
+      "verifiedByAssessor": "Dr. S. Meenakshi Sundaram",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T14:02:39.169Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-OAMPO1",
+      "credentialId": "SW-OAMPO1",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillName": "Electrician (NSQF Level 4)",
+      "skillLevel": "NSQF Level 4",
+      "qualificationPack": "ELE/Q1401",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "assessmentDate": "05/10/2026",
+      "verifiedByAssessor": "Dr. S. Meenakshi Sundaram",
+      "status": "VALID",
+      "standards": "ISO/IEC 17024 & NSQF Standardized RPL Certification",
+      "issuedAt": "2026-10-05T14:03:04.145Z"
+    },
+    {
+      "id": "SW-MPA83Y",
+      "credentialId": "SW-MPA83Y",
+      "learnerId": "LRN-HXGCT2",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "verifiedByAssessor": "Authorized Lead Assessor",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T14:03:16.273Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-739WK8",
+      "credentialId": "SW-739WK8",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth Verified Institution",
+      "verifiedByAssessor": "Dr. S. Meenakshi Sundaram",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T14:03:16.286Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
     }
   ],
-  "notifications": []
+  "notifications": [],
+  "rpl_qualification_packs": [],
+  "rpl_experience_declarations": [
+    {
+      "id": "DEC-MUVBKXJ2-PI43",
+      "declarationId": "DEC-MUVBKXJ2-PI43",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "yearsOfExperience": 8,
+      "jobRole": "Field Electrician",
+      "industry": "",
+      "workplaceType": "Informal / Workshop",
+      "tasksPerformed": "Domestic wiring, MCB mounting, pipe earthing, conduit running",
+      "toolsUsed": "Insulated pliers, neon tester, Megger earth tester",
+      "machinesUsed": "",
+      "responsibilities": "",
+      "previousTraining": "",
+      "apprenticeshipExperience": "",
+      "existingCertificates": "",
+      "location": "",
+      "languages": [
+        "English",
+        "Tamil"
+      ],
+      "selfDescribedSkills": "",
+      "voiceTranscript": "",
+      "inputMethod": "text",
+      "aiAnalysis": {
+        "success": true,
+        "timestamp": "2026-10-05T14:03:03.999Z",
+        "suggestedOccupation": "Electrician",
+        "suggestedTrade": "Electrician",
+        "suggestedJobRole": "Field Technician - Wireman / Electrician",
+        "suggestedQualificationPack": {
+          "id": "QP-ELE-Q1401",
+          "qpCode": "ELE/Q1401",
+          "trade": "Electrician",
+          "sector": "Electronics & Electrical",
+          "nsqfLevel": 4,
+          "description": "Assembling, installing, testing, and maintaining electrical wiring, equipment, appliances, and fixtures in domestic and commercial premises."
+        },
+        "suggestedNsqfLevel": 4,
+        "aiConfidenceScore": 96,
+        "matchedKeywords": [
+          "electrician",
+          "wiring",
+          "conduit",
+          "mcb",
+          "earthing"
+        ],
+        "matchingCompetencyAreas": [
+          {
+            "competencyId": "comp_ele_01",
+            "code": "ELE/N1401",
+            "name": "Wiring and Cable Laying",
+            "weight": 25,
+            "matched": true
+          },
+          {
+            "competencyId": "comp_ele_02",
+            "code": "ELE/N1402",
+            "name": "Installation of Distribution Board & Switchgear",
+            "weight": 25,
+            "matched": true
+          },
+          {
+            "competencyId": "comp_ele_03",
+            "code": "ELE/N1403",
+            "name": "Earthing and Testing Procedures",
+            "weight": 25,
+            "matched": true
+          },
+          {
+            "competencyId": "comp_ele_04",
+            "code": "ELE/N9901",
+            "name": "Health, Safety & Standard Operating Procedures",
+            "weight": 25,
+            "matched": true
+          }
+        ],
+        "relevantSkills": [
+          "electrician",
+          "wiring",
+          "wireman",
+          "cable",
+          "conduit",
+          "switch"
+        ],
+        "missingInformation": [
+          "Workplace safety procedures followed (PPE, earthing, precautions)"
+        ],
+        "disclaimer": "AI-assisted recommendation. Official Trade and NSQF mapping is confirmed by candidate and authorized assessor."
+      },
+      "status": "PENDING_WORKER_CONFIRMATION",
+      "submittedAt": "2026-10-05T14:03:03.999Z"
+    }
+  ],
+  "rpl_assessments": [
+    {
+      "id": "RPL-MUVBDQ1Y-V1D1",
+      "assessmentId": "RPL-MUVBDQ1Y-V1D1",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "trade": "Electrician",
+      "jobRole": "Field Technician - Wireman / Electrician",
+      "qualificationPackId": "QP-ELE-Q1401",
+      "qpCode": "ELE/Q1401",
+      "nsqfLevel": 4,
+      "status": "EVIDENCE_COLLECTION",
+      "assessorId": "usr_demo_assessor_01",
+      "assessorName": "Dr. S. Meenakshi Sundaram",
+      "declarationId": null,
+      "competencies": [
+        {
+          "id": "comp_ele_01",
+          "code": "ELE/N1401",
+          "name": "Wiring and Cable Laying",
+          "weight": 25,
+          "description": "Prepare, layout, and secure surface and concealed wiring conduits, cables, and connections per load calculations.",
+          "performanceCriteria": [
+            "Select proper wire gauges (e.g. 1.5 sq mm for lighting, 4.0 sq mm for power) based on load specifications",
+            "Lay PVC/GI conduits accurately according to layout drawings without sharp bends",
+            "Follow standardized color-coding (Phase: Red/Brown, Neutral: Black/Blue, Earth: Green/Yellow)",
+            "Secure cables with saddles at standard intervals (< 30cm) and terminate in junction boxes"
+          ],
+          "requiredEvidence": [
+            "Photos/video of conduit routing",
+            "Color-coded wiring termination",
+            "Load calculation notes"
+          ],
+          "status": "NOT_STARTED",
+          "evidenceItems": [],
+          "score": null,
+          "assessorRemarks": null,
+          "aiObservation": null
+        },
+        {
+          "id": "comp_ele_02",
+          "code": "ELE/N1402",
+          "name": "Installation of Distribution Board & Switchgear",
+          "weight": 25,
+          "description": "Mount, dress, and wire distribution boards, MCBs, RCCBs, and domestic switch accessories.",
+          "performanceCriteria": [
+            "Mount distribution board plumb and level at the recommended ergonomic height (1.5m - 1.8m)",
+            "Install and wire MCB and 30mA RCCB correctly for shock and overcurrent protection",
+            "Connect single-pole switches on the live phase conductor only, never neutral",
+            "Dress wires neatly inside panel with spiral bands and provide proper circuit labeling"
+          ],
+          "requiredEvidence": [
+            "Distribution board internal dressing photo",
+            "Live video of MCB/RCCB trip testing",
+            "Switch plate terminations"
+          ],
+          "status": "NOT_STARTED",
+          "evidenceItems": [],
+          "score": null,
+          "assessorRemarks": null,
+          "aiObservation": null
+        },
+        {
+          "id": "comp_ele_03",
+          "code": "ELE/N1403",
+          "name": "Earthing and Testing Procedures",
+          "weight": 25,
+          "description": "Construct, measure, and verify pipe/plate earthing and perform continuity and insulation resistance tests.",
+          "performanceCriteria": [
+            "Verify pipe or plate earthing electrode installation with salt and charcoal layers",
+            "Perform earth resistance measurement with Earth Clamp / 3-point Megger (< 5 Ohms target)",
+            "Execute circuit continuity check between Phase and Neutral, and insulation test between Conductor and Earth",
+            "Verify polarity of all installed 3-pin 16A/6A power socket outlets"
+          ],
+          "requiredEvidence": [
+            "Earth electrode installation photos",
+            "Earth resistance reading on digital tester",
+            "Multimeter polarity check video"
+          ],
+          "status": "NOT_STARTED",
+          "evidenceItems": [],
+          "score": null,
+          "assessorRemarks": null,
+          "aiObservation": null
+        },
+        {
+          "id": "comp_ele_04",
+          "code": "ELE/N9901",
+          "name": "Health, Safety & Standard Operating Procedures",
+          "weight": 25,
+          "description": "Implement Personal Protective Equipment (PPE), Lock-Out Tag-Out (LOTO), and electrical hazard prevention.",
+          "performanceCriteria": [
+            "Wear standard 1000V rated insulated gloves, safety shoes, and eye protection",
+            "Verify circuit de-energization using calibrated neon tester or DMM prior to touching conductors",
+            "Implement Lock-Out Tag-Out (LOTO) procedures on main isolator switch during maintenance",
+            "Demonstrate correct response to electrical fire (CO2 / dry powder, never water) and victim rescue protocol"
+          ],
+          "requiredEvidence": [
+            "PPE demonstration video clip",
+            "LOTO lock & tag application photo",
+            "Clean and hazard-free workplace proof"
+          ],
+          "status": "NOT_STARTED",
+          "evidenceItems": [],
+          "score": null,
+          "assessorRemarks": null,
+          "aiObservation": null
+        }
+      ],
+      "checklists": [
+        {
+          "id": "chk_1_1",
+          "competencyId": "comp_ele_01",
+          "competencyCode": "ELE/N1401",
+          "task": "Selection of wire gauges and color coding",
+          "criteria": "Selected 1.5 sq mm for lighting and 4.0 sq mm for power circuits; followed Red-Phase, Black-Neutral, Green-Earth.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_1_2",
+          "competencyId": "comp_ele_01",
+          "competencyCode": "ELE/N1401",
+          "task": "Conduit laying and alignment",
+          "criteria": "Conduit is aligned vertically and horizontally with saddles spaced no more than 30 cm apart.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_1_3",
+          "competencyId": "comp_ele_01",
+          "competencyCode": "ELE/N1401",
+          "task": "Stripping and lugging terminations",
+          "criteria": "Wires stripped without strand nicking and terminated with proper ferrules/lugs in junction box.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_2_1",
+          "competencyId": "comp_ele_02",
+          "competencyCode": "ELE/N1402",
+          "task": "Distribution board mounting and earthing",
+          "criteria": "DB mounted plumb and level; metal body bonded firmly to the earth terminal busbar.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_2_2",
+          "competencyId": "comp_ele_02",
+          "competencyCode": "ELE/N1402",
+          "task": "RCCB and MCB connection sequence",
+          "criteria": "Incoming phase connects to DP isolator/RCCB first, then loops to outgoing SP MCBs.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_2_3",
+          "competencyId": "comp_ele_02",
+          "competencyCode": "ELE/N1402",
+          "task": "Switch connections and polarity test",
+          "criteria": "Phase wire is interrupted through the switch; neutral is looped directly to lamp/socket.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_3_1",
+          "competencyId": "comp_ele_03",
+          "competencyCode": "ELE/N1403",
+          "task": "Earth resistance measurement",
+          "criteria": "Meter leads connected correctly; verified earth pit resistance is below 5 Ohms.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_3_2",
+          "competencyId": "comp_ele_03",
+          "competencyCode": "ELE/N1403",
+          "task": "Insulation resistance test",
+          "criteria": "Megger test between phase and earth shows resistance greater than 1 Megaohm.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_3_3",
+          "competencyId": "comp_ele_03",
+          "competencyCode": "ELE/N1403",
+          "task": "3-Pin socket polarity and ground test",
+          "criteria": "Earth pin (top larger) connected to ground; right pin Live; left pin Neutral.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_4_1",
+          "competencyId": "comp_ele_04",
+          "competencyCode": "ELE/N9901",
+          "task": "Personal Protective Equipment usage",
+          "criteria": "Candidate is wearing 1000V rated insulated rubber gloves and electrical safety boots.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_4_2",
+          "competencyId": "comp_ele_04",
+          "competencyCode": "ELE/N9901",
+          "task": "De-energization verification (Zero-energy check)",
+          "criteria": "Tested circuit with multimeter to confirm 0V before stripping or touching cables.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_4_3",
+          "competencyId": "comp_ele_04",
+          "competencyCode": "ELE/N9901",
+          "task": "LOTO procedure application",
+          "criteria": "Applied safety padlock and tag to main breaker box during simulated maintenance.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        }
+      ],
+      "totalScore": 0,
+      "maxScore": 48,
+      "percentage": 0,
+      "competencyProfile": {
+        "competent": [],
+        "partiallyDemonstrated": [],
+        "additionalEvidenceRequired": [],
+        "notYetDemonstrated": []
+      },
+      "finalRecommendation": null,
+      "assessorFinalRemarks": null,
+      "credentialId": null,
+      "createdAt": "2026-10-05T13:57:27.718Z",
+      "updatedAt": "2026-10-05T13:57:27.720Z"
+    },
+    {
+      "id": "RPL-MUVBKXJW-59OS",
+      "assessmentId": "RPL-MUVBKXJW-59OS",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "trade": "Electrician",
+      "jobRole": "Field Technician - Wireman / Electrician",
+      "qualificationPackId": "QP-ELE-Q1401",
+      "qpCode": "ELE/Q1401",
+      "nsqfLevel": 4,
+      "status": "COMPLETED",
+      "assessorId": "usr_demo_assessor_01",
+      "assessorName": "Dr. S. Meenakshi Sundaram",
+      "declarationId": "DEC-MUVBKXJ2-PI43",
+      "competencies": [
+        {
+          "id": "comp_ele_01",
+          "code": "ELE/N1401",
+          "name": "Wiring and Cable Laying",
+          "weight": 25,
+          "description": "Prepare, layout, and secure surface and concealed wiring conduits, cables, and connections per load calculations.",
+          "performanceCriteria": [
+            "Select proper wire gauges (e.g. 1.5 sq mm for lighting, 4.0 sq mm for power) based on load specifications",
+            "Lay PVC/GI conduits accurately according to layout drawings without sharp bends",
+            "Follow standardized color-coding (Phase: Red/Brown, Neutral: Black/Blue, Earth: Green/Yellow)",
+            "Secure cables with saddles at standard intervals (< 30cm) and terminate in junction boxes"
+          ],
+          "requiredEvidence": [
+            "Photos/video of conduit routing",
+            "Color-coded wiring termination",
+            "Load calculation notes"
+          ],
+          "status": "PARTIALLY_DEMONSTRATED",
+          "evidenceItems": [],
+          "score": 58,
+          "assessorRemarks": null,
+          "aiObservation": null
+        },
+        {
+          "id": "comp_ele_02",
+          "code": "ELE/N1402",
+          "name": "Installation of Distribution Board & Switchgear",
+          "weight": 25,
+          "description": "Mount, dress, and wire distribution boards, MCBs, RCCBs, and domestic switch accessories.",
+          "performanceCriteria": [
+            "Mount distribution board plumb and level at the recommended ergonomic height (1.5m - 1.8m)",
+            "Install and wire MCB and 30mA RCCB correctly for shock and overcurrent protection",
+            "Connect single-pole switches on the live phase conductor only, never neutral",
+            "Dress wires neatly inside panel with spiral bands and provide proper circuit labeling"
+          ],
+          "requiredEvidence": [
+            "Distribution board internal dressing photo",
+            "Live video of MCB/RCCB trip testing",
+            "Switch plate terminations"
+          ],
+          "status": "NOT_YET_DEMONSTRATED",
+          "evidenceItems": [],
+          "score": 25,
+          "assessorRemarks": null,
+          "aiObservation": null
+        },
+        {
+          "id": "comp_ele_03",
+          "code": "ELE/N1403",
+          "name": "Earthing and Testing Procedures",
+          "weight": 25,
+          "description": "Construct, measure, and verify pipe/plate earthing and perform continuity and insulation resistance tests.",
+          "performanceCriteria": [
+            "Verify pipe or plate earthing electrode installation with salt and charcoal layers",
+            "Perform earth resistance measurement with Earth Clamp / 3-point Megger (< 5 Ohms target)",
+            "Execute circuit continuity check between Phase and Neutral, and insulation test between Conductor and Earth",
+            "Verify polarity of all installed 3-pin 16A/6A power socket outlets"
+          ],
+          "requiredEvidence": [
+            "Earth electrode installation photos",
+            "Earth resistance reading on digital tester",
+            "Multimeter polarity check video"
+          ],
+          "status": "NOT_YET_DEMONSTRATED",
+          "evidenceItems": [],
+          "score": 33,
+          "assessorRemarks": null,
+          "aiObservation": null
+        },
+        {
+          "id": "comp_ele_04",
+          "code": "ELE/N9901",
+          "name": "Health, Safety & Standard Operating Procedures",
+          "weight": 25,
+          "description": "Implement Personal Protective Equipment (PPE), Lock-Out Tag-Out (LOTO), and electrical hazard prevention.",
+          "performanceCriteria": [
+            "Wear standard 1000V rated insulated gloves, safety shoes, and eye protection",
+            "Verify circuit de-energization using calibrated neon tester or DMM prior to touching conductors",
+            "Implement Lock-Out Tag-Out (LOTO) procedures on main isolator switch during maintenance",
+            "Demonstrate correct response to electrical fire (CO2 / dry powder, never water) and victim rescue protocol"
+          ],
+          "requiredEvidence": [
+            "PPE demonstration video clip",
+            "LOTO lock & tag application photo",
+            "Clean and hazard-free workplace proof"
+          ],
+          "status": "NOT_YET_DEMONSTRATED",
+          "evidenceItems": [],
+          "score": 33,
+          "assessorRemarks": null,
+          "aiObservation": null
+        }
+      ],
+      "checklists": [
+        {
+          "id": "chk_1_1",
+          "competencyId": "comp_ele_01",
+          "competencyCode": "ELE/N1401",
+          "task": "Selection of wire gauges and color coding",
+          "criteria": "Selected 1.5 sq mm for lighting and 4.0 sq mm for power circuits; followed Red-Phase, Black-Neutral, Green-Earth.",
+          "score": 4,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": true,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_1_2",
+          "competencyId": "comp_ele_01",
+          "competencyCode": "ELE/N1401",
+          "task": "Conduit laying and alignment",
+          "criteria": "Conduit is aligned vertically and horizontally with saddles spaced no more than 30 cm apart.",
+          "score": 3,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": false,
+          "overrideReason": "Candidate demonstrated faster conduit alignment during live practical task than AI observation estimated."
+        },
+        {
+          "id": "chk_1_3",
+          "competencyId": "comp_ele_01",
+          "competencyCode": "ELE/N1401",
+          "task": "Stripping and lugging terminations",
+          "criteria": "Wires stripped without strand nicking and terminated with proper ferrules/lugs in junction box.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_2_1",
+          "competencyId": "comp_ele_02",
+          "competencyCode": "ELE/N1402",
+          "task": "Distribution board mounting and earthing",
+          "criteria": "DB mounted plumb and level; metal body bonded firmly to the earth terminal busbar.",
+          "score": 3,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": false,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_2_2",
+          "competencyId": "comp_ele_02",
+          "competencyCode": "ELE/N1402",
+          "task": "RCCB and MCB connection sequence",
+          "criteria": "Incoming phase connects to DP isolator/RCCB first, then loops to outgoing SP MCBs.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_2_3",
+          "competencyId": "comp_ele_02",
+          "competencyCode": "ELE/N1402",
+          "task": "Switch connections and polarity test",
+          "criteria": "Phase wire is interrupted through the switch; neutral is looped directly to lamp/socket.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_3_1",
+          "competencyId": "comp_ele_03",
+          "competencyCode": "ELE/N1403",
+          "task": "Earth resistance measurement",
+          "criteria": "Meter leads connected correctly; verified earth pit resistance is below 5 Ohms.",
+          "score": 4,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": false,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_3_2",
+          "competencyId": "comp_ele_03",
+          "competencyCode": "ELE/N1403",
+          "task": "Insulation resistance test",
+          "criteria": "Megger test between phase and earth shows resistance greater than 1 Megaohm.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_3_3",
+          "competencyId": "comp_ele_03",
+          "competencyCode": "ELE/N1403",
+          "task": "3-Pin socket polarity and ground test",
+          "criteria": "Earth pin (top larger) connected to ground; right pin Live; left pin Neutral.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_4_1",
+          "competencyId": "comp_ele_04",
+          "competencyCode": "ELE/N9901",
+          "task": "Personal Protective Equipment usage",
+          "criteria": "Candidate is wearing 1000V rated insulated rubber gloves and electrical safety boots.",
+          "score": 4,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": false,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_4_2",
+          "competencyId": "comp_ele_04",
+          "competencyCode": "ELE/N9901",
+          "task": "De-energization verification (Zero-energy check)",
+          "criteria": "Tested circuit with multimeter to confirm 0V before stripping or touching cables.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        },
+        {
+          "id": "chk_4_3",
+          "competencyId": "comp_ele_04",
+          "competencyCode": "ELE/N9901",
+          "task": "LOTO procedure application",
+          "criteria": "Applied safety padlock and tag to main breaker box during simulated maintenance.",
+          "score": null,
+          "remarks": "",
+          "aiSuggestedScore": null,
+          "acceptedAi": null,
+          "overrideReason": ""
+        }
+      ],
+      "totalScore": 18,
+      "maxScore": 48,
+      "percentage": 38,
+      "competencyProfile": {
+        "competent": [],
+        "partiallyDemonstrated": [
+          "Wiring and Cable Laying"
+        ],
+        "additionalEvidenceRequired": [],
+        "notYetDemonstrated": [
+          "Installation of Distribution Board & Switchgear",
+          "Earthing and Testing Procedures",
+          "Health, Safety & Standard Operating Procedures"
+        ]
+      },
+      "finalRecommendation": "RECOMMENDED_FOR_CERTIFICATION",
+      "assessorFinalRemarks": "Updated during offline fieldwork sync.",
+      "credentialId": "SW-OAMPO1",
+      "createdAt": "2026-10-05T14:03:04.029Z",
+      "updatedAt": "2026-10-05T14:03:04.202Z"
+    }
+  ],
+  "assessment_audit_logs": [
+    {
+      "id": "LOG-MUVBDQ20-2OTK",
+      "assessmentId": "RPL-MUVBDQ1Y-V1D1",
+      "userId": "LRN-DEMO-01",
+      "userName": "Arun Kumar",
+      "action": "RPL_ASSESSMENT_INITIATED",
+      "details": "Initiated RPL assessment for Electrician (ELE/Q1401, NSQF Level 4)",
+      "timestamp": "2026-10-05T13:57:27.720Z"
+    },
+    {
+      "id": "LOG-MUVBKXJ3-E1UB",
+      "assessmentId": null,
+      "userId": "LRN-DEMO-01",
+      "userName": "Arun Kumar",
+      "action": "WORKER_EXPERIENCE_DECLARED",
+      "details": "Declared experience in Field Electrician (8 years)",
+      "timestamp": "2026-10-05T14:03:03.999Z"
+    },
+    {
+      "id": "LOG-MUVBKXJX-L0CK",
+      "assessmentId": "RPL-MUVBKXJW-59OS",
+      "userId": "LRN-DEMO-01",
+      "userName": "Arun Kumar",
+      "action": "RPL_ASSESSMENT_INITIATED",
+      "details": "Initiated RPL assessment for Electrician (ELE/Q1401, NSQF Level 4)",
+      "timestamp": "2026-10-05T14:03:04.029Z"
+    },
+    {
+      "id": "LOG-MUVBKXLE-8GH1",
+      "assessmentId": "RPL-MUVBKXJW-59OS",
+      "userId": "INST-DEMO-01",
+      "userName": "Dr. S. Meenakshi Sundaram",
+      "action": "CHECKLIST_EVALUATION_RECORDED",
+      "details": "Evaluated checklist. Total score: 18/48 (38%). AI Overrides: 1",
+      "timestamp": "2026-10-05T14:03:04.083Z"
+    },
+    {
+      "id": "LOG-MUVBKXN5-UTLG",
+      "assessmentId": "RPL-MUVBKXJW-59OS",
+      "userId": "INST-DEMO-01",
+      "userName": "Dr. S. Meenakshi Sundaram",
+      "action": "FINAL_RPL_DECISION_SUBMITTED",
+      "details": "Assessor submitted final decision: RECOMMENDED_FOR_CERTIFICATION. Credential ID: SW-OAMPO1",
+      "timestamp": "2026-10-05T14:03:04.145Z"
+    },
+    {
+      "id": "LOG-MUVBKXOQ-3UOR",
+      "assessmentId": null,
+      "userId": "INST-DEMO-01",
+      "userName": "Offline Synchronization Engine",
+      "action": "OFFLINE_RECORDS_SYNCED",
+      "details": "Synced 1 records. Conflicts detected: 0",
+      "timestamp": "2026-10-05T14:03:04.202Z"
+    }
+  ],
+  "rpl_checklists": []
 }

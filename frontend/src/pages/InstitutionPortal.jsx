@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { api } from '../services/api';
+import RplAssessorWorkspace from '../components/RplAssessorWorkspace';
 
 export default function InstitutionPortal({ setActivePage }) {
   const { user } = useAuth();
@@ -132,6 +133,13 @@ export default function InstitutionPortal({ setActivePage }) {
         >
           <span className="material-symbols-outlined">quiz</span>
           <span>Assessment Protocols ({assessments.length})</span>
+        </button>
+        <button
+          className={`sw-tab-btn ${activeTab === 'rpl_assessor' ? 'active' : ''}`}
+          onClick={() => setActiveTab('rpl_assessor')}
+        >
+          <span className="material-symbols-outlined">gavel</span>
+          <span>RPL Assessor Workspace</span>
         </button>
       </div>
 
@@ -315,6 +323,13 @@ export default function InstitutionPortal({ setActivePage }) {
               ))}
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ================= TAB 3: RPL ASSESSOR WORKSPACE ================= */}
+      {activeTab === 'rpl_assessor' && (
+        <div className="sw-tab-content">
+          <RplAssessorWorkspace user={user} />
         </div>
       )}
     </div>
