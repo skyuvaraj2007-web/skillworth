@@ -44,6 +44,7 @@ export default function LandingPage({ onNavigate, onLogin }) {
     try {
       if (onLogin) {
         await onLogin(demoEmail, 'Demo@2026', role);
+        setAuthModalOpen(false);
       }
     } catch (err) {
       setLoginError(err.message || 'Login failed');
@@ -61,6 +62,7 @@ export default function LandingPage({ onNavigate, onLogin }) {
       if (authMode === 'login') {
         if (onLogin) {
           await onLogin(email, password, selectedRole);
+          setAuthModalOpen(false);
         }
       } else {
         // Register new user
@@ -79,6 +81,7 @@ export default function LandingPage({ onNavigate, onLogin }) {
         if (data.success) {
           if (onLogin) {
             await onLogin(email, password, selectedRole);
+            setAuthModalOpen(false);
           }
         } else {
           setLoginError(data.message || 'Registration failed');

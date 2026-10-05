@@ -54,7 +54,8 @@ export const normalizeRole = (role) => {
   const r = String(role).toLowerCase();
   if (r === 'industry' || r === 'company') return 'company';
   if (r === 'institution') return 'institution';
-  if (r === 'faculty' || r === 'academician') return 'academician';
+  if (r === 'faculty' || r === 'academician' || r === 'assessor' || r === 'evaluator') return 'academician';
+  if (r === 'student' || r === 'worker' || r === 'learner') return 'student';
   return 'student';
 };
 
@@ -951,10 +952,14 @@ export default function App() {
   };
 
   const handleLandingLogin = async (email, password, role) => {
+    let apiRole = role;
+    if (role === 'worker') apiRole = 'student';
+    if (role === 'assessor') apiRole = 'academician';
+
     const res = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, role })
+      body: JSON.stringify({ email, password, role: apiRole })
     });
     const data = await res.json();
     if (data.success && data.user) {
@@ -963,6 +968,7 @@ export default function App() {
         localStorage.setItem('token', data.token);
       }
       handleLoginSuccess(data.user);
+      return data;
     } else {
       throw new Error(data.message || 'Login failed');
     }

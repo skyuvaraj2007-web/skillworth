@@ -1788,10 +1788,10 @@ class RelationalManager {
           const userRole = user.role_code ? String(user.role_code).toLowerCase() : 'student';
 
           if (requestedRole && ![
-            (requestedRole === 'student' && userRole === 'student'),
+            ((requestedRole === 'student' || requestedRole === 'worker' || requestedRole === 'learner') && (userRole === 'student' || userRole === 'worker')),
             (requestedRole === 'institution' && userRole === 'institution'),
             ((requestedRole === 'company' || requestedRole === 'industry') && (userRole === 'company' || userRole === 'industry')),
-            ((requestedRole === 'faculty' || requestedRole === 'academician') && (userRole === 'faculty' || userRole === 'academician'))
+            ((requestedRole === 'faculty' || requestedRole === 'academician' || requestedRole === 'assessor' || requestedRole === 'evaluator') && (userRole === 'faculty' || userRole === 'academician' || userRole === 'assessor'))
           ].some(Boolean)) {
             return {
               success: false,
@@ -1975,9 +1975,10 @@ class RelationalManager {
       const requestedRole = role.toLowerCase();
       const userRole = (user.role || '').toLowerCase();
       const roleMatches =
-        (requestedRole === 'student' && userRole === 'student') ||
+        ((requestedRole === 'student' || requestedRole === 'worker' || requestedRole === 'learner') && (userRole === 'student' || userRole === 'worker')) ||
         (requestedRole === 'institution' && userRole === 'institution') ||
-        ((requestedRole === 'company' || requestedRole === 'industry') && (userRole === 'company' || userRole === 'industry'));
+        ((requestedRole === 'company' || requestedRole === 'industry') && (userRole === 'company' || userRole === 'industry')) ||
+        ((requestedRole === 'faculty' || requestedRole === 'academician' || requestedRole === 'assessor' || requestedRole === 'evaluator') && (userRole === 'faculty' || userRole === 'academician' || userRole === 'assessor'));
 
       if (!roleMatches) {
         return {
