@@ -16,14 +16,14 @@ export default function Footer() {
           </div>
           <p className="sw-footer-text">
             National AI-Assisted Recognition of Prior Learning & Competency Verification Platform.
-            Accredited under ISO/IEC 17024 standards.
+            Aligned with National Skills Qualifications Framework (NSQF).
           </p>
         </div>
 
         <div className="sw-footer-badges">
           <div className="sw-compliance-badge">
             <span className="material-symbols-outlined" style={{ color: '#137333', fontSize: '16px' }}>gavel</span>
-            <span>ISO/IEC 17024 Compliant</span>
+            <span>RPL Assessment Standards</span>
           </div>
           <div className="sw-compliance-badge">
             <span className="material-symbols-outlined" style={{ color: '#1a73e8', fontSize: '16px' }}>verified_user</span>

@@ -1021,7 +1021,7 @@ class RplMappingService {
         success: true,
         isSimulated: true,
         platform: 'SkillWorth RPL Consistency Analytics Engine',
-        datasetLabel: 'Prototype evaluation dataset & simulation model (ISO/IEC 17024 Benchmark)',
+        datasetLabel: 'Prototype evaluation dataset & simulation model (SkillWorth RPL Assessment Standards)',
         datasetNotice: `Calculations require >= 5 evaluated assessment records. Currently ${completedOrGraded.length} record(s) recorded in active database. Live metrics update automatically as assessors grade candidates.`,
         lastUpdated: new Date().toISOString(),
         totalAssessmentsEvaluated: completedOrGraded.length,

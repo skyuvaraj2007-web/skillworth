@@ -16,3 +16,5 @@ backend/data/
 scratch/
 backend/scratch/
 backend/scratch_*
+
+data/*.json

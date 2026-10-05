@@ -111,7 +111,7 @@ export default function IndustryPortal({ setActivePage }) {
                   <span className="material-symbols-outlined" style={{ color: '#137333', fontSize: '24px' }}>verified</span>
                   <div>
                     <h4 style={{ margin: 0, color: '#137333', fontSize: '18px' }}>AUTHENTIC & VALID</h4>
-                    <span style={{ fontSize: '12px', color: '#5f6368' }}>ISO/IEC 17024 Compliant Certification</span>
+                    <span style={{ fontSize: '12px', color: '#5f6368' }}>SkillWorth RPL Verified Assessment Record</span>
                   </div>
                 </div>
                 <span className="sw-vbadge-id">{verificationResult.credentialId}</span>

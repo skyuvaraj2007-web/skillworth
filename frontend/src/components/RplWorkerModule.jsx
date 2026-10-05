@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { useLanguage } from '../contexts/LanguageContext';
+import AIAssistanceDisclosure from './AIAssistanceDisclosure';
+import RplAIExperienceInterview from './RplAIExperienceInterview';
 
 export default function RplWorkerModule({ user }) {
   const { t, lang } = useLanguage();
@@ -41,6 +43,12 @@ export default function RplWorkerModule({ user }) {
   const [notice, setNotice] = useState('');
   const [filterSector, setFilterSector] = useState('ALL');
 
+  // Evidence Requests State (Phase 3 Sections 9 & 10)
+  const [evidenceRequests, setEvidenceRequests] = useState([]);
+  const [activeFulfillModal, setActiveFulfillModal] = useState(null);
+  const [fulfillForm, setFulfillForm] = useState({ title: '', description: '', fileUrl: '' });
+  const [submittingFulfill, setSubmittingFulfill] = useState(false);
+
   // Check voice recognition support
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -49,13 +57,14 @@ export default function RplWorkerModule({ user }) {
     }
   }, []);
 
-  // Load active RPL assessment and QPs
+  // Load active RPL assessment, QPs and evidence requests
   const loadData = async () => {
     setLoading(true);
     try {
-      const [asmRes, qpRes] = await Promise.all([
+      const [asmRes, qpRes, reqRes] = await Promise.all([
         api.getMyRplAssessment(),
-        api.getQualificationPacks()
+        api.getQualificationPacks(),
+        api.getEvidenceRequests()
       ]);
 
       if (asmRes && asmRes.assessment) {
@@ -67,10 +76,38 @@ export default function RplWorkerModule({ user }) {
           setSelectedPathway(qpRes.qualificationPacks[0]);
         }
       }
+      if (reqRes && reqRes.requests) {
+        setEvidenceRequests(reqRes.requests);
+      }
     } catch (err) {
       console.error('Error loading RPL data:', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleFulfillRequest = async (e) => {
+    e.preventDefault();
+    if (!activeFulfillModal) return;
+    setSubmittingFulfill(true);
+    try {
+      const res = await api.respondToEvidenceRequest(activeFulfillModal.id, {
+        title: fulfillForm.title || `Practical Evidence for ${activeFulfillModal.competencyName}`,
+        description: fulfillForm.description,
+        fileUrl: fulfillForm.fileUrl || '/uploads/evidence_demo.mp4'
+      });
+      if (res.success) {
+        setActiveFulfillModal(null);
+        setNotice(`Evidence submitted successfully for ${activeFulfillModal.competencyName}!`);
+        setFulfillForm({ title: '', description: '', fileUrl: '' });
+        await loadData();
+      } else {
+        alert(res.message || 'Error submitting evidence.');
+      }
+    } catch (err) {
+      console.error('Error submitting evidence response:', err);
+    } finally {
+      setSubmittingFulfill(false);
     }
   };
 
@@ -282,6 +319,14 @@ export default function RplWorkerModule({ user }) {
             <span className="material-symbols-outlined">dataset</span>
             3. NSQF Qualification Packs Directory ({qps.length})
           </button>
+          <button
+            className={`sw-btn-outline ${activeSubTab === 'ai-interview' ? 'active' : ''}`}
+            style={{ borderColor: activeSubTab === 'ai-interview' ? '#2563eb' : '#dddcd4', backgroundColor: activeSubTab === 'ai-interview' ? '#eff6ff' : 'transparent', color: activeSubTab === 'ai-interview' ? '#1e40af' : 'inherit', minHeight: '44px' }}
+            onClick={() => setActiveSubTab('ai-interview')}
+          >
+            <span className="material-symbols-outlined" style={{ color: '#2563eb' }}>auto_awesome</span>
+            4. AI Skill Discovery &amp; Interview
+          </button>
         </div>
       </div>
 
@@ -293,7 +338,263 @@ export default function RplWorkerModule({ user }) {
 
       {/* ================= SUB-TAB 1: ACTIVE RPL ASSESSMENT DOSSIER ================= */}
       {activeSubTab === 'assessment' && (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          
+          {/* Section 10: MY RPL EVIDENCE TRACKER */}
+          <div style={{
+            background: '#ffffff',
+            border: '1px solid #DDDCD4',
+            borderRadius: '12px',
+            padding: '20px 24px',
+            boxShadow: '0 1px 3px rgba(23, 33, 43, 0.05)'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="material-symbols-outlined" style={{ color: '#176B68' }}>inventory_2</span>
+                <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#1b1c18', margin: 0 }}>
+                  MY RPL EVIDENCE TRACKER
+                </h3>
+              </div>
+              <div style={{ fontSize: '12px', color: '#5f6368' }}>
+                Target: <strong>{assessment?.trade || 'Skill Candidate'}</strong> ({assessment?.qpCode || 'NOS Standard'})
+              </div>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '16px',
+              background: '#fbf9f3',
+              border: '1px solid #DDDCD4',
+              borderRadius: '8px',
+              padding: '16px'
+            }}>
+              <div>
+                <div style={{ fontSize: '11px', fontWeight: 700, color: '#555f6b', textTransform: 'uppercase', marginBottom: '8px' }}>
+                  Prerequisite Dossier Artifacts
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#137333', fontWeight: 600 }}>
+                    <span>✓</span> Work Experience Declared
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#137333', fontWeight: 600 }}>
+                    <span>✓</span> Identity &amp; Supporting Documents
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div style={{ fontSize: '11px', fontWeight: 700, color: '#555f6b', textTransform: 'uppercase', marginBottom: '8px' }}>
+                  Competency Units Evidence Status
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
+                  {(assessment?.competencies || []).map((comp, idx) => {
+                    const req = evidenceRequests.find(r => (r.competencyCode === comp.code || r.competencyId === comp.id) && r.status === 'EVIDENCE_REQUESTED');
+                    const isCompetent = comp.status === 'COMPETENT';
+                    const icon = isCompetent ? '✓' : req ? '⚠' : '◐';
+                    const color = isCompetent ? '#137333' : req ? '#d93025' : '#b06000';
+
+                    return (
+                      <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ color, fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <span>{icon}</span> {comp.name}
+                        </span>
+                        {req && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setActiveFulfillModal(req);
+                              setFulfillForm({ title: `Demonstration for ${req.competencyName}`, description: '', fileUrl: '' });
+                            }}
+                            style={{
+                              padding: '2px 8px',
+                              background: '#d93025',
+                              color: '#fff',
+                              border: 'none',
+                              borderRadius: '4px',
+                              fontSize: '11px',
+                              fontWeight: 700,
+                              cursor: 'pointer'
+                            }}
+                          >
+                            Upload Requested Evidence
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Active Evidence Requests Notification for Worker */}
+            {evidenceRequests.filter(r => r.status === 'EVIDENCE_REQUESTED').length > 0 && (
+              <div style={{
+                marginTop: '16px',
+                background: '#fef7e0',
+                border: '1px solid #f6cea0',
+                borderRadius: '8px',
+                padding: '12px 16px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                  <span className="material-symbols-outlined" style={{ color: '#b06000' }}>priority_high</span>
+                  <strong style={{ fontSize: '13px', color: '#604400' }}>
+                    Assessor Action Required ({evidenceRequests.filter(r => r.status === 'EVIDENCE_REQUESTED').length} Request):
+                  </strong>
+                </div>
+                {evidenceRequests.filter(r => r.status === 'EVIDENCE_REQUESTED').map(req => (
+                  <div key={req.id} style={{
+                    background: '#ffffff',
+                    border: '1px solid #DDDCD4',
+                    borderRadius: '6px',
+                    padding: '10px 14px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                    gap: '10px',
+                    marginTop: '6px'
+                  }}>
+                    <div>
+                      <div style={{ fontWeight: 700, fontSize: '13px', color: '#1b1c18' }}>
+                        {req.competencyName} ({req.competencyCode})
+                      </div>
+                      <div style={{ fontSize: '12px', color: '#5f6368', marginTop: '2px' }}>
+                        Assessor requested: <em>"{req.message}"</em>
+                      </div>
+                      <div style={{ fontSize: '11px', color: '#80868b', marginTop: '2px' }}>
+                        Required type: {req.requiredEvidence} &bull; Requested by: {req.requestedBy}
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveFulfillModal(req);
+                        setFulfillForm({ title: `Practical Demonstration for ${req.competencyName}`, description: '', fileUrl: '' });
+                      }}
+                      style={{
+                        padding: '6px 14px',
+                        background: '#176B68',
+                        color: '#ffffff',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontSize: '12px',
+                        fontWeight: 700,
+                        cursor: 'pointer'
+                      }}
+                    >
+                      [Upload Evidence]
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Fulfill Evidence Modal */}
+          {activeFulfillModal && (
+            <div style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(23, 33, 43, 0.6)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 1000,
+              padding: '20px'
+            }}>
+              <div style={{
+                background: '#ffffff',
+                borderRadius: '12px',
+                maxWidth: '500px',
+                width: '100%',
+                padding: '24px',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.15)'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                  <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#176B68' }}>
+                    Submit Requested Evidence
+                  </h3>
+                  <button
+                    type="button"
+                    onClick={() => setActiveFulfillModal(null)}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#80868b' }}
+                  >
+                    <span className="material-symbols-outlined">close</span>
+                  </button>
+                </div>
+
+                <p style={{ fontSize: '12px', color: '#5f6368', marginBottom: '12px' }}>
+                  Unit: <strong>{activeFulfillModal.competencyName}</strong> ({activeFulfillModal.competencyCode})
+                </p>
+
+                <div style={{ background: '#fbf9f3', border: '1px solid #DDDCD4', borderRadius: '6px', padding: '10px', fontSize: '12px', marginBottom: '14px' }}>
+                  <strong>Assessor Instructions:</strong>
+                  <p style={{ marginTop: '2px', color: '#1b1c18' }}>"{activeFulfillModal.message}"</p>
+                </div>
+
+                <form onSubmit={handleFulfillRequest} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#1b1c18', marginBottom: '4px' }}>
+                      Evidence Artifact Title:
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={fulfillForm.title}
+                      onChange={(e) => setFulfillForm({ ...fulfillForm, title: e.target.value })}
+                      style={{ width: '100%', padding: '8px 10px', fontSize: '13px', borderRadius: '6px', border: '1px solid #DDDCD4' }}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#1b1c18', marginBottom: '4px' }}>
+                      Description &amp; Context:
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={fulfillForm.description}
+                      onChange={(e) => setFulfillForm({ ...fulfillForm, description: e.target.value })}
+                      placeholder="Explain what steps or tools are demonstrated in this video/photo..."
+                      style={{ width: '100%', padding: '8px 10px', fontSize: '13px', borderRadius: '6px', border: '1px solid #DDDCD4' }}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#1b1c18', marginBottom: '4px' }}>
+                      Demo Video / Artifact Link (or simulated file URL):
+                    </label>
+                    <input
+                      type="text"
+                      value={fulfillForm.fileUrl}
+                      onChange={(e) => setFulfillForm({ ...fulfillForm, fileUrl: e.target.value })}
+                      placeholder="/uploads/practical_task_demo.mp4"
+                      style={{ width: '100%', padding: '8px 10px', fontSize: '13px', borderRadius: '6px', border: '1px solid #DDDCD4' }}
+                    />
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>
+                    <button
+                      type="button"
+                      disabled={submittingFulfill}
+                      onClick={() => setActiveFulfillModal(null)}
+                      style={{ padding: '8px 16px', background: '#f0f3f6', color: '#555f6b', border: 'none', borderRadius: '6px', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={submittingFulfill}
+                      style={{ padding: '8px 18px', background: '#176B68', color: '#ffffff', border: 'none', borderRadius: '6px', fontSize: '12px', fontWeight: 700, cursor: 'pointer' }}
+                    >
+                      {submittingFulfill ? 'Submitting...' : 'Upload & Submit Evidence'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
           {assessment ? (
             <div className="sw-grid-2col" style={{ gridTemplateColumns: '1.2fr 1fr' }}>
               {/* Left Column: Competencies & Performance Criteria */}
@@ -845,6 +1146,26 @@ export default function RplWorkerModule({ user }) {
             ))}
           </div>
         </div>
+      )}
+
+      {/* ================= SUB-TAB 4: AI SKILL DISCOVERY & INTERVIEW (PHASE 5) ================= */}
+      {activeSubTab === 'ai-interview' && (
+        <RplAIExperienceInterview
+          user={user}
+          selectedPathway={selectedPathway}
+          onPathwaySelected={(pathway) => {
+            const matchedQp = qps.find(q => q.id === pathway.qpId || q.qpCode === pathway.qpCode);
+            if (matchedQp) {
+              setSelectedPathway(matchedQp);
+            } else {
+              setSelectedPathway(pathway);
+            }
+          }}
+          onComplete={(pathway) => {
+            const matchedQp = qps.find(q => q.id === pathway.qpId || q.qpCode === pathway.qpCode);
+            handleConfirmPathway(matchedQp || pathway);
+          }}
+        />
       )}
     </div>
   );

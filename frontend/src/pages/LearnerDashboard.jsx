@@ -3,6 +3,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { api } from '../services/api';
 import RplWorkerModule from '../components/RplWorkerModule';
+import SkillPassport from '../components/SkillPassport';
+import RplWorkerApplicationSection from '../components/RplWorkerApplicationSection';
 
 export default function LearnerDashboard({ setActivePage }) {
   const { user } = useAuth();
@@ -211,11 +213,25 @@ export default function LearnerDashboard({ setActivePage }) {
           <span>4. My Credentials ({credentials.length})</span>
         </button>
         <button
+          className={`sw-tab-btn ${activeTab === 'rpl_application' ? 'active' : ''}`}
+          onClick={() => setActiveTab('rpl_application')}
+        >
+          <span className="material-symbols-outlined">assignment</span>
+          <span>5. RPL Application</span>
+        </button>
+        <button
           className={`sw-tab-btn ${activeTab === 'rpl' ? 'active' : ''}`}
           onClick={() => setActiveTab('rpl')}
         >
           <span className="material-symbols-outlined">handyman</span>
-          <span>5. {t('rpl.tabLabel')}</span>
+          <span>6. {t('rpl.tabLabel')}</span>
+        </button>
+        <button
+          className={`sw-tab-btn ${activeTab === 'passport' ? 'active' : ''}`}
+          onClick={() => setActiveTab('passport')}
+        >
+          <span className="material-symbols-outlined">badge</span>
+          <span>7. Skill Passport</span>
         </button>
       </div>
 
@@ -255,7 +271,7 @@ export default function LearnerDashboard({ setActivePage }) {
               <h3 className="sw-card-title">
                 Competencies: {selectedSkill?.name || 'Selected Skill'}
               </h3>
-              <p className="sw-card-sub">Benchmarks required for ISO/IEC 17024 prior learning validation.</p>
+              <p className="sw-card-sub">Benchmarks required for SkillWorth prior learning assessment.</p>
 
               <div className="sw-competency-list">
                 {selectedSkill?.competencies?.map((c, i) => (
@@ -464,7 +480,7 @@ export default function LearnerDashboard({ setActivePage }) {
           {!activeAssessment ? (
             <div className="sw-card">
               <h3 className="sw-card-title">Standardized Skill Verification Protocols</h3>
-              <p className="sw-card-sub">Accredited by SkillWorth National Assessment Center under ISO 17024.</p>
+              <p className="sw-card-sub">Standardized SkillWorth National RPL Assessment Framework.</p>
 
               <div className="sw-assessment-list">
                 {assessments.map(asm => (
@@ -522,7 +538,7 @@ export default function LearnerDashboard({ setActivePage }) {
                     <div className="sw-credential-success-alert">
                       <span className="material-symbols-outlined">military_tech</span>
                       <div>
-                        <strong>Credential Issued:</strong> Official ISO 17024 Credential is now available in your credentials tab!
+                        <strong>Assessment Record Issued:</strong> Official SkillWorth RPL Assessment Record is now available in your credentials tab!
                       </div>
                     </div>
                   )}
@@ -599,8 +615,8 @@ export default function LearnerDashboard({ setActivePage }) {
       {activeTab === 'credentials' && (
         <div className="sw-tab-content">
           <div className="sw-card">
-            <h3 className="sw-card-title">SkillWorth Verified Credentials ({credentials.length})</h3>
-            <p className="sw-card-sub">ISO/IEC 17024 accredited prior learning certifications. Shareable with employers.</p>
+            <h3 className="sw-card-title">SkillWorth Verified Assessment Records ({credentials.length})</h3>
+            <p className="sw-card-sub">SkillWorth verified prior learning assessment records. Shareable with employers.</p>
 
             <div className="sw-credentials-grid">
               {credentials.length === 0 ? (
@@ -655,10 +671,31 @@ export default function LearnerDashboard({ setActivePage }) {
         </div>
       )}
 
-      {/* ================= TAB 5: RPL ASSESSMENT (NSQF) ================= */}
+      {/* ================= TAB 5: RPL APPLICATION & TIMELINE (PHASE 4) ================= */}
+      {activeTab === 'rpl_application' && (
+        <div className="sw-tab-content">
+          <RplWorkerApplicationSection 
+            onOpenAssessment={(asmId) => setActiveTab('rpl')} 
+            onStartRpl={() => setActiveTab('rpl')} 
+          />
+        </div>
+      )}
+
+      {/* ================= TAB 6: RPL ASSESSMENT (NSQF) ================= */}
       {activeTab === 'rpl' && (
         <div className="sw-tab-content">
+          <RplWorkerApplicationSection 
+            onOpenAssessment={() => {}} 
+            onStartRpl={() => {}} 
+          />
           <RplWorkerModule user={user} />
+        </div>
+      )}
+
+      {/* ================= TAB 7: WORKER SKILL PASSPORT ================= */}
+      {activeTab === 'passport' && (
+        <div className="sw-tab-content">
+          <SkillPassport />
         </div>
       )}
     </div>

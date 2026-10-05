@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { api } from '../services/api';
 import RplAssessorWorkspace from '../components/RplAssessorWorkspace';
+import RplCommandCentre from '../components/RplCommandCentre';
 
 export default function InstitutionPortal({ setActivePage }) {
   const { user } = useAuth();
@@ -196,7 +197,7 @@ export default function InstitutionPortal({ setActivePage }) {
             <div className="sw-profile-meta-tags">
               <span className="sw-meta-tag"><span className="material-symbols-outlined">location_on</span> {user?.city || 'Chennai'}, {user?.state || 'Tamil Nadu'}</span>
               <span className="sw-meta-tag"><span className="material-symbols-outlined">badge</span> NIRF: {user?.recognitionId || 'NIRF-ENG-001'}</span>
-              <span className="sw-meta-tag"><span className="material-symbols-outlined">gavel</span> ISO 17024 Assessment Center</span>
+              <span className="sw-meta-tag"><span className="material-symbols-outlined">gavel</span> Authorized RPL Assessment Center</span>
             </div>
           </div>
         </div>
@@ -211,7 +212,7 @@ export default function InstitutionPortal({ setActivePage }) {
           <strong>Assessor Accreditation Status: {assessorStatus}</strong>
           <p style={{ margin: '4px 0 0', fontSize: '13px', color: '#3c4043' }}>
             {assessorStatus === 'APPROVED' 
-              ? 'You are an Approved ISO/IEC 17024 Lead Assessor authorized to officially verify practical learner competencies and issue tamper-proof SkillWorth Credentials.'
+              ? 'You are an Approved SkillWorth Lead Assessor authorized to officially verify practical learner competencies and record assessment recommendations.'
               : 'Institutional registration does NOT automatically authorize assessment. Your accreditation application is currently PENDING verification by the National Accreditation Board.'
             }
           </p>
@@ -233,6 +234,13 @@ export default function InstitutionPortal({ setActivePage }) {
         >
           <span className="material-symbols-outlined">quiz</span>
           <span>Assessment Protocols ({assessments.length})</span>
+        </button>
+        <button
+          className={`sw-tab-btn ${activeTab === 'rpl_command_centre' ? 'active' : ''}`}
+          onClick={() => setActiveTab('rpl_command_centre')}
+        >
+          <span className="material-symbols-outlined">hub</span>
+          <span>RPL Command Centre</span>
         </button>
         <button
           className={`sw-tab-btn ${activeTab === 'rpl_assessor' ? 'active' : ''}`}
@@ -404,7 +412,7 @@ export default function InstitutionPortal({ setActivePage }) {
         <div className="sw-tab-content">
           <div className="sw-card">
             <h3 className="sw-card-title">Accredited Assessment Protocols ({assessments.length})</h3>
-            <p className="sw-card-sub">Standardized technical frameworks mapped to ISO/IEC 17024 competency guidelines.</p>
+            <p className="sw-card-sub">Standardized technical frameworks mapped to NSQF and SkillWorth competency guidelines.</p>
 
             <div className="sw-assessment-list">
               {assessments.map(asm => (
@@ -655,6 +663,15 @@ export default function InstitutionPortal({ setActivePage }) {
               </div>
             </form>
           </div>
+        </div>
+      )}
+
+      {/* ================= TAB: RPL COMMAND CENTRE (PHASE 4) ================= */}
+      {activeTab === 'rpl_command_centre' && (
+        <div className="sw-tab-content">
+          <RplCommandCentre onOpenAssessment={(asmId) => {
+            setActiveTab('rpl_assessor');
+          }} />
         </div>
       )}
     </div>

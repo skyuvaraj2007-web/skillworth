@@ -10,7 +10,7 @@ export default function LandingPage({ setActivePage }) {
       <section className="sw-hero">
         <div className="sw-hero-badge">
           <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#1a73e8' }}>verified</span>
-          <span>ISO/IEC 17024 Standardized Skill Verification</span>
+          <span>Standardized Skill Assessment &amp; RPL Verification</span>
         </div>
         <h1 className="sw-hero-title">
           Verify Skills. Empower Talent.<br />
@@ -98,7 +98,7 @@ export default function LandingPage({ setActivePage }) {
               <li><span className="material-symbols-outlined">check_circle</span> Assessor accreditation workflow</li>
               <li><span className="material-symbols-outlined">check_circle</span> Practical video evaluation suite</li>
               <li><span className="material-symbols-outlined">check_circle</span> Decision protocol (Approve / Reject)</li>
-              <li><span className="material-symbols-outlined">check_circle</span> ISO 17024 compliance records</li>
+              <li><span className="material-symbols-outlined">check_circle</span> Standardized audit compliance records</li>
             </ul>
             <button 
               className="sw-btn-outline sw-btn-block"
@@ -162,7 +162,7 @@ export default function LandingPage({ setActivePage }) {
           <div className="sw-step-item">
             <div className="sw-step-number">4</div>
             <h4>Official Credential</h4>
-            <p>Earn an ISO/IEC 17024 recognized SkillWorth credential verified by industry.</p>
+            <p>Earn a verified SkillWorth RPL assessment record endorsed by authorized assessors.</p>
           </div>
         </div>
       </section>

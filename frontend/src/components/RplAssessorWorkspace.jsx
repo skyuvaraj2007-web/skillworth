@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { useLanguage } from '../contexts/LanguageContext';
+import CompetencyEvidenceMatrix from './CompetencyEvidenceMatrix';
+import RplAssessorWorkQueue from './RplAssessorWorkQueue';
+import AIAssistanceDisclosure from './AIAssistanceDisclosure';
 
 export default function RplAssessorWorkspace({ user }) {
   const { t } = useLanguage();
 
   const [activeTab, setActiveTab] = useState('evaluations'); // 'evaluations', 'analytics'
+  const [workspaceView, setWorkspaceView] = useState('matrix'); // 'matrix', 'checklist'
   const [assessments, setAssessments] = useState([]);
   const [selectedAsm, setSelectedAsm] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -248,7 +252,7 @@ export default function RplAssessorWorkspace({ user }) {
           <div>
             <div className="sw-hero-badge" style={{ backgroundColor: '#e6f4f3', color: '#176B68', marginBottom: '8px' }}>
               <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>gavel</span>
-              <span>Universal Practical Assessment Engine &bull; ISO/IEC 17024</span>
+              <span>Universal Practical Assessment Engine &bull; SkillWorth RPL Standards</span>
             </div>
             <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#1b1c18' }}>
               Standardized RPL Assessment Suite
@@ -294,6 +298,14 @@ export default function RplAssessorWorkspace({ user }) {
         {/* Tab switch */}
         <div style={{ display: 'flex', gap: '12px', marginTop: '16px', borderTop: '1px solid #eae8e2', paddingTop: '14px' }}>
           <button
+            className={`sw-btn-outline ${activeTab === 'queue' ? 'active' : ''}`}
+            style={{ borderColor: activeTab === 'queue' ? '#176B68' : '#dddcd4', backgroundColor: activeTab === 'queue' ? '#e6f4f3' : 'transparent', minHeight: '40px' }}
+            onClick={() => setActiveTab('queue')}
+          >
+            <span className="material-symbols-outlined">assignment_ind</span>
+            Priority Work Queue
+          </button>
+          <button
             className={`sw-btn-outline ${activeTab === 'evaluations' ? 'active' : ''}`}
             style={{ borderColor: activeTab === 'evaluations' ? '#176B68' : '#dddcd4', backgroundColor: activeTab === 'evaluations' ? '#e6f4f3' : 'transparent', minHeight: '40px' }}
             onClick={() => setActiveTab('evaluations')}
@@ -316,6 +328,16 @@ export default function RplAssessorWorkspace({ user }) {
         <div className={`sw-alert ${actionMessage.includes('Official') || actionMessage.includes('success') || actionMessage.includes('Synchronized') ? 'sw-alert-success' : 'sw-alert-warning'}`} style={{ marginBottom: '16px' }}>
           {actionMessage}
         </div>
+      )}
+
+      {/* ================= TAB 0: ASSESSOR PRIORITY WORK QUEUE (PHASE 4) ================= */}
+      {activeTab === 'queue' && (
+        <RplAssessorWorkQueue
+          onSelectAssessment={(asmId) => {
+            loadAssessmentDetails(asmId);
+            setActiveTab('evaluations');
+          }}
+        />
       )}
 
       {/* ================= TAB 1: 3-COLUMN UNIVERSAL ASSESSMENT ENGINE ================= */}
@@ -344,7 +366,90 @@ export default function RplAssessorWorkspace({ user }) {
             </select>
           </div>
 
+          {/* Candidate Selection & View Switcher */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: '13px', fontWeight: 600, color: '#555f6b' }}>Select Candidate:</span>
+              <select
+                value={selectedAsm?.assessment?.id || ''}
+                onChange={(e) => {
+                  const id = e.target.value;
+                  if (id) loadAssessmentDetails(id);
+                }}
+                style={{
+                  padding: '6px 12px',
+                  borderRadius: '6px',
+                  border: '1px solid #DDDCD4',
+                  background: '#ffffff',
+                  fontSize: '13px',
+                  fontWeight: 600
+                }}
+              >
+                {assessments.map(a => (
+                  <option key={a.id} value={a.id}>
+                    {a.learnerName} — {a.trade} ({a.status})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div style={{ display: 'flex', gap: '6px', background: '#eae8e2', padding: '4px', borderRadius: '8px' }}>
+              <button
+                type="button"
+                onClick={() => setWorkspaceView('matrix')}
+                style={{
+                  padding: '6px 14px',
+                  borderRadius: '6px',
+                  border: 'none',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  background: workspaceView === 'matrix' ? '#176B68' : 'transparent',
+                  color: workspaceView === 'matrix' ? '#ffffff' : '#555f6b',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>grid_view</span>
+                Competency Evidence Matrix
+              </button>
+              <button
+                type="button"
+                onClick={() => setWorkspaceView('checklist')}
+                style={{
+                  padding: '6px 14px',
+                  borderRadius: '6px',
+                  border: 'none',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  background: workspaceView === 'checklist' ? '#176B68' : 'transparent',
+                  color: workspaceView === 'checklist' ? '#ffffff' : '#555f6b',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>checklist</span>
+                Checklist Workspace
+              </button>
+            </div>
+          </div>
+
           {selectedAsm ? (
+            workspaceView === 'matrix' ? (
+              <CompetencyEvidenceMatrix
+                assessment={selectedAsm.assessment}
+                qualificationPack={selectedAsm.assessment?.qualificationPack || {}}
+                evidence={selectedAsm.assessment?.evidenceList || []}
+                onUpdate={() => {
+                  loadAssessmentDetails(selectedAsm.assessment.id);
+                  loadAssessments();
+                  loadAnalytics();
+                }}
+              />
+            ) : (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr 1.2fr', gap: '16px', alignItems: 'start' }}>
               {/* COLUMN 1: CANDIDATE & DOSSIER PROFILE */}
               <div className="sw-card">
@@ -499,6 +604,13 @@ export default function RplAssessorWorkspace({ user }) {
                 {/* Explainable AI Telemetry Card */}
                 {selectedAsm.aiAssistance && (
                   <div className="sw-card" style={{ border: '1px solid #176B68', backgroundColor: '#f9fcfb' }}>
+                    <AIAssistanceDisclosure
+                      provider={selectedAsm.aiAssistance.provider || 'deterministic-fallback'}
+                      model={selectedAsm.aiAssistance.model || 'SkillWorth Evidence Engine v1.0'}
+                      isLiveAI={selectedAsm.aiAssistance.isLiveAI || false}
+                      compact={true}
+                    />
+
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <span className="material-symbols-outlined" style={{ color: '#176B68', fontSize: '20px' }}>psychology</span>
@@ -644,6 +756,7 @@ export default function RplAssessorWorkspace({ user }) {
                 </div>
               </div>
             </div>
+            )
           ) : (
             <div className="sw-card" style={{ textAlign: 'center', padding: '36px' }}>
               <p>No assessment records matching filter criteria.</p>

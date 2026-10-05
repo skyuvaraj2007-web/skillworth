@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
+import NotificationBell from './NotificationBell';
 
 export default function Navbar({ activePage, setActivePage }) {
   const { user, logout } = useAuth();
@@ -63,6 +64,9 @@ export default function Navbar({ activePage, setActivePage }) {
         </nav>
 
         <div className="sw-nav-actions">
+          {/* Notification Bell */}
+          {user && <NotificationBell />}
+
           {/* Language Switcher */}
           <div className="sw-lang-select-wrapper">
             <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#5f6368' }}>translate</span>

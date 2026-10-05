@@ -285,5 +285,339 @@ export const api = {
       body: JSON.stringify({ offlineRecords, clientTimestamp })
     });
     return res.json();
+  },
+
+  // Phase 3: Dynamic Competency Evidence Matrix & Worker Skill Passport
+  async getAssessmentMatrix(assessmentId) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/matrix', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async updateMatrixCompetency(assessmentId, competencyId, data) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/matrix/' + encodeURIComponent(competencyId), {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async getEvidenceCoverage(assessmentId) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/evidence-coverage', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async linkEvidenceToCompetency(assessmentId, data) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/evidence-link', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async requestEvidence(assessmentId, data) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/evidence-request', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async getEvidenceRequests(filters = {}) {
+    const params = new URLSearchParams(filters).toString();
+    const res = await fetch('/api/rpl/evidence-requests?' + params, {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async respondToEvidenceRequest(requestId, evidenceData) {
+    const res = await fetch('/api/rpl/evidence-requests/' + encodeURIComponent(requestId) + '/respond', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(evidenceData)
+    });
+    return res.json();
+  },
+
+  async getSkillGaps(assessmentId) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/skill-gaps', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async getWorkerSkillPassport(workerId = null) {
+    const url = workerId ? `/api/rpl/worker/passport/${encodeURIComponent(workerId)}` : '/api/rpl/worker/passport';
+    const res = await fetch(url, {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async setPassportVisibility(isPublic) {
+    const res = await fetch('/api/rpl/worker/passport/visibility', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify({ isPublic })
+    });
+    return res.json();
+  },
+
+  async verifyAssessmentRecord(recordId) {
+    const res = await fetch('/api/rpl/verify/' + encodeURIComponent(recordId));
+    return res.json();
+  },
+
+  // ================= Phase 4: Operations & Assessment Management =================
+
+  async createRplApplication(data) {
+    const res = await fetch('/api/rpl/applications', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async getMyRplApplications() {
+    const res = await fetch('/api/rpl/applications/my', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async getRplApplication(id) {
+    const res = await fetch('/api/rpl/applications/' + encodeURIComponent(id), {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async getAllRplApplications(filters = {}) {
+    const params = new URLSearchParams(filters).toString();
+    const res = await fetch('/api/rpl/applications?' + params, {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async updateRplApplicationStatus(id, data) {
+    const res = await fetch('/api/rpl/applications/' + encodeURIComponent(id) + '/status', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async assignRplAssessor(id, data) {
+    const res = await fetch('/api/rpl/applications/' + encodeURIComponent(id) + '/assign-assessor', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async scheduleRplAssessment(id, data) {
+    const res = await fetch('/api/rpl/applications/' + encodeURIComponent(id) + '/schedule', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async rescheduleRplAssessment(id, data) {
+    const res = await fetch('/api/rpl/applications/' + encodeURIComponent(id) + '/reschedule', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async cancelRplAssessment(id, data) {
+    const res = await fetch('/api/rpl/applications/' + encodeURIComponent(id) + '/cancel', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async getAssessorWorkQueue() {
+    const res = await fetch('/api/rpl/assessor/work-queue', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async getInstitutionRplOverview() {
+    const res = await fetch('/api/rpl/institution/overview', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async getAssessmentCentres(filters = {}) {
+    const params = new URLSearchParams(filters).toString();
+    const res = await fetch('/api/rpl/assessment-centres?' + params, {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async createAssessmentCentre(data) {
+    const res = await fetch('/api/rpl/assessment-centres', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async getNotifications() {
+    const res = await fetch('/api/notifications', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async markNotificationRead(id) {
+    const res = await fetch('/api/notifications/' + encodeURIComponent(id) + '/read', {
+      method: 'PATCH',
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async markAllNotificationsRead() {
+    const res = await fetch('/api/notifications/read-all', {
+      method: 'POST',
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  // Phase 5: AI Intelligence methods
+  async aiProviderInfo() {
+    const res = await fetch('/api/rpl/ai/provider-info', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async aiExtractExperience(text) {
+    const res = await fetch('/api/rpl/ai/experience/extract', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify({ text })
+    });
+    return res.json();
+  },
+
+  async aiMatchQPs(extractedData) {
+    const res = await fetch('/api/rpl/ai/experience/match', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify({ extractedData })
+    });
+    return res.json();
+  },
+
+  async aiAnalyzeAndMatch(text) {
+    const res = await fetch('/api/rpl/ai/experience/analyze-and-match', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify({ text })
+    });
+    return res.json();
+  },
+
+  async aiAnalyzeEvidence(evidenceItem, competencyCode, qpId) {
+    const res = await fetch('/api/rpl/ai/evidence/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify({ evidenceItem, competencyCode, qpId })
+    });
+    return res.json();
+  },
+
+  async aiAnalyzeEvidenceSet(evidenceList, competencyCode, qpId) {
+    const res = await fetch('/api/rpl/ai/evidence/analyze-set', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify({ evidenceList, competencyCode, qpId })
+    });
+    return res.json();
+  },
+
+  async aiSkillGap(applicationId) {
+    const res = await fetch('/api/rpl/ai/skill-gap/' + encodeURIComponent(applicationId), {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
+  },
+
+  async aiAssessorAdvisory(data) {
+    const res = await fetch('/api/rpl/ai/assessor-advisory', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...getAuthHeader() },
+      body: JSON.stringify(data)
+    });
+    return res.json();
+  },
+
+  async aiConsistencyAnalytics() {
+    const res = await fetch('/api/rpl/ai/consistency-analytics', {
+      headers: { ...getAuthHeader() }
+    });
+    return res.json();
   }
 };
+
+
