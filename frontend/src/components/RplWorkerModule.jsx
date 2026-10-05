@@ -10,24 +10,36 @@ export default function RplWorkerModule({ user }) {
   const [loading, setLoading] = useState(true);
   const [qps, setQps] = useState([]);
 
-  // Experience Declaration form state
+  // Multi-Occupation Work Experience State (Section 6)
+  const [experiences, setExperiences] = useState([
+    {
+      id: 'exp-1',
+      occupation: 'Field Electrician / Wireman',
+      jobTitle: 'Senior Wireman & Maintenance Electrician',
+      sector: 'Electronics & Electrical',
+      years: 6,
+      workplaceType: 'Informal Field Work / Residential Sites',
+      tasks: 'Surface conduit laying, DB box assembly, 3-phase load wiring, fault rectification',
+      tools: 'Multimeter, neon tester, wire stripper, conduit bender, insulation tester',
+      machines: 'Hammer drill, wall chaser',
+      responsibilities: 'Electrical maintenance, load testing, customer safety advice',
+      location: 'Chennai / Rural Tamil Nadu'
+    }
+  ]);
+
+  // General Narrative / Voice Description (Section 7)
   const [declarationText, setDeclarationText] = useState('');
-  const [yearsOfExperience, setYearsOfExperience] = useState(5);
-  const [jobRole, setJobRole] = useState('Electrician / Wireman');
-  const [workplaceType, setWorkplaceType] = useState('Informal Field Work / Workshops');
-  const [tasksPerformed, setTasksPerformed] = useState('Conduit laying, domestic wiring, distribution board assembly, fault troubleshooting');
-  const [toolsUsed, setToolsUsed] = useState('Wire stripper, combination pliers, neon tester, multimeter, insulation tester');
-  const [safetyUsed, setSafetyUsed] = useState('1000V rated insulated gloves, safety shoes, circuit voltage verification');
   
   // Voice Input state
   const [isListening, setIsListening] = useState(false);
   const [voiceSupported, setVoiceSupported] = useState(false);
 
-  // AI Mapping & Quality Check state
+  // AI Discovery & Matching State (Section 8 & 9)
   const [aiAnalysis, setAiAnalysis] = useState(null);
   const [analyzing, setAnalyzing] = useState(false);
-  const [selectedQp, setSelectedQp] = useState(null);
+  const [selectedPathway, setSelectedPathway] = useState(null);
   const [notice, setNotice] = useState('');
+  const [filterSector, setFilterSector] = useState('ALL');
 
   // Check voice recognition support
   useEffect(() => {
@@ -51,8 +63,8 @@ export default function RplWorkerModule({ user }) {
       }
       if (qpRes && qpRes.qualificationPacks) {
         setQps(qpRes.qualificationPacks);
-        if (qpRes.qualificationPacks.length > 0) {
-          setSelectedQp(qpRes.qualificationPacks[0]);
+        if (qpRes.qualificationPacks.length > 0 && !selectedPathway) {
+          setSelectedPathway(qpRes.qualificationPacks[0]);
         }
       }
     } catch (err) {
@@ -70,7 +82,7 @@ export default function RplWorkerModule({ user }) {
   const handleToggleVoice = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      alert('Speech recognition is not supported in this browser. Please type your experience.');
+      alert('Speech recognition is not supported in this browser. Please type your work description.');
       return;
     }
 
@@ -83,126 +95,158 @@ export default function RplWorkerModule({ user }) {
       const recognition = new SpeechRecognition();
       recognition.continuous = false;
       recognition.interimResults = false;
-      recognition.lang = lang === 'ta' ? 'ta-IN' : 'en-IN';
+      recognition.lang = lang === 'ta' ? 'ta-IN' : lang === 'hi' ? 'hi-IN' : 'en-IN';
 
-      recognition.onstart = () => {
-        setIsListening(true);
-      };
-
+      recognition.onstart = () => setIsListening(true);
       recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
         setDeclarationText(prev => (prev ? prev + ' ' + transcript : transcript));
         setIsListening(false);
       };
-
-      recognition.onerror = () => {
-        setIsListening(false);
-      };
-
-      recognition.onend = () => {
-        setIsListening(false);
-      };
-
+      recognition.onerror = () => setIsListening(false);
+      recognition.onend = () => setIsListening(false);
       recognition.start();
     } catch (e) {
       setIsListening(false);
     }
   };
 
-  // Run AI Experience Analysis & Mapping
+  // Add another occupation work experience (Section 6)
+  const handleAddExperience = () => {
+    setExperiences(prev => [
+      ...prev,
+      {
+        id: 'exp-' + (prev.length + 1),
+        occupation: '',
+        jobTitle: '',
+        sector: 'Construction',
+        years: 2,
+        workplaceType: 'Workshop / Jobsite',
+        tasks: '',
+        tools: '',
+        machines: '',
+        responsibilities: '',
+        location: ''
+      }
+    ]);
+  };
+
+  // Update specific experience item
+  const handleUpdateExperience = (id, field, value) => {
+    setExperiences(prev => prev.map(exp => exp.id === id ? { ...exp, [field]: value } : exp));
+  };
+
+  // Remove specific experience item
+  const handleRemoveExperience = (id) => {
+    if (experiences.length === 1) {
+      alert('At least one work experience record is required.');
+      return;
+    }
+    setExperiences(prev => prev.filter(exp => exp.id !== id));
+  };
+
+  // Run AI Experience Discovery & Multi-Pathway Matching (Section 7, 8, 9)
   const handleAnalyzeExperience = async (e) => {
     if (e) e.preventDefault();
     setAnalyzing(true);
     setNotice('');
 
     try {
-      const fullText = declarationText || `${jobRole}. Experience: ${yearsOfExperience} years. Tasks: ${tasksPerformed}. Tools: ${toolsUsed}. Safety: ${safetyUsed}`;
-      const res = await api.analyzeExperience(fullText, declarationText, {
-        yearsOfExperience,
-        jobRole,
-        workplaceType,
-        tasksPerformed,
-        toolsUsed,
-        safetyUsed
+      const totalYears = experiences.reduce((a, b) => a + (Number(b.years) || 0), 0);
+      const res = await api.analyzeExperience(declarationText, '', {
+        experiences,
+        yearsOfExperience: totalYears,
+        jobRole: experiences[0]?.jobTitle || experiences[0]?.occupation || '',
+        tasksPerformed: experiences.map(e => e.tasks).filter(Boolean).join('; '),
+        toolsUsed: experiences.map(e => e.tools).filter(Boolean).join('; ')
       });
 
       if (res && res.success) {
         setAiAnalysis(res);
         if (res.suggestedQualificationPack) {
           const match = qps.find(q => q.id === res.suggestedQualificationPack.id || q.qpCode === res.suggestedQualificationPack.qpCode);
-          if (match) setSelectedQp(match);
+          if (match) setSelectedPathway(match);
         }
       } else {
-        setNotice('AI analysis service temporarily unavailable. Manual trade selection available.');
+        setNotice('AI analysis service temporarily offline. You can select any Qualification Pack manually from the NSQF directory below.');
       }
     } catch (err) {
-      setNotice('Network error analyzing experience.');
+      setNotice('Network error connecting to AI mapping assistant. Manual selection is available.');
     } finally {
       setAnalyzing(false);
     }
   };
 
-  // Confirm Trade & Start RPL Framework
-  const handleConfirmAndStart = async () => {
-    if (!selectedQp) return;
+  // Confirm Selected Pathway & Start RPL Assessment Framework
+  const handleConfirmPathway = async (targetQp) => {
+    const qpToStart = targetQp || selectedPathway;
+    if (!qpToStart) return;
+
     setLoading(true);
+    setNotice('');
     try {
-      // 1. Save declaration
+      // 1. Submit complete multi-occupation experience declaration
+      const totalYears = experiences.reduce((a, b) => a + (Number(b.years) || 0), 0);
       const decRes = await api.submitExperience({
-        declarationText: declarationText || `${jobRole}, ${yearsOfExperience} years experience`,
-        yearsOfExperience,
-        jobRole,
-        workplaceType,
-        tasksPerformed,
-        toolsUsed,
-        safetyUsed,
-        inputMethod: declarationText ? 'voice_or_text' : 'structured'
+        experiences,
+        declarationText: declarationText || `${qpToStart.trade} practical experience (${totalYears} years)`,
+        yearsOfExperience: totalYears,
+        jobRole: qpToStart.jobRole,
+        industry: qpToStart.sector,
+        tasksPerformed: experiences.map(e => e.tasks).filter(Boolean).join('; '),
+        toolsUsed: experiences.map(e => e.tools).filter(Boolean).join('; ')
       });
 
-      // 2. Initialize RPL Assessment
-      const startRes = await api.startRplAssessment(selectedQp.id, decRes.declaration ? decRes.declaration.id : null);
+      // 2. Start RPL Assessment Dossier
+      const decId = decRes?.declaration?.id || null;
+      const startRes = await api.startRplAssessment(qpToStart.id, decId);
+
       if (startRes && startRes.assessment) {
         setAssessment(startRes.assessment);
         setActiveSubTab('assessment');
-        setNotice('RPL Assessment Framework initialized successfully!');
+        setNotice(`RPL Pathway confirmed: ${qpToStart.trade} (${qpToStart.qpCode}). Dossier initialized successfully!`);
       }
     } catch (err) {
-      setNotice('Failed to start assessment framework.');
+      setNotice('Failed to initialize assessment framework.');
     } finally {
       setLoading(false);
     }
   };
 
+  // Unique sectors for directory filter
+  const sectors = ['ALL', ...new Set(qps.map(q => q.sector).filter(Boolean))];
+  const filteredQps = filterSector === 'ALL' ? qps : qps.filter(q => q.sector === filterSector);
+
   if (loading) {
     return (
       <div className="sw-card" style={{ textAlign: 'center', padding: '48px 24px' }}>
         <span className="material-symbols-outlined" style={{ fontSize: '36px', color: '#176B68', animation: 'spin 1.5s infinite linear' }}>refresh</span>
-        <p style={{ marginTop: '16px', color: '#5f6368', fontWeight: 500 }}>Loading NSQF Competency Framework & RPL Dossier...</p>
+        <p style={{ marginTop: '16px', color: '#5f6368', fontWeight: 500 }}>Loading RPL Competency Dossier &amp; NSQF Frameworks...</p>
       </div>
     );
   }
 
   return (
     <div className="sw-rpl-container">
-      {/* RPL Overview Header */}
+      {/* Top Banner */}
       <div className="sw-card" style={{ marginBottom: '24px', background: 'linear-gradient(135deg, #ffffff 0%, #f7f9f8 100%)', borderLeft: '4px solid #176B68' }}>
         <div className="sw-card-header-flex">
           <div>
             <div className="sw-hero-badge" style={{ marginBottom: '8px' }}>
               <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#176B68' }}>verified</span>
-              <span>{t('rpl.title')} &bull; NSQF Standardized</span>
+              <span>{t('rpl.title')} &bull; Multi-Occupation NSQF Platform</span>
             </div>
             <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#1b1c18' }}>
               {assessment ? `${assessment.trade} (${assessment.qpCode})` : 'Recognition of Prior Learning (RPL)'}
             </h2>
             <p className="sw-card-sub" style={{ marginTop: '4px' }}>
-              {t('rpl.subtitle')}
+              Verify and certify informal skills acquired through years of practical work across multiple trades.
             </p>
           </div>
 
           <div style={{ textAlign: 'right' }}>
             <span className={`sw-status-badge ${assessment?.status === 'COMPLETED' ? 'status-verified' : 'status-pending'}`}>
-              {assessment?.status || 'NOT_STARTED'}
+              {assessment?.status || 'NO_ACTIVE_DOSSIER'}
             </span>
             {assessment && (
               <div style={{ marginTop: '8px', fontSize: '13px', color: '#5f6368' }}>
@@ -213,30 +257,30 @@ export default function RplWorkerModule({ user }) {
         </div>
 
         {/* Sub Navigation */}
-        <div style={{ display: 'flex', gap: '12px', marginTop: '20px', borderTop: '1px solid #eae8e2', paddingTop: '16px' }}>
+        <div style={{ display: 'flex', gap: '12px', marginTop: '20px', borderTop: '1px solid #eae8e2', paddingTop: '16px', flexWrap: 'wrap' }}>
           <button
             className={`sw-btn-outline ${activeSubTab === 'assessment' ? 'active' : ''}`}
-            style={{ borderColor: activeSubTab === 'assessment' ? '#176B68' : '#dddcd4', backgroundColor: activeSubTab === 'assessment' ? '#e6f4f3' : 'transparent' }}
+            style={{ borderColor: activeSubTab === 'assessment' ? '#176B68' : '#dddcd4', backgroundColor: activeSubTab === 'assessment' ? '#e6f4f3' : 'transparent', minHeight: '44px' }}
             onClick={() => setActiveSubTab('assessment')}
           >
             <span className="material-symbols-outlined">assignment_turned_in</span>
-            1. My RPL Assessment
+            1. Active Assessment Dossier
           </button>
           <button
             className={`sw-btn-outline ${activeSubTab === 'declaration' ? 'active' : ''}`}
-            style={{ borderColor: activeSubTab === 'declaration' ? '#176B68' : '#dddcd4', backgroundColor: activeSubTab === 'declaration' ? '#e6f4f3' : 'transparent' }}
+            style={{ borderColor: activeSubTab === 'declaration' ? '#176B68' : '#dddcd4', backgroundColor: activeSubTab === 'declaration' ? '#e6f4f3' : 'transparent', minHeight: '44px' }}
             onClick={() => setActiveSubTab('declaration')}
           >
-            <span className="material-symbols-outlined">record_voice_over</span>
-            2. Experience Self-Declaration & AI Mapping
+            <span className="material-symbols-outlined">work_history</span>
+            2. Multi-Occupation Experience &amp; AI Discovery
           </button>
           <button
             className={`sw-btn-outline ${activeSubTab === 'framework' ? 'active' : ''}`}
-            style={{ borderColor: activeSubTab === 'framework' ? '#176B68' : '#dddcd4', backgroundColor: activeSubTab === 'framework' ? '#e6f4f3' : 'transparent' }}
+            style={{ borderColor: activeSubTab === 'framework' ? '#176B68' : '#dddcd4', backgroundColor: activeSubTab === 'framework' ? '#e6f4f3' : 'transparent', minHeight: '44px' }}
             onClick={() => setActiveSubTab('framework')}
           >
-            <span className="material-symbols-outlined">view_list</span>
-            3. NSQF Qualification Packs ({qps.length})
+            <span className="material-symbols-outlined">dataset</span>
+            3. NSQF Qualification Packs Directory ({qps.length})
           </button>
         </div>
       </div>
@@ -247,18 +291,18 @@ export default function RplWorkerModule({ user }) {
         </div>
       )}
 
-      {/* ================= SUB-TAB 1: ACTIVE RPL ASSESSMENT ================= */}
+      {/* ================= SUB-TAB 1: ACTIVE RPL ASSESSMENT DOSSIER ================= */}
       {activeSubTab === 'assessment' && (
         <div>
           {assessment ? (
             <div className="sw-grid-2col" style={{ gridTemplateColumns: '1.2fr 1fr' }}>
-              {/* Left: Competencies & Performance Criteria */}
+              {/* Left Column: Competencies & Performance Criteria */}
               <div className="sw-card">
                 <div className="sw-card-header-icon">
                   <span className="material-symbols-outlined" style={{ fontSize: '24px', color: '#176B68' }}>checklist</span>
                   <div>
-                    <h3 className="sw-card-title">NOS Competency Criteria</h3>
-                    <p className="sw-card-sub">Assessed against National Occupational Standards.</p>
+                    <h3 className="sw-card-title">National Occupational Standards (NOS) Units</h3>
+                    <p className="sw-card-sub">Assessed against standardized NSQF Level {assessment.nsqfLevel} criteria.</p>
                   </div>
                 </div>
 
@@ -267,7 +311,9 @@ export default function RplWorkerModule({ user }) {
                     <div key={comp.id || idx} style={{ padding: '16px', borderRadius: '8px', border: '1px solid #eae8e2', backgroundColor: '#faf9f5' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
                         <div>
-                          <span style={{ fontSize: '11px', fontWeight: 700, color: '#176B68', letterSpacing: '0.5px' }}>{comp.code} &bull; WEIGHT: {comp.weight}%</span>
+                          <span style={{ fontSize: '11px', fontWeight: 700, color: '#176B68', letterSpacing: '0.5px' }}>
+                            {comp.code} &bull; WEIGHT: {comp.weight}%
+                          </span>
                           <h4 style={{ fontSize: '15px', fontWeight: 600, margin: '2px 0 4px', color: '#1b1c18' }}>{comp.name}</h4>
                         </div>
                         <span className={`sw-status-badge ${comp.status === 'COMPETENT' ? 'status-verified' : 'status-pending'}`}>
@@ -277,28 +323,41 @@ export default function RplWorkerModule({ user }) {
                       <p style={{ fontSize: '13px', color: '#5f6368', marginBottom: '10px' }}>{comp.description}</p>
                       
                       {/* Performance Criteria List */}
-                      <div style={{ backgroundColor: '#ffffff', padding: '10px', borderRadius: '6px', border: '1px solid #eee' }}>
+                      <div style={{ backgroundColor: '#ffffff', padding: '12px', borderRadius: '6px', border: '1px solid #eee' }}>
                         <strong style={{ fontSize: '12px', color: '#333' }}>Performance Criteria (PC):</strong>
                         <ul style={{ margin: '6px 0 0 18px', fontSize: '12px', color: '#555', lineHeight: 1.5 }}>
                           {(comp.performanceCriteria || []).map((pc, pIdx) => (
                             <li key={pIdx}>{pc}</li>
                           ))}
                         </ul>
+
+                        {comp.observableIndicators?.length > 0 && (
+                          <div style={{ marginTop: '10px', paddingTop: '8px', borderTop: '1px dashed #eee' }}>
+                            <strong style={{ fontSize: '11px', color: '#176B68' }}>Observable Trade Indicators:</strong>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '4px' }}>
+                              {comp.observableIndicators.map((ind, i) => (
+                                <span key={i} style={{ fontSize: '11px', backgroundColor: '#eef5f4', padding: '2px 8px', borderRadius: '4px', color: '#2d5a57' }}>
+                                  &bull; {ind}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Right: Assessment Progress, Assessor Status & Recommendation */}
+              {/* Right Column: Assessment Status, Scheduling & Recommendation */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                {/* Status Box */}
+                {/* Dossier Status Box */}
                 <div className="sw-card">
-                  <h3 className="sw-card-title">Assessment Dossier Status</h3>
+                  <h3 className="sw-card-title">Assessment Progression Status</h3>
                   
                   <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f0eee8' }}>
-                      <span style={{ color: '#5f6368', fontSize: '13px' }}>Trade:</span>
+                      <span style={{ color: '#5f6368', fontSize: '13px' }}>Occupation / Trade:</span>
                       <strong>{assessment.trade}</strong>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f0eee8' }}>
@@ -307,21 +366,35 @@ export default function RplWorkerModule({ user }) {
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f0eee8' }}>
                       <span style={{ color: '#5f6368', fontSize: '13px' }}>Assigned Assessor:</span>
-                      <strong>{assessment.assessorName}</strong>
+                      <strong>{assessment.assessorName || 'Pending Institution Assignment'}</strong>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: '1px solid #f0eee8' }}>
-                      <span style={{ color: '#5f6368', fontSize: '13px' }}>Total Practical Score:</span>
+                      <span style={{ color: '#5f6368', fontSize: '13px' }}>Practical Evaluation Score:</span>
                       <strong style={{ color: '#176B68' }}>{assessment.totalScore} / {assessment.maxScore} ({assessment.percentage}%)</strong>
                     </div>
                   </div>
 
-                  {/* Final Recommendation Badge */}
-                  <div style={{ marginTop: '20px', padding: '16px', borderRadius: '8px', backgroundColor: assessment.finalRecommendation === 'RECOMMENDED_FOR_CERTIFICATION' ? '#e6f4ea' : '#fef7e0', border: '1px solid ' + (assessment.finalRecommendation === 'RECOMMENDED_FOR_CERTIFICATION' ? '#34a853' : '#f9ab00') }}>
+                  {/* Scheduled Assessment Details (Section 23) */}
+                  <div style={{ marginTop: '16px', padding: '14px', borderRadius: '8px', backgroundColor: '#f0f7f6', border: '1px solid #cce2df' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#176B68', marginBottom: '8px' }}>
+                      <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>event</span>
+                      <strong style={{ fontSize: '13px' }}>Practical Assessment Schedule:</strong>
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#444', lineHeight: 1.6 }}>
+                      <div><strong>Date:</strong> {assessment.scheduledDate || 'To be scheduled by institution'}</div>
+                      <div><strong>Time:</strong> {assessment.scheduledTime || '09:30 AM - 01:30 PM (Session A)'}</div>
+                      <div><strong>Assessment Centre:</strong> {assessment.assessmentCentre || 'SkillWorth Regional Practical Centre'}</div>
+                      <div><strong>Lead Assessor:</strong> {assessment.assessorName}</div>
+                    </div>
+                  </div>
+
+                  {/* Final Recommendation Badge (Section 20 Credential Safety) */}
+                  <div style={{ marginTop: '16px', padding: '16px', borderRadius: '8px', backgroundColor: assessment.finalRecommendation === 'RECOMMENDED_FOR_CERTIFICATION' ? '#e6f4ea' : '#fef7e0', border: '1px solid ' + (assessment.finalRecommendation === 'RECOMMENDED_FOR_CERTIFICATION' ? '#34a853' : '#f9ab00') }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span className="material-symbols-outlined" style={{ color: assessment.finalRecommendation === 'RECOMMENDED_FOR_CERTIFICATION' ? '#137333' : '#b06000' }}>
                         {assessment.finalRecommendation === 'RECOMMENDED_FOR_CERTIFICATION' ? 'workspace_premium' : 'pending_actions'}
                       </span>
-                      <strong style={{ color: assessment.finalRecommendation === 'RECOMMENDED_FOR_CERTIFICATION' ? '#137333' : '#b06000' }}>
+                      <strong style={{ color: assessment.finalRecommendation === 'RECOMMENDED_FOR_CERTIFICATION' ? '#137333' : '#b06000', fontSize: '13px' }}>
                         {assessment.finalRecommendation === 'RECOMMENDED_FOR_CERTIFICATION' 
                           ? 'RECOMMENDED FOR CERTIFICATION'
                           : (assessment.finalRecommendation || 'PENDING ASSESSOR EVALUATION')}
@@ -330,7 +403,10 @@ export default function RplWorkerModule({ user }) {
                     
                     {assessment.credentialId && (
                       <div style={{ marginTop: '8px', fontSize: '13px' }}>
-                        SkillWorth Credential ID: <strong style={{ color: '#137333' }}>{assessment.credentialId}</strong>
+                        Assessment Record ID: <strong style={{ color: '#137333' }}>{assessment.credentialId}</strong>
+                        <div style={{ fontSize: '11px', color: '#2d5a57', marginTop: '2px' }}>
+                          Status: <em>{assessment.certificationStatus || 'AUTHORIZED_CERTIFICATION_PENDING'}</em>
+                        </div>
                       </div>
                     )}
 
@@ -340,8 +416,8 @@ export default function RplWorkerModule({ user }) {
                       </p>
                     )}
 
-                    <small style={{ display: 'block', marginTop: '10px', fontSize: '11px', color: '#666' }}>
-                      Final certification decision is subject to authorized assessor / institution approval.
+                    <small style={{ display: 'block', marginTop: '10px', fontSize: '11px', color: '#666', lineHeight: 1.4 }}>
+                      SkillWorth Assessment Record &amp; Recommendation. Official NCVET/Sector Skill Council certification is issued by accredited awarding bodies upon formal validation.
                     </small>
                   </div>
                 </div>
@@ -349,11 +425,11 @@ export default function RplWorkerModule({ user }) {
                 {/* Competency Gap Analysis */}
                 {assessment.competencyProfile && (
                   <div className="sw-card">
-                    <h3 className="sw-card-title">Competency Profile & Gap Analysis</h3>
+                    <h3 className="sw-card-title">Competency Profile &amp; Gap Analysis</h3>
                     <div style={{ marginTop: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                       {assessment.competencyProfile.competent?.length > 0 && (
                         <div>
-                          <strong style={{ fontSize: '12px', color: '#137333' }}>&bull; COMPETENT</strong>
+                          <strong style={{ fontSize: '12px', color: '#137333' }}>&bull; COMPETENT UNITS</strong>
                           <ul style={{ margin: '4px 0 0 16px', fontSize: '12px', color: '#333' }}>
                             {assessment.competencyProfile.competent.map((c, i) => <li key={i}>{c}</li>)}
                           </ul>
@@ -384,51 +460,54 @@ export default function RplWorkerModule({ user }) {
             </div>
           ) : (
             <div className="sw-card" style={{ textAlign: 'center', padding: '48px 24px' }}>
-              <span className="material-symbols-outlined" style={{ fontSize: '48px', color: '#176B68' }}>handyman</span>
+              <span className="material-symbols-outlined" style={{ fontSize: '48px', color: '#176B68' }}>construction</span>
               <h3 style={{ margin: '16px 0 8px', fontSize: '20px' }}>No Active RPL Assessment</h3>
-              <p style={{ color: '#5f6368', maxWidth: '520px', margin: '0 auto 24px' }}>
-                Declare your practical work experience to let SkillWorth AI assist you in mapping to an official NSQF Qualification Pack.
+              <p style={{ color: '#5f6368', maxWidth: '540px', margin: '0 auto 24px', lineHeight: 1.5 }}>
+                Tell us about the practical work you have performed across your career. SkillWorth AI will assist you in mapping your informal skills to accredited NSQF Qualification Packs.
               </p>
               <button
                 className="sw-btn-primary"
+                style={{ minHeight: '44px', padding: '10px 24px' }}
                 onClick={() => setActiveSubTab('declaration')}
               >
                 <span className="material-symbols-outlined">edit_document</span>
-                Begin Experience Declaration
+                Begin Work Experience Declaration
               </button>
             </div>
           )}
         </div>
       )}
 
-      {/* ================= SUB-TAB 2: EXPERIENCE SELF-DECLARATION ================= */}
+      {/* ================= SUB-TAB 2: MULTI-OCCUPATION EXPERIENCE DECLARATION ================= */}
       {activeSubTab === 'declaration' && (
         <div className="sw-card">
           <div className="sw-card-header-icon">
             <span className="material-symbols-outlined" style={{ fontSize: '24px', color: '#176B68' }}>record_voice_over</span>
             <div>
-              <h3 className="sw-card-title">{t('rpl.declarationTitle')}</h3>
-              <p className="sw-card-sub">{t('rpl.declarationSub')}</p>
+              <h3 className="sw-card-title">Tell Us About Your Work Experience</h3>
+              <p className="sw-card-sub">
+                You can add multiple occupations (e.g. Masonry + Tiling, or Electrician + Solar). You do not need to know official codes or NSQF levels.
+              </p>
             </div>
           </div>
 
           <form onSubmit={handleAnalyzeExperience} className="sw-form" style={{ marginTop: '24px' }}>
-            {/* Voice Input Section */}
-            <div style={{ backgroundColor: '#f5f8f7', padding: '16px', borderRadius: '8px', border: '1px solid #d9e5e3', marginBottom: '20px' }}>
+            {/* Natural Language Voice or Text Narrative */}
+            <div style={{ backgroundColor: '#f5f8f7', padding: '16px', borderRadius: '8px', border: '1px solid #d9e5e3', marginBottom: '24px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <span className="material-symbols-outlined" style={{ color: '#176B68' }}>mic</span>
-                  <strong style={{ fontSize: '14px', color: '#1b1c18' }}>{t('rpl.voicePrompt')}</strong>
+                  <strong style={{ fontSize: '14px', color: '#1b1c18' }}>Describe What You Do In Your Own Words:</strong>
                 </div>
                 {voiceSupported && (
                   <button
                     type="button"
                     onClick={handleToggleVoice}
                     className={isListening ? 'sw-btn-danger' : 'sw-btn-outline'}
-                    style={{ fontSize: '13px', padding: '6px 14px' }}
+                    style={{ fontSize: '13px', padding: '6px 14px', minHeight: '40px' }}
                   >
                     <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>{isListening ? 'mic_off' : 'mic'}</span>
-                    {isListening ? t('rpl.stopVoice') : t('rpl.startVoice')}
+                    {isListening ? 'Stop Voice Recording' : 'Speak Your Experience'}
                   </button>
                 )}
               </div>
@@ -436,7 +515,7 @@ export default function RplWorkerModule({ user }) {
               {isListening && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d93025', fontSize: '13px', marginBottom: '8px' }}>
                   <span className="material-symbols-outlined" style={{ animation: 'pulse 1s infinite' }}>hearing</span>
-                  <span>{t('rpl.listening')}</span>
+                  <span>Listening... Speak clearly in Tamil, Hindi, or English.</span>
                 </div>
               )}
 
@@ -444,145 +523,243 @@ export default function RplWorkerModule({ user }) {
                 rows="3"
                 value={declarationText}
                 onChange={(e) => setDeclarationText(e.target.value)}
-                placeholder="Example: I have worked as an electrician for eight years and mainly handled wiring, installation, switchboard mounting, and fault checking."
-                style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #ccc' }}
+                placeholder="Example: I have repaired motorcycles for seven years. I change engine oil, repair brakes, service engines, and troubleshoot electrical faults."
+                style={{ width: '100%', padding: '12px', borderRadius: '6px', border: '1px solid #ccc', fontSize: '14px' }}
               />
-              <small style={{ color: '#666', fontSize: '12px' }}>
-                Tamil &bull; English &bull; Hindi supported. You can speak or type freely.
+              <small style={{ color: '#666', fontSize: '12px', marginTop: '4px', display: 'block' }}>
+                Tamil &bull; English &bull; Hindi supported. You can speak or type freely in everyday words.
               </small>
             </div>
 
-            {/* Structured Fields */}
-            <div className="sw-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-              <div className="sw-form-group">
-                <label>Job Role / Trade Title *</label>
-                <input
-                  type="text"
-                  required
-                  value={jobRole}
-                  onChange={(e) => setJobRole(e.target.value)}
-                />
+            {/* Multiple Work Experience Cards (Section 6) */}
+            <div style={{ marginBottom: '24px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                <h4 style={{ fontSize: '16px', fontWeight: 700, color: '#1b1c18' }}>
+                  Work History Records ({experiences.length})
+                </h4>
+                <button
+                  type="button"
+                  onClick={handleAddExperience}
+                  className="sw-btn-outline"
+                  style={{ fontSize: '13px', minHeight: '38px', borderColor: '#176B68', color: '#176B68' }}
+                >
+                  <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>add_circle</span>
+                  + Add Another Work Experience
+                </button>
               </div>
 
-              <div className="sw-form-group">
-                <label>{t('rpl.yearsExp')} *</label>
-                <input
-                  type="number"
-                  min="1"
-                  max="45"
-                  required
-                  value={yearsOfExperience}
-                  onChange={(e) => setYearsOfExperience(Number(e.target.value))}
-                />
-              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {experiences.map((exp, idx) => (
+                  <div
+                    key={exp.id}
+                    style={{
+                      padding: '18px',
+                      borderRadius: '8px',
+                      border: '1px solid #dcdad4',
+                      backgroundColor: '#ffffff',
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', borderBottom: '1px solid #f0eee8', pb: '8px' }}>
+                      <strong style={{ fontSize: '14px', color: '#176B68' }}>
+                        Experience #{idx + 1}: {exp.occupation || 'New Occupation Record'}
+                      </strong>
+                      {experiences.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveExperience(exp.id)}
+                          style={{ background: 'none', border: 'none', color: '#d93025', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}
+                        >
+                          <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
+                          Remove
+                        </button>
+                      )}
+                    </div>
 
-              <div className="sw-form-group" style={{ gridColumn: 'span 2' }}>
-                <label>{t('rpl.tasksLabel')} *</label>
-                <textarea
-                  rows="2"
-                  required
-                  value={tasksPerformed}
-                  onChange={(e) => setTasksPerformed(e.target.value)}
-                  placeholder="e.g. Conduit laying, wiring switchboards, MCB connections, polarity testing..."
-                />
-              </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
+                      <div className="sw-form-group">
+                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Occupation / Trade Name *</label>
+                        <input
+                          type="text"
+                          required
+                          value={exp.occupation}
+                          onChange={(e) => handleUpdateExperience(exp.id, 'occupation', e.target.value)}
+                          placeholder="e.g. Carpenter, Plumber, Welder, Two-Wheeler Mechanic..."
+                        />
+                      </div>
 
-              <div className="sw-form-group" style={{ gridColumn: 'span 2' }}>
-                <label>{t('rpl.toolsLabel')} *</label>
-                <input
-                  type="text"
-                  required
-                  value={toolsUsed}
-                  onChange={(e) => setToolsUsed(e.target.value)}
-                  placeholder="e.g. Multimeter, wire strippers, Megger insulation tester, earth clamp..."
-                />
-              </div>
+                      <div className="sw-form-group">
+                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Job Title / Role Description</label>
+                        <input
+                          type="text"
+                          value={exp.jobTitle}
+                          onChange={(e) => handleUpdateExperience(exp.id, 'jobTitle', e.target.value)}
+                          placeholder="e.g. Master Carpenter, Lead Welder, Self-employed"
+                        />
+                      </div>
 
-              <div className="sw-form-group" style={{ gridColumn: 'span 2' }}>
-                <label>{t('rpl.safetyLabel')}</label>
-                <input
-                  type="text"
-                  value={safetyUsed}
-                  onChange={(e) => setSafetyUsed(e.target.value)}
-                  placeholder="e.g. 1000V rated insulated gloves, safety shoes, LOTO padlock..."
-                />
+                      <div className="sw-form-group">
+                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Years of Experience in this Trade *</label>
+                        <input
+                          type="number"
+                          min="1"
+                          max="45"
+                          required
+                          value={exp.years}
+                          onChange={(e) => handleUpdateExperience(exp.id, 'years', Number(e.target.value))}
+                        />
+                      </div>
+
+                      <div className="sw-form-group">
+                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Sector / Workplace Type</label>
+                        <input
+                          type="text"
+                          value={exp.workplaceType}
+                          onChange={(e) => handleUpdateExperience(exp.id, 'workplaceType', e.target.value)}
+                          placeholder="e.g. Construction Site, Repair Garage, Informal Shop"
+                        />
+                      </div>
+
+                      <div className="sw-form-group" style={{ gridColumn: 'span 2' }}>
+                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Tasks &amp; Activities Performed *</label>
+                        <input
+                          type="text"
+                          required
+                          value={exp.tasks}
+                          onChange={(e) => handleUpdateExperience(exp.id, 'tasks', e.target.value)}
+                          placeholder="e.g. Mortise and tenon joints, cabinet fitting, timber sizing, roofing..."
+                        />
+                      </div>
+
+                      <div className="sw-form-group" style={{ gridColumn: 'span 2' }}>
+                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Tools &amp; Equipment Used *</label>
+                        <input
+                          type="text"
+                          required
+                          value={exp.tools}
+                          onChange={(e) => handleUpdateExperience(exp.id, 'tools', e.target.value)}
+                          placeholder="e.g. Circular saw, chisels, jack plane, clamps, measuring tape..."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div style={{ marginTop: '20px', display: 'flex', gap: '12px' }}>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
               <button
                 type="submit"
                 disabled={analyzing}
                 className="sw-btn-primary"
+                style={{ minHeight: '44px', padding: '10px 24px', fontSize: '14px' }}
               >
                 <span className="material-symbols-outlined">psychology</span>
-                {analyzing ? t('rpl.analyzing') : t('rpl.analyzeBtn')}
+                {analyzing ? 'Analyzing Experience & Discovering Pathways...' : 'Discover Matching NSQF Pathways'}
               </button>
             </div>
           </form>
 
-          {/* AI Analysis Modal / Card */}
+          {/* AI Discovery & Multi-Pathway Matching Results (Section 8 & 9) */}
           {aiAnalysis && (
-            <div style={{ marginTop: '32px', padding: '24px', borderRadius: '8px', border: '1px solid #176B68', backgroundColor: '#f9fcfb' }}>
+            <div style={{ marginTop: '36px', padding: '24px', borderRadius: '8px', border: '1px solid #176B68', backgroundColor: '#f9fcfb' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
                 <div>
-                  <div className="sw-hero-badge" style={{ backgroundColor: '#e6f4f3', color: '#176B68' }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>smart_toy</span>
-                    <span>{t('rpl.aiAnalysisTitle')}</span>
+                  <div className="sw-hero-badge" style={{ backgroundColor: '#e6f4f3', color: '#176B68', marginBottom: '6px' }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>psychology</span>
+                    <span>AI Occupation Discovery &bull; Transparent Recommendation</span>
                   </div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 700, margin: '6px 0 2px' }}>
-                    Suggested Trade: {aiAnalysis.suggestedTrade} &bull; NSQF Level {aiAnalysis.suggestedNsqfLevel}
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, margin: '4px 0' }}>
+                    Suggested Primary Trade: {aiAnalysis.suggestedTrade} &bull; NSQF Level {aiAnalysis.suggestedNsqfLevel}
                   </h3>
                   <p style={{ fontSize: '13px', color: '#5f6368' }}>
-                    Qualification Pack: <strong>{aiAnalysis.suggestedQualificationPack.qpCode}</strong> &mdash; {aiAnalysis.suggestedQualificationPack.jobRole}
+                    Sector: <strong>{aiAnalysis.suggestedQualificationPack.sector}</strong> &mdash; {aiAnalysis.suggestedQualificationPack.jobRole}
                   </p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '24px', fontWeight: 800, color: '#176B68' }}>{aiAnalysis.aiConfidenceScore}%</div>
-                  <span style={{ fontSize: '11px', color: '#5f6368' }}>AI Confidence</span>
+                  <div style={{ fontSize: '26px', fontWeight: 800, color: '#176B68' }}>{aiAnalysis.aiConfidenceScore}%</div>
+                  <span style={{ fontSize: '11px', color: '#5f6368' }}>Match Alignment</span>
                 </div>
               </div>
 
-              {/* Matched Competencies */}
-              <div style={{ marginBottom: '16px' }}>
-                <strong style={{ fontSize: '13px', color: '#333' }}>Matching Competency Areas:</strong>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '8px' }}>
-                  {(aiAnalysis.matchingCompetencyAreas || []).map((comp, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', color: comp.matched ? '#137333' : '#666' }}>
-                      <span className="material-symbols-outlined" style={{ fontSize: '16px', color: comp.matched ? '#137333' : '#ccc' }}>
-                        {comp.matched ? 'check_circle' : 'radio_button_unchecked'}
-                      </span>
-                      <span>{comp.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Missing Information Alerts */}
-              {aiAnalysis.missingInformation?.length > 0 && (
-                <div style={{ padding: '12px', borderRadius: '6px', backgroundColor: '#fef7e0', border: '1px solid #f9ab00', marginBottom: '16px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#b06000', fontSize: '13px', fontWeight: 600 }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>warning</span>
-                    <span>Recommended Additional Information for Assessor:</span>
-                  </div>
-                  <ul style={{ margin: '6px 0 0 20px', fontSize: '12px', color: '#555' }}>
-                    {aiAnalysis.missingInformation.map((item, i) => <li key={i}>{item}</li>)}
+              {/* Explainable "Why It Matches" Breakdown (Section 9) */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '16px', margin: '20px 0' }}>
+                <div style={{ padding: '14px', borderRadius: '6px', backgroundColor: '#ffffff', border: '1px solid #d8e5e2' }}>
+                  <strong style={{ fontSize: '13px', color: '#137333', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>check_circle</span>
+                    Why This Pathway Was Suggested:
+                  </strong>
+                  <ul style={{ margin: '8px 0 0 18px', fontSize: '12px', color: '#333', lineHeight: 1.5 }}>
+                    {(aiAnalysis.whyItMatches || []).map((reason, i) => (
+                      <li key={i}>{reason}</li>
+                    ))}
                   </ul>
+                </div>
+
+                <div style={{ padding: '14px', borderRadius: '6px', backgroundColor: '#fef9e8', border: '1px solid #f0e1ad' }}>
+                  <strong style={{ fontSize: '13px', color: '#b06000', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>warning</span>
+                    Information Gaps / Assessor Notes:
+                  </strong>
+                  <ul style={{ margin: '8px 0 0 18px', fontSize: '12px', color: '#555', lineHeight: 1.5 }}>
+                    {(aiAnalysis.missingInformation || []).map((gap, i) => (
+                      <li key={i}>{gap}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Multi-Pathway Alternatives (Section 8) */}
+              {aiAnalysis.suggestedPathways?.length > 1 && (
+                <div style={{ marginTop: '20px', borderTop: '1px solid #dddcd4', paddingTop: '16px' }}>
+                  <h4 style={{ fontSize: '15px', fontWeight: 700, marginBottom: '10px' }}>
+                    All Matching Qualification Pathways for Your Experience:
+                  </h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
+                    {aiAnalysis.suggestedPathways.map((path, pIdx) => (
+                      <div
+                        key={pIdx}
+                        style={{
+                          padding: '12px',
+                          borderRadius: '6px',
+                          border: selectedPathway?.id === path.qualificationPack.id ? '2px solid #176B68' : '1px solid #dddcd4',
+                          backgroundColor: selectedPathway?.id === path.qualificationPack.id ? '#f0f7f6' : '#ffffff',
+                          cursor: 'pointer'
+                        }}
+                        onClick={() => setSelectedPathway(path.qualificationPack)}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span className="sw-role-badge sw-badge-blue">{path.qualificationPack.sector}</span>
+                          <strong style={{ color: '#176B68', fontSize: '12px' }}>{path.confidence}% Match</strong>
+                        </div>
+                        <h5 style={{ fontSize: '14px', fontWeight: 700, margin: '6px 0 2px' }}>
+                          {path.qualificationPack.trade}
+                        </h5>
+                        <div style={{ fontSize: '11px', color: '#666' }}>
+                          NSQF Level {path.qualificationPack.nsqfLevel} &bull; {path.qualificationPack.qpCode}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #ddd', paddingTop: '16px' }}>
-                <small style={{ color: '#666', fontSize: '12px' }}>
+              {/* Confirmation CTA */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px', borderTop: '1px solid #dddcd4', paddingTop: '16px', flexWrap: 'wrap', gap: '12px' }}>
+                <small style={{ color: '#666', fontSize: '12px', maxWidth: '580px' }}>
                   {aiAnalysis.disclaimer}
                 </small>
-                <button
-                  type="button"
-                  className="sw-btn-success"
-                  onClick={handleConfirmAndStart}
-                >
-                  <span className="material-symbols-outlined">how_to_reg</span>
-                  {t('rpl.confirmTrade')} &rarr;
-                </button>
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <button
+                    type="button"
+                    className="sw-btn-primary"
+                    style={{ minHeight: '44px', padding: '10px 20px' }}
+                    onClick={() => handleConfirmPathway(selectedPathway || aiAnalysis.suggestedQualificationPack)}
+                  >
+                    <span className="material-symbols-outlined">how_to_reg</span>
+                    Select Pathway &amp; Start RPL Dossier &rarr;
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -592,18 +769,36 @@ export default function RplWorkerModule({ user }) {
       {/* ================= SUB-TAB 3: QUALIFICATION PACKS DIRECTORY ================= */}
       {activeSubTab === 'framework' && (
         <div className="sw-card">
-          <h3 className="sw-card-title">National Skills Qualifications Framework (NSQF) Directory</h3>
-          <p className="sw-card-sub">Accredited Qualification Packs available for Recognition of Prior Learning.</p>
+          <div className="sw-card-header-flex">
+            <div>
+              <h3 className="sw-card-title">National Skills Qualifications Framework (NSQF) Directory</h3>
+              <p className="sw-card-sub">Accredited Qualification Packs across multiple sectors available for RPL.</p>
+            </div>
+
+            {/* Sector Filter */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontSize: '13px', color: '#666' }}>Sector:</span>
+              <select
+                value={filterSector}
+                onChange={(e) => setFilterSector(e.target.value)}
+                style={{ padding: '6px 12px', borderRadius: '4px', border: '1px solid #ccc', fontSize: '13px' }}
+              >
+                {sectors.map(sec => (
+                  <option key={sec} value={sec}>{sec}</option>
+                ))}
+              </select>
+            </div>
+          </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '20px', marginTop: '20px' }}>
-            {qps.map(qp => (
+            {filteredQps.map(qp => (
               <div
                 key={qp.id}
                 style={{
                   padding: '20px',
                   borderRadius: '8px',
-                  border: selectedQp?.id === qp.id ? '2px solid #176B68' : '1px solid #eae8e2',
-                  backgroundColor: selectedQp?.id === qp.id ? '#f7faf9' : '#ffffff',
+                  border: selectedPathway?.id === qp.id ? '2px solid #176B68' : '1px solid #eae8e2',
+                  backgroundColor: selectedPathway?.id === qp.id ? '#f7faf9' : '#ffffff',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between'
@@ -615,7 +810,9 @@ export default function RplWorkerModule({ user }) {
                     <strong style={{ color: '#176B68', fontSize: '13px' }}>NSQF Level {qp.nsqfLevel}</strong>
                   </div>
                   <h4 style={{ fontSize: '17px', fontWeight: 700, margin: '4px 0 2px', color: '#1b1c18' }}>{qp.trade}</h4>
-                  <span style={{ fontSize: '12px', color: '#5f6368', fontWeight: 500 }}>QP Code: {qp.qpCode}</span>
+                  <span style={{ fontSize: '12px', color: '#5f6368', fontWeight: 500 }}>
+                    QP Code: {qp.qpCode} {qp.isDemo && <em style={{ color: '#b06000' }}>({qp.disclaimer || 'DEMO QP'})</em>}
+                  </span>
                   <p style={{ fontSize: '13px', color: '#444', margin: '10px 0 16px', lineHeight: 1.5 }}>
                     {qp.description}
                   </p>
@@ -623,23 +820,25 @@ export default function RplWorkerModule({ user }) {
 
                 <div>
                   <div style={{ fontSize: '12px', color: '#555', marginBottom: '12px' }}>
-                    <strong>Core NOS Competencies ({qp.competencies?.length}):</strong>
+                    <strong>Core NOS Competencies ({qp.competencies?.length || 0}):</strong>
                     <div style={{ marginTop: '4px' }}>
                       {(qp.competencies || []).map((c, i) => (
-                        <div key={i} style={{ fontSize: '11px', color: '#666', padding: '2px 0' }}>&bull; {c.name}</div>
+                        <div key={i} style={{ fontSize: '11px', color: '#666', padding: '2px 0' }}>
+                          &bull; {c.name || c.title}
+                        </div>
                       ))}
                     </div>
                   </div>
 
                   <button
-                    className={selectedQp?.id === qp.id ? 'sw-btn-primary' : 'sw-btn-outline'}
-                    style={{ width: '100%' }}
+                    className={selectedPathway?.id === qp.id ? 'sw-btn-primary' : 'sw-btn-outline'}
+                    style={{ width: '100%', minHeight: '44px' }}
                     onClick={() => {
-                      setSelectedQp(qp);
-                      setActiveSubTab('declaration');
+                      setSelectedPathway(qp);
+                      handleConfirmPathway(qp);
                     }}
                   >
-                    Select this Trade &amp; Declare Experience
+                    Select this Trade &amp; Start Dossier
                   </button>
                 </div>
               </div>

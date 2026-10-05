@@ -239,6 +239,42 @@ export const api = {
     return res.json();
   },
 
+  async createQualificationPack(qpData) {
+    const res = await fetch('/api/rpl/qualification-packs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(qpData)
+    });
+    return res.json();
+  },
+
+  async scheduleRplAssessment(assessmentId, scheduleData) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/schedule', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(scheduleData)
+    });
+    return res.json();
+  },
+
+  async assignRplAssessor(assessmentId, assessorData) {
+    const res = await fetch('/api/rpl/assessment/' + encodeURIComponent(assessmentId) + '/assign', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeader()
+      },
+      body: JSON.stringify(assessorData)
+    });
+    return res.json();
+  },
+
   async syncOfflineData(offlineRecords, clientTimestamp) {
     const res = await fetch('/api/rpl/sync', {
       method: 'POST',

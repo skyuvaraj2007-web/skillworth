@@ -780,13 +780,14 @@ class SkillworthDatabase {
     return this.read().skills;
   }
 
-  // ================= RPL (Recognition of Prior Learning) Methods =================
+  // ================= RPL (Recognition of Prior Learning) Universal Architecture =================
   getQualificationPacks() {
     const data = this.read();
-    const servicePacks = rplMappingService.getQualificationPacks();
-    return (data.rpl_qualification_packs && data.rpl_qualification_packs.length > 0)
-      ? data.rpl_qualification_packs
-      : servicePacks;
+    if (!data.rpl_qualification_packs || data.rpl_qualification_packs.length < 5) {
+      data.rpl_qualification_packs = rplMappingService.getQualificationPacks();
+      this.write(data);
+    }
+    return data.rpl_qualification_packs;
   }
 
   getQualificationPackById(idOrCode) {
@@ -794,27 +795,84 @@ class SkillworthDatabase {
     return packs.find(p => p.id === idOrCode || p.qpCode === idOrCode) || null;
   }
 
+  addQualificationPack(qpData, actor) {
+    const data = this.read();
+    if (!data.rpl_qualification_packs || data.rpl_qualification_packs.length === 0) {
+      data.rpl_qualification_packs = rplMappingService.getQualificationPacks();
+    }
+
+    const id = qpData.id || ('QP-' + (qpData.qpCode ? qpData.qpCode.replace(/[\/\s]/g, '-') : Date.now()));
+    const newQp = {
+      id,
+      qpCode: qpData.qpCode || id,
+      trade: qpData.trade || qpData.title || 'Specialized Trade',
+      occupation: qpData.occupation || qpData.trade || '',
+      jobRole: qpData.jobRole || qpData.trade || '',
+      sector: qpData.sector || 'General Industry',
+      nsqfLevel: Number(qpData.nsqfLevel) || 4,
+      version: qpData.version || '1.0',
+      status: qpData.status || 'ACTIVE',
+      isDemo: Boolean(qpData.isDemo !== false),
+      disclaimer: qpData.disclaimer || 'DEMO QUALIFICATION PACK for RPL simulation',
+      description: qpData.description || '',
+      keywords: Array.isArray(qpData.keywords) ? qpData.keywords : (qpData.keywords || '').split(',').map(s => s.trim()).filter(Boolean),
+      toolsRequired: Array.isArray(qpData.toolsRequired) ? qpData.toolsRequired : (qpData.toolsRequired || '').split(',').map(s => s.trim()).filter(Boolean),
+      assessmentMethods: qpData.assessmentMethods || ['Practical Observation', 'Evidence Artifact Review', 'Viva Voce'],
+      rubric: qpData.rubric || [
+        { score: 0, label: 'Not Demonstrated', description: 'Unable to perform task or operates unsafely.' },
+        { score: 1, label: 'Partially Demonstrated', description: 'Requires direct intervention; significant errors.' },
+        { score: 2, label: 'With Support', description: 'Follows safety with occasional prompts.' },
+        { score: 3, label: 'Competent', description: 'Executes safely and accurately per trade standards.' },
+        { score: 4, label: 'Strongly Demonstrated', description: 'Exemplary speed, precision, and safety awareness.' }
+      ],
+      competencies: qpData.competencies || [],
+      createdAt: new Date().toISOString()
+    };
+
+    data.rpl_qualification_packs.push(newQp);
+
+    this.addAuditLog(data, {
+      assessmentId: null,
+      userId: actor?.id || 'admin',
+      userName: actor?.name || 'Administrator',
+      action: 'QUALIFICATION_PACK_CREATED',
+      details: `Added new QP: ${newQp.trade} (${newQp.qpCode}, NSQF Level ${newQp.nsqfLevel})`
+    });
+
+    this.write(data);
+    return { success: true, qualificationPack: newQp };
+  }
+
   submitExperienceDeclaration(declarationData) {
     const data = this.read();
     const id = 'DEC-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+    const packs = this.getQualificationPacks();
     
-    // AI analysis
+    // AI analysis across all dynamic QPs and experiences
     const aiAnalysis = rplMappingService.analyzeExperienceDeclaration(
       declarationData.declarationText || declarationData.voiceTranscript || '',
-      declarationData
+      declarationData,
+      packs
     );
+
+    const experiences = Array.isArray(declarationData.experiences) ? declarationData.experiences : [];
+    let calculatedYears = declarationData.yearsOfExperience || 0;
+    if (experiences.length > 0) {
+      calculatedYears = experiences.reduce((acc, exp) => acc + (Number(exp.years) || 0), 0);
+    }
 
     const record = {
       id,
       declarationId: id,
       learnerId: declarationData.learnerId,
       learnerName: declarationData.learnerName || 'Candidate',
-      yearsOfExperience: declarationData.yearsOfExperience || 0,
-      jobRole: declarationData.jobRole || '',
-      industry: declarationData.industry || '',
-      workplaceType: declarationData.workplaceType || 'Informal / Workshop',
-      tasksPerformed: declarationData.tasksPerformed || '',
-      toolsUsed: declarationData.toolsUsed || '',
+      experiences, // Multi-occupation work history
+      yearsOfExperience: calculatedYears,
+      jobRole: declarationData.jobRole || (experiences[0]?.jobTitle || experiences[0]?.occupation || 'Informal Worker'),
+      industry: declarationData.industry || (experiences[0]?.sector || 'Vocational'),
+      workplaceType: declarationData.workplaceType || 'Informal Field Work / Workshops',
+      tasksPerformed: declarationData.tasksPerformed || experiences.map(e => e.tasks).filter(Boolean).join('; '),
+      toolsUsed: declarationData.toolsUsed || experiences.map(e => e.tools).filter(Boolean).join('; '),
       machinesUsed: declarationData.machinesUsed || '',
       responsibilities: declarationData.responsibilities || '',
       previousTraining: declarationData.previousTraining || '',
@@ -824,9 +882,9 @@ class SkillworthDatabase {
       languages: declarationData.languages || ['English', 'Tamil'],
       selfDescribedSkills: declarationData.selfDescribedSkills || '',
       voiceTranscript: declarationData.voiceTranscript || '',
-      inputMethod: declarationData.inputMethod || 'text',
+      inputMethod: declarationData.inputMethod || (declarationData.voiceTranscript ? 'voice' : 'structured'),
       aiAnalysis,
-      status: 'PENDING_WORKER_CONFIRMATION',
+      status: 'EXPERIENCE_SUBMITTED',
       submittedAt: new Date().toISOString()
     };
 
@@ -839,7 +897,7 @@ class SkillworthDatabase {
       userId: declarationData.learnerId,
       userName: declarationData.learnerName,
       action: 'WORKER_EXPERIENCE_DECLARED',
-      details: `Declared experience in ${declarationData.jobRole || 'trade'} (${declarationData.yearsOfExperience || 0} years)`
+      details: `Declared experience with ${experiences.length || 1} occupation record(s) (${record.yearsOfExperience} total years)`
     });
 
     this.write(data);
@@ -848,18 +906,19 @@ class SkillworthDatabase {
 
   startRplAssessment(assessmentData) {
     const data = this.read();
-    const qp = this.getQualificationPackById(assessmentData.qpId || assessmentData.qpCode) || rplMappingService.getQualificationPacks()[0];
+    const qp = this.getQualificationPackById(assessmentData.qpId || assessmentData.qpCode) || this.getQualificationPacks()[0];
     const assessmentId = 'RPL-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
 
-    // Map competencies from QP
+    // Map competencies dynamically from selected QP
     const competencies = (qp.competencies || []).map(c => ({
       id: c.id,
       code: c.code,
-      name: c.name,
-      weight: c.weight,
-      description: c.description,
-      performanceCriteria: c.performanceCriteria,
-      requiredEvidence: c.requiredEvidence,
+      name: c.name || c.title,
+      weight: c.weight || 25,
+      description: c.description || '',
+      performanceCriteria: c.performanceCriteria || [],
+      observableIndicators: c.observableIndicators || [],
+      requiredEvidence: c.requiredEvidence || [],
       status: 'NOT_STARTED',
       evidenceItems: [],
       score: null,
@@ -867,7 +926,7 @@ class SkillworthDatabase {
       aiObservation: null
     }));
 
-    // Build checklists
+    // Build checklists dynamically from QP competencies
     const checklists = [];
     (qp.competencies || []).forEach(comp => {
       (comp.assessmentChecklist || []).forEach(item => {
@@ -892,14 +951,18 @@ class SkillworthDatabase {
       learnerId: assessmentData.learnerId,
       learnerName: assessmentData.learnerName,
       trade: qp.trade,
+      occupation: qp.occupation || qp.trade,
       jobRole: qp.jobRole,
       qualificationPackId: qp.id,
       qpCode: qp.qpCode,
       nsqfLevel: qp.nsqfLevel,
-      status: 'EVIDENCE_COLLECTION', // EVIDENCE_COLLECTION, UNDER_ASSESSMENT, COMPLETED, RECOMMENDED_FOR_CERTIFICATION
+      status: 'EVIDENCE_COLLECTION', // DRAFT -> EXPERIENCE_SUBMITTED -> QP_SELECTED -> EVIDENCE_COLLECTION -> ASSESSMENT_SCHEDULED -> UNDER_ASSESSMENT -> ASSESSOR_REVIEW -> COMPLETED -> RECOMMENDED_FOR_CERTIFICATION -> AUTHORIZED_CERTIFICATION_PENDING
       assessorId: assessmentData.assessorId || 'usr_demo_assessor_01',
       assessorName: assessmentData.assessorName || 'Dr. S. Meenakshi Sundaram',
       declarationId: assessmentData.declarationId || null,
+      scheduledDate: null,
+      scheduledTime: null,
+      assessmentCentre: 'SkillWorth Regional Assessment Centre',
       competencies,
       checklists,
       totalScore: 0,
@@ -912,6 +975,7 @@ class SkillworthDatabase {
         notYetDemonstrated: []
       },
       finalRecommendation: null, // RECOMMENDED_FOR_CERTIFICATION, FURTHER_EVIDENCE_REQUIRED, NOT_YET_COMPETENT
+      certificationStatus: 'PENDING_ASSESSMENT',
       assessorFinalRemarks: null,
       credentialId: null,
       createdAt: new Date().toISOString(),
@@ -926,11 +990,59 @@ class SkillworthDatabase {
       userId: assessmentData.learnerId,
       userName: assessmentData.learnerName,
       action: 'RPL_ASSESSMENT_INITIATED',
-      details: `Initiated RPL assessment for ${qp.trade} (${qp.qpCode}, NSQF Level ${qp.nsqfLevel})`
+      details: `Initiated RPL pathway for ${qp.trade} (${qp.qpCode}, NSQF Level ${qp.nsqfLevel})`
     });
 
     this.write(data);
     return { success: true, assessment: record };
+  }
+
+  scheduleAssessment(assessmentId, scheduleData, actor) {
+    const data = this.read();
+    const assessment = (data.rpl_assessments || []).find(a => a.id === assessmentId || a.assessmentId === assessmentId);
+    if (!assessment) return { success: false, message: 'Assessment record not found.' };
+
+    assessment.scheduledDate = scheduleData.scheduledDate || scheduleData.date;
+    assessment.scheduledTime = scheduleData.scheduledTime || scheduleData.time;
+    assessment.assessmentCentre = scheduleData.assessmentCentre || scheduleData.location || 'SkillWorth Regional Practical Centre';
+    if (scheduleData.assessorId) {
+      assessment.assessorId = scheduleData.assessorId;
+      assessment.assessorName = scheduleData.assessorName || assessment.assessorName;
+    }
+    assessment.status = 'ASSESSMENT_SCHEDULED';
+    assessment.updatedAt = new Date().toISOString();
+
+    this.addAuditLog(data, {
+      assessmentId: assessment.id,
+      userId: actor?.id || 'institution',
+      userName: actor?.name || 'Authorized Institution',
+      action: 'ASSESSMENT_SCHEDULED',
+      details: `Scheduled on ${assessment.scheduledDate} at ${assessment.scheduledTime} at ${assessment.assessmentCentre}. Assessor: ${assessment.assessorName}`
+    });
+
+    this.write(data);
+    return { success: true, assessment };
+  }
+
+  assignAssessor(assessmentId, assessorData, actor) {
+    const data = this.read();
+    const assessment = (data.rpl_assessments || []).find(a => a.id === assessmentId || a.assessmentId === assessmentId);
+    if (!assessment) return { success: false, message: 'Assessment record not found.' };
+
+    assessment.assessorId = assessorData.assessorId;
+    assessment.assessorName = assessorData.assessorName || 'Authorized Assessor';
+    assessment.updatedAt = new Date().toISOString();
+
+    this.addAuditLog(data, {
+      assessmentId: assessment.id,
+      userId: actor?.id || 'institution',
+      userName: actor?.name || 'Authorized Institution',
+      action: 'ASSESSOR_ASSIGNED',
+      details: `Assigned assessor ${assessment.assessorName} (${assessment.assessorId})`
+    });
+
+    this.write(data);
+    return { success: true, assessment };
   }
 
   getMyRplAssessment(learnerId) {
@@ -973,14 +1085,17 @@ class SkillworthDatabase {
     const assessment = data.rpl_assessments[idx];
     const { scores, acceptedAi, overrideReason, assessorId, assessorName } = evaluationData;
 
-    // Update checklists
     let earned = 0;
     (assessment.checklists || []).forEach(chk => {
-      if (scores && scores[chk.id] !== undefined) {
-        chk.score = Number(scores[chk.id]);
-        chk.acceptedAi = acceptedAi ? Boolean(acceptedAi[chk.id]) : true;
-        if (overrideReason && overrideReason[chk.id]) {
-          chk.overrideReason = overrideReason[chk.id];
+      const alias = chk.id.replace('chk_ele_', 'chk_');
+      const rawScore = scores ? (scores[chk.id] !== undefined ? scores[chk.id] : scores[alias]) : undefined;
+      if (rawScore !== undefined) {
+        chk.score = Number(rawScore);
+        const acc = acceptedAi ? (acceptedAi[chk.id] !== undefined ? acceptedAi[chk.id] : acceptedAi[alias]) : true;
+        chk.acceptedAi = Boolean(acc);
+        const ovr = overrideReason ? (overrideReason[chk.id] || overrideReason[alias]) : '';
+        if (ovr) {
+          chk.overrideReason = ovr;
         }
       }
       earned += (chk.score || 0);
@@ -1005,12 +1120,13 @@ class SkillworthDatabase {
       comp.score = Math.round(compPct);
     });
 
+    const overrideCount = Object.keys(overrideReason || {}).length;
     this.addAuditLog(data, {
       assessmentId: assessment.id,
       userId: assessorId || 'usr_assessor',
       userName: assessorName || 'Authorized Assessor',
       action: 'CHECKLIST_EVALUATION_RECORDED',
-      details: `Evaluated checklist. Total score: ${assessment.totalScore}/${maxScore} (${assessment.percentage}%). AI Overrides: ${Object.keys(overrideReason || {}).length}`
+      details: `Evaluated checklist. Total score: ${assessment.totalScore}/${maxScore} (${assessment.percentage}%). AI Overrides: ${overrideCount}`
     });
 
     this.write(data);
@@ -1045,14 +1161,15 @@ class SkillworthDatabase {
     });
 
     if (decision === 'FURTHER_EVIDENCE_REQUIRED') {
-      profile.additionalEvidenceRequired.push('Safety standards & Live operational de-energization confirmation');
+      profile.additionalEvidenceRequired.push('Safety standards compliance & live operational verification');
     }
 
     assessment.competencyProfile = profile;
 
     let credential = null;
-    // Issue verified credential if recommended
+    // Issue SkillWorth Assessment Recommendation Record if recommended (Section 20 Credential Safety)
     if (decision === 'RECOMMENDED_FOR_CERTIFICATION') {
+      assessment.certificationStatus = 'AUTHORIZED_CERTIFICATION_PENDING';
       const credentialId = 'SW-' + Math.random().toString(36).substring(2, 8).toUpperCase();
       assessment.credentialId = credentialId;
 
@@ -1061,19 +1178,24 @@ class SkillworthDatabase {
         credentialId,
         learnerId: assessment.learnerId,
         learnerName: assessment.learnerName,
+        title: 'SkillWorth Assessment Record',
         skillName: `${assessment.trade} (NSQF Level ${assessment.nsqfLevel})`,
         skillLevel: `NSQF Level ${assessment.nsqfLevel}`,
         qualificationPack: assessment.qpCode,
-        institutionName: 'SkillWorth National Assessment Institute',
+        institutionName: 'SkillWorth National RPL Assessment Authority',
         assessmentDate: new Date().toLocaleDateString('en-GB'),
-        verifiedByAssessor: assessorName || 'Dr. S. Meenakshi Sundaram',
+        verifiedByAssessor: assessorName || 'Authorized Lead Assessor',
         status: 'VALID',
-        standards: 'ISO/IEC 17024 & NSQF Standardized RPL Certification',
+        certificationStatus: 'AUTHORIZED_CERTIFICATION_PENDING',
+        standards: 'ISO/IEC 17024 & NSQF Standardized RPL Competency Recommendation',
+        disclaimer: 'This is a SkillWorth Assessment Record and Recommendation based on practical competency evaluation. Official government/NCVET certification is subject to authorized awarding body issuance.',
         issuedAt: new Date().toISOString()
       };
 
       if (!data.credentials) data.credentials = [];
       data.credentials.push(credential);
+    } else {
+      assessment.certificationStatus = decision;
     }
 
     this.addAuditLog(data, {
@@ -1081,7 +1203,7 @@ class SkillworthDatabase {
       userId: assessorId,
       userName: assessorName,
       action: 'FINAL_RPL_DECISION_SUBMITTED',
-      details: `Assessor submitted final decision: ${decision}. Credential ID: ${assessment.credentialId || 'None'}`
+      details: `Assessor submitted final decision: ${decision}. Assessment Record ID: ${assessment.credentialId || 'None'}`
     });
 
     this.write(data);

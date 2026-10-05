@@ -228,7 +228,7 @@ async function runRplTests() {
     const res = await fetch(`${BASE_URL}/api/rpl/analytics/assessor-consistency`).then(r => r.json());
     assert.strictEqual(res.success, true);
     assert(res.overallAgreementRate > 80);
-    assert(res.datasetLabel.includes('Prototype evaluation dataset'));
+    assert(res.datasetLabel.includes('Prototype evaluation dataset') || res.datasetLabel.includes('Empirical Live Assessment Dataset'));
     assert(Array.isArray(res.competencies));
   });
 

@@ -4,7 +4,7 @@ const { requireAuth } = require('../middleware/auth');
 const db = require('../database/skillworthDatabase');
 const rplMappingService = require('../services/rplMappingService');
 
-// 1. GET /api/rpl/qualification-packs - List available Qualification Packs
+// 1. GET /api/rpl/qualification-packs - List available Qualification Packs (dynamic, data-driven)
 router.get('/qualification-packs', (req, res) => {
   try {
     const packs = db.getQualificationPacks();
@@ -15,7 +15,7 @@ router.get('/qualification-packs', (req, res) => {
   }
 });
 
-// 2. GET /api/rpl/qualification-packs/:id - Get QP details with competencies & checklists
+// 2. GET /api/rpl/qualification-packs/:id - Get QP details with competencies, performance criteria & rubrics
 router.get('/qualification-packs/:id', (req, res) => {
   try {
     const pack = db.getQualificationPackById(req.params.id);
@@ -26,12 +26,33 @@ router.get('/qualification-packs/:id', (req, res) => {
   }
 });
 
-// 3. POST /api/rpl/experience/analyze - Real-time AI analysis of text / voice transcript
+// 3. POST /api/rpl/qualification-packs - Add/Manage Qualification Pack (Admin / Institution)
+router.post('/qualification-packs', requireAuth, (req, res) => {
+  try {
+    if (req.user.role === 'LEARNER') {
+      return res.status(403).json({ success: false, message: 'Forbidden. Candidates cannot create Qualification Packs.' });
+    }
+
+    const { trade, qpCode, sector, nsqfLevel, competencies } = req.body;
+    if (!trade || !qpCode) {
+      return res.status(400).json({ success: false, message: 'Trade title and QP code are required.' });
+    }
+
+    const result = db.addQualificationPack(req.body, req.user);
+    return res.status(201).json(result);
+  } catch (err) {
+    console.error('[RPL Add QP Error]', err);
+    return res.status(500).json({ success: false, message: 'Error creating qualification pack.' });
+  }
+});
+
+// 4. POST /api/rpl/experience/analyze - AI analysis of text / voice transcript across all trades
 router.post('/experience/analyze', (req, res) => {
   try {
     const { declarationText, voiceTranscript, structuredFields } = req.body;
     const text = declarationText || voiceTranscript || '';
-    const analysis = rplMappingService.analyzeExperienceDeclaration(text, structuredFields || {});
+    const packs = db.getQualificationPacks();
+    const analysis = rplMappingService.analyzeExperienceDeclaration(text, structuredFields || {}, packs);
     return res.json(analysis);
   } catch (err) {
     console.error('[RPL AI Analyze Error]', err);
@@ -39,7 +60,7 @@ router.post('/experience/analyze', (req, res) => {
   }
 });
 
-// 4. POST /api/rpl/experience - Submit worker experience declaration
+// 5. POST /api/rpl/experience - Submit worker multi-occupation experience declaration
 router.post('/experience', requireAuth, (req, res) => {
   try {
     const learnerId = req.user.profileId || req.user.id;
@@ -58,7 +79,7 @@ router.post('/experience', requireAuth, (req, res) => {
   }
 });
 
-// 5. GET /api/rpl/my-assessment - Worker's active RPL assessment
+// 6. GET /api/rpl/my-assessment - Worker's active RPL assessment
 router.get('/my-assessment', requireAuth, (req, res) => {
   try {
     const learnerId = req.user.profileId || req.user.id;
@@ -69,7 +90,7 @@ router.get('/my-assessment', requireAuth, (req, res) => {
   }
 });
 
-// 6. POST /api/rpl/assessment/start - Initialize RPL assessment after worker confirms mapping
+// 7. POST /api/rpl/assessment/start - Initialize RPL assessment pathway after worker confirms mapping
 router.post('/assessment/start', requireAuth, (req, res) => {
   try {
     const learnerId = req.user.profileId || req.user.id;
@@ -90,7 +111,7 @@ router.post('/assessment/start', requireAuth, (req, res) => {
   }
 });
 
-// 7. GET /api/rpl/assessor/assessments - Assessor's assigned assessments list with filters
+// 8. GET /api/rpl/assessor/assessments - Assessor's assigned assessments list with filters
 router.get('/assessor/assessments', requireAuth, (req, res) => {
   try {
     const { trade, status } = req.query;
@@ -101,16 +122,28 @@ router.get('/assessor/assessments', requireAuth, (req, res) => {
   }
 });
 
-// 8. GET /api/rpl/assessment/:id - Full assessment workspace details
+// 9. GET /api/rpl/assessment/:id - Full assessment workspace details with security check
 router.get('/assessment/:id', requireAuth, (req, res) => {
   try {
     const assessment = db.getRplAssessmentById(req.params.id);
     if (!assessment) return res.status(404).json({ success: false, message: 'Assessment not found.' });
 
+    // Security check: Candidate can only access their own assessment dossier
+    if (req.user.role === 'LEARNER') {
+      const isOwner = assessment.learnerId === req.user.profileId || assessment.learnerId === req.user.id;
+      if (!isOwner) {
+        return res.status(403).json({ success: false, message: 'Forbidden. Access restricted to authorized dossier owner.' });
+      }
+    }
+
+    // Get the target QP for dynamic trade assistance
+    const targetQp = db.getQualificationPackById(assessment.qualificationPackId || assessment.qpCode);
+
     // Generate explainable AI assistance for the current evidence
     const aiAssistance = rplMappingService.generateAssessmentAssistance(
       assessment.evidenceList || [],
-      assessment.competencies ? assessment.competencies[0] : null
+      assessment.competencies ? assessment.competencies[0] : null,
+      targetQp
     );
 
     return res.json({
@@ -124,9 +157,13 @@ router.get('/assessment/:id', requireAuth, (req, res) => {
   }
 });
 
-// 9. POST /api/rpl/assessment/:id/checklist-score - Assessor scores checklist with human-in-the-loop override
+// 10. POST /api/rpl/assessment/:id/checklist-score - Assessor scores checklist with human-in-the-loop override
 router.post('/assessment/:id/checklist-score', requireAuth, (req, res) => {
   try {
+    if (req.user.role === 'LEARNER') {
+      return res.status(403).json({ success: false, message: 'Forbidden. Candidates cannot evaluate assessment checklists.' });
+    }
+
     const assessmentId = req.params.id;
     const assessorId = req.user.id;
     const assessorName = req.user.name || 'Authorized Assessor';
@@ -145,9 +182,13 @@ router.post('/assessment/:id/checklist-score', requireAuth, (req, res) => {
   }
 });
 
-// 10. POST /api/rpl/assessment/:id/decision - Final assessor decision & certification recommendation
+// 11. POST /api/rpl/assessment/:id/decision - Final assessor decision & assessment recommendation
 router.post('/assessment/:id/decision', requireAuth, (req, res) => {
   try {
+    if (req.user.role === 'LEARNER') {
+      return res.status(403).json({ success: false, message: 'Forbidden. Candidates cannot submit final assessment decisions.' });
+    }
+
     const assessmentId = req.params.id;
     const assessorId = req.user.id;
     const assessorName = req.user.name || 'Authorized Assessor';
@@ -175,7 +216,41 @@ router.post('/assessment/:id/decision', requireAuth, (req, res) => {
   }
 });
 
-// 11. GET /api/rpl/assessment/:id/report - Formal assessment report
+// 12. POST /api/rpl/assessment/:id/schedule - Institution schedules practical assessment
+router.post('/assessment/:id/schedule', requireAuth, (req, res) => {
+  try {
+    if (req.user.role === 'LEARNER') {
+      return res.status(403).json({ success: false, message: 'Forbidden. Candidates cannot self-schedule assessments.' });
+    }
+
+    const assessmentId = req.params.id;
+    const result = db.scheduleAssessment(assessmentId, req.body, req.user);
+    if (!result.success) return res.status(400).json(result);
+    return res.json(result);
+  } catch (err) {
+    console.error('[RPL Schedule Error]', err);
+    return res.status(500).json({ success: false, message: 'Error scheduling assessment.' });
+  }
+});
+
+// 13. POST /api/rpl/assessment/:id/assign - Institution assigns authorized assessor
+router.post('/assessment/:id/assign', requireAuth, (req, res) => {
+  try {
+    if (req.user.role === 'LEARNER') {
+      return res.status(403).json({ success: false, message: 'Forbidden. Candidates cannot assign assessors.' });
+    }
+
+    const assessmentId = req.params.id;
+    const result = db.assignAssessor(assessmentId, req.body, req.user);
+    if (!result.success) return res.status(400).json(result);
+    return res.json(result);
+  } catch (err) {
+    console.error('[RPL Assign Error]', err);
+    return res.status(500).json({ success: false, message: 'Error assigning assessor.' });
+  }
+});
+
+// 14. GET /api/rpl/assessment/:id/report - Formal assessment report
 router.get('/assessment/:id/report', (req, res) => {
   try {
     const assessment = db.getRplAssessmentById(req.params.id);
@@ -184,13 +259,14 @@ router.get('/assessment/:id/report', (req, res) => {
     const report = {
       reportId: 'REP-' + assessment.id,
       generatedAt: new Date().toISOString(),
-      standards: 'ISO/IEC 17024 & National Skills Qualifications Framework (NSQF)',
+      standards: 'ISO/IEC 17024 Guidelines & National Skills Qualifications Framework (NSQF)',
       worker: {
         learnerId: assessment.learnerId,
         learnerName: assessment.learnerName
       },
       qualification: {
         trade: assessment.trade,
+        occupation: assessment.occupation,
         jobRole: assessment.jobRole,
         qpCode: assessment.qpCode,
         nsqfLevel: assessment.nsqfLevel
@@ -200,6 +276,7 @@ router.get('/assessment/:id/report', (req, res) => {
         maxScore: assessment.maxScore,
         percentage: assessment.percentage,
         finalDecision: assessment.finalRecommendation || 'PENDING_DECISION',
+        certificationStatus: assessment.certificationStatus || 'PENDING',
         assessorRemarks: assessment.assessorFinalRemarks,
         credentialId: assessment.credentialId || null
       },
@@ -217,7 +294,7 @@ router.get('/assessment/:id/report', (req, res) => {
         accreditation: 'Approved ISO/IEC 17024 Lead Assessor'
       },
       auditTrail: assessment.auditLogs || [],
-      statement: 'Final certification decision is subject to authorized assessor / institution approval.'
+      statement: 'This is a SkillWorth RPL Assessment Record and Recommendation. Official certification is issued by accredited Sector Skill Councils / Awarding Bodies upon formal validation.'
     };
 
     return res.json({ success: true, report });
@@ -226,32 +303,38 @@ router.get('/assessment/:id/report', (req, res) => {
   }
 });
 
-// 12. POST /api/rpl/evidence/quality-check - AI Evidence Quality Analysis
+// 15. POST /api/rpl/evidence/quality-check - Dynamic AI Evidence Quality Analysis across trades
 router.post('/evidence/quality-check', (req, res) => {
   try {
-    const { evidenceItem, competencyCode } = req.body;
+    const { evidenceItem, competencyCode, qpId } = req.body;
     if (!evidenceItem) return res.status(400).json({ success: false, message: 'evidenceItem is required.' });
 
-    const result = rplMappingService.checkEvidenceQuality(evidenceItem, competencyCode);
+    const targetQp = db.getQualificationPackById(qpId || 'QP-ELE-Q1401');
+    const result = rplMappingService.checkEvidenceQuality(evidenceItem, competencyCode, targetQp);
     return res.json(result);
   } catch (err) {
     return res.status(500).json({ success: false, message: 'AI Evidence Quality service temporarily unavailable.' });
   }
 });
 
-// 13. GET /api/rpl/analytics/assessor-consistency - Assessor Consistency Analytics
+// 16. GET /api/rpl/analytics/assessor-consistency - Assessor Consistency Analytics (Real or Honest Prototype Simulation)
 router.get('/analytics/assessor-consistency', (req, res) => {
   try {
-    const analytics = rplMappingService.calculateConsistencyAnalytics();
+    const assessments = db.getAllRplAssessments();
+    const analytics = rplMappingService.calculateConsistencyAnalytics(assessments);
     return res.json(analytics);
   } catch (err) {
     return res.status(500).json({ success: false, message: 'Failed to retrieve consistency analytics.' });
   }
 });
 
-// 14. POST /api/rpl/sync - Offline synchronization with conflict detection
+// 17. POST /api/rpl/sync - Offline synchronization with conflict detection
 router.post('/sync', requireAuth, (req, res) => {
   try {
+    if (req.user.role === 'LEARNER') {
+      return res.status(403).json({ success: false, message: 'Forbidden. Synchronize restricted to assessors.' });
+    }
+
     const result = db.syncRplOfflineData({
       ...req.body,
       assessorId: req.user.id

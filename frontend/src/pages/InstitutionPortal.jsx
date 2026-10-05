@@ -17,9 +17,109 @@ export default function InstitutionPortal({ setActivePage }) {
   const [evalMessage, setEvalMessage] = useState('');
   const [assessorStatus, setAssessorStatus] = useState('APPROVED');
 
+  // RPL Candidate Management & Scheduling State
+  const [rplAssessments, setRplAssessments] = useState([]);
+  const [allQps, setAllQps] = useState([]);
+  const [schedModal, setSchedModal] = useState(null);
+  const [schedDate, setSchedDate] = useState('2026-10-15');
+  const [schedTime, setSchedTime] = useState('09:30 AM - 01:30 PM');
+  const [schedCentre, setSchedCentre] = useState('SkillWorth Regional Practical Centre');
+  const [assignAssessorName, setAssignAssessorName] = useState('Dr. S. Meenakshi Sundaram');
+  const [assignAssessorId, setAssignAssessorId] = useState('usr_demo_assessor_01');
+  const [newQpTrade, setNewQpTrade] = useState('');
+  const [newQpCode, setNewQpCode] = useState('');
+  const [newQpSector, setNewQpSector] = useState('');
+  const [newQpNsqf, setNewQpNsqf] = useState(4);
+  const [newQpDesc, setNewQpDesc] = useState('');
+  const [mgmtMessage, setMgmtMessage] = useState('');
+
   useEffect(() => {
     loadData();
+    loadRplMgmtData();
   }, []);
+
+  const loadRplMgmtData = async () => {
+    try {
+      const [rplRes, qpRes] = await Promise.all([
+        api.getAssessorRplAssessments(),
+        api.getQualificationPacks()
+      ]);
+      if (rplRes && rplRes.assessments) setRplAssessments(rplRes.assessments);
+      if (qpRes && qpRes.qualificationPacks) setAllQps(qpRes.qualificationPacks);
+    } catch (err) {
+      console.error('Error loading RPL management data:', err);
+    }
+  };
+
+  const handleScheduleSubmit = async (e) => {
+    if (e) e.preventDefault();
+    if (!schedModal) return;
+    try {
+      const res = await api.scheduleRplAssessment(schedModal.id, {
+        date: schedDate,
+        time: schedTime,
+        location: schedCentre,
+        assessorId: assignAssessorId,
+        assessorName: assignAssessorName
+      });
+      if (res && res.success) {
+        setMgmtMessage(`Assessment for ${schedModal.learnerName} scheduled on ${schedDate}. Assessor: ${assignAssessorName}`);
+        setSchedModal(null);
+        loadRplMgmtData();
+      } else {
+        setMgmtMessage(res.message || 'Error scheduling assessment.');
+      }
+    } catch (err) {
+      setMgmtMessage('Failed to schedule assessment.');
+    }
+  };
+
+  const handleCreateQp = async (e) => {
+    if (e) e.preventDefault();
+    if (!newQpTrade || !newQpCode) {
+      alert('Trade title and QP code are required.');
+      return;
+    }
+    try {
+      const res = await api.createQualificationPack({
+        trade: newQpTrade,
+        qpCode: newQpCode,
+        sector: newQpSector || 'Industrial Trades',
+        nsqfLevel: Number(newQpNsqf) || 4,
+        description: newQpDesc,
+        keywords: [newQpTrade.toLowerCase(), newQpCode.toLowerCase()],
+        toolsRequired: ['Trade Standard Hand Tools', 'Safety Equipment', 'Measuring Gauge'],
+        competencies: [
+          {
+            id: 'comp_' + Date.now(),
+            code: newQpCode.replace('/', '-') + '-N01',
+            name: `${newQpTrade} Core Practical Operations`,
+            title: `${newQpTrade} Core Practical Operations`,
+            weight: 50,
+            description: `Core operational execution for ${newQpTrade}.`,
+            performanceCriteria: ['Follow standard operating procedures', 'Execute trade task safely'],
+            observableIndicators: ['Tool selection', 'Safe procedure'],
+            requiredEvidence: ['Photo/video proof'],
+            assessmentChecklist: [
+              { id: 'chk_new_1', task: 'Setup and execution', criteria: 'Work performed to trade standards.' }
+            ]
+          }
+        ]
+      });
+      if (res && res.success) {
+        setMgmtMessage(`New Qualification Pack added: ${newQpTrade} (${newQpCode}). Immediately available in assessment engine!`);
+        setNewQpTrade('');
+        setNewQpCode('');
+        setNewQpSector('');
+        setNewQpDesc('');
+        loadRplMgmtData();
+      } else {
+        setMgmtMessage(res.message || 'Error creating Qualification Pack.');
+      }
+    } catch (err) {
+      setMgmtMessage('Network error creating Qualification Pack.');
+    }
+  };
 
   const loadData = async () => {
     try {
@@ -140,6 +240,13 @@ export default function InstitutionPortal({ setActivePage }) {
         >
           <span className="material-symbols-outlined">gavel</span>
           <span>RPL Assessor Workspace</span>
+        </button>
+        <button
+          className={`sw-tab-btn ${activeTab === 'rpl_management' ? 'active' : ''}`}
+          onClick={() => setActiveTab('rpl_management')}
+        >
+          <span className="material-symbols-outlined">manage_accounts</span>
+          <span>RPL Scheduling &amp; QP Management</span>
         </button>
       </div>
 
@@ -330,6 +437,224 @@ export default function InstitutionPortal({ setActivePage }) {
       {activeTab === 'rpl_assessor' && (
         <div className="sw-tab-content">
           <RplAssessorWorkspace user={user} />
+        </div>
+      )}
+
+      {/* ================= TAB 4: RPL CANDIDATE SCHEDULING & QP MANAGEMENT (Section 23, 24, 32) ================= */}
+      {activeTab === 'rpl_management' && (
+        <div className="sw-tab-content">
+          {mgmtMessage && (
+            <div className="sw-alert sw-alert-success" style={{ marginBottom: '16px' }}>
+              {mgmtMessage}
+            </div>
+          )}
+
+          {/* Section A: Pending RPL Assessments & Scheduling (Section 23 & 24) */}
+          <div className="sw-card" style={{ marginBottom: '24px' }}>
+            <div className="sw-card-header-flex">
+              <div>
+                <h3 className="sw-card-title">Candidate Practical Assessment Scheduling &amp; Assessor Allocation</h3>
+                <p className="sw-card-sub">
+                  Assign accredited assessors and schedule session date, time, and physical test centres. Candidates cannot self-assign assessors.
+                </p>
+              </div>
+            </div>
+
+            <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '16px', fontSize: '13px' }}>
+              <thead>
+                <tr style={{ backgroundColor: '#f5f4ef', textAlign: 'left', borderBottom: '2px solid #ddd' }}>
+                  <th style={{ padding: '10px' }}>Candidate Name</th>
+                  <th style={{ padding: '10px' }}>Trade / Role</th>
+                  <th style={{ padding: '10px' }}>Dossier Status</th>
+                  <th style={{ padding: '10px' }}>Assigned Assessor</th>
+                  <th style={{ padding: '10px' }}>Schedule Details</th>
+                  <th style={{ padding: '10px' }}>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rplAssessments.map(asm => (
+                  <tr key={asm.id} style={{ borderBottom: '1px solid #eee' }}>
+                    <td style={{ padding: '10px', fontWeight: 600 }}>{asm.learnerName}</td>
+                    <td style={{ padding: '10px' }}>{asm.trade} ({asm.qpCode})</td>
+                    <td style={{ padding: '10px' }}>
+                      <span className="sw-status-badge status-pending">{asm.status}</span>
+                    </td>
+                    <td style={{ padding: '10px' }}>{asm.assessorName || 'Not Assigned'}</td>
+                    <td style={{ padding: '10px', fontSize: '12px', color: '#555' }}>
+                      {asm.scheduledDate ? `${asm.scheduledDate} (${asm.scheduledTime})` : 'Not Scheduled'}
+                    </td>
+                    <td style={{ padding: '10px' }}>
+                      <button
+                        className="sw-btn-outline"
+                        style={{ fontSize: '12px', padding: '4px 10px' }}
+                        onClick={() => {
+                          setSchedModal(asm);
+                          if (asm.scheduledDate) setSchedDate(asm.scheduledDate);
+                          if (asm.assessorName) setAssignAssessorName(asm.assessorName);
+                        }}
+                      >
+                        <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>edit_calendar</span>
+                        Assign / Schedule
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {rplAssessments.length === 0 && (
+                  <tr>
+                    <td colSpan="6" style={{ padding: '24px', textAlign: 'center', color: '#666' }}>
+                      No candidate assessment dossiers found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Modal / Inline Schedule Form */}
+          {schedModal && (
+            <div className="sw-card" style={{ marginBottom: '24px', border: '2px solid #176B68', backgroundColor: '#fbfdfc' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+                <h4 style={{ fontSize: '16px', fontWeight: 700, color: '#176B68' }}>
+                  Assign Assessor &amp; Schedule Session for: {schedModal.learnerName} ({schedModal.trade})
+                </h4>
+                <button
+                  type="button"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '16px' }}
+                  onClick={() => setSchedModal(null)}
+                >
+                  &times;
+                </button>
+              </div>
+
+              <form onSubmit={handleScheduleSubmit}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+                  <div className="sw-form-group">
+                    <label>Authorized Assessor Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={assignAssessorName}
+                      onChange={(e) => setAssignAssessorName(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="sw-form-group">
+                    <label>Assessment Date *</label>
+                    <input
+                      type="date"
+                      required
+                      value={schedDate}
+                      onChange={(e) => setSchedDate(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="sw-form-group">
+                    <label>Session Timing *</label>
+                    <input
+                      type="text"
+                      required
+                      value={schedTime}
+                      onChange={(e) => setSchedTime(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="sw-form-group">
+                    <label>Practical Assessment Centre *</label>
+                    <input
+                      type="text"
+                      required
+                      value={schedCentre}
+                      onChange={(e) => setSchedCentre(e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '16px', display: 'flex', gap: '10px' }}>
+                  <button type="submit" className="sw-btn-primary" style={{ padding: '8px 18px', fontSize: '13px' }}>
+                    <span className="material-symbols-outlined">how_to_reg</span>
+                    Save Assessor Assignment &amp; Schedule
+                  </button>
+                  <button type="button" className="sw-btn-outline" onClick={() => setSchedModal(null)} style={{ padding: '8px 16px', fontSize: '13px' }}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+
+          {/* Section B: Admin Qualification Pack Management (Section 32) */}
+          <div className="sw-card">
+            <h3 className="sw-card-title">Add / Register New NSQF Qualification Pack (Data-Driven Architecture)</h3>
+            <p className="sw-card-sub">
+              Adding a new trade here immediately registers it in the database and makes it available to the universal assessment engine without modifying React components.
+            </p>
+
+            <form onSubmit={handleCreateQp} style={{ marginTop: '16px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+                <div className="sw-form-group">
+                  <label>Trade Title *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Mason / Bricklayer"
+                    value={newQpTrade}
+                    onChange={(e) => setNewQpTrade(e.target.value)}
+                  />
+                </div>
+
+                <div className="sw-form-group">
+                  <label>QP Code *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. CON/Q0102"
+                    value={newQpCode}
+                    onChange={(e) => setNewQpCode(e.target.value)}
+                  />
+                </div>
+
+                <div className="sw-form-group">
+                  <label>Industry Sector *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Construction &amp; Infrastructure"
+                    value={newQpSector}
+                    onChange={(e) => setNewQpSector(e.target.value)}
+                  />
+                </div>
+
+                <div className="sw-form-group">
+                  <label>NSQF Level *</label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="10"
+                    required
+                    value={newQpNsqf}
+                    onChange={(e) => setNewQpNsqf(Number(e.target.value))}
+                  />
+                </div>
+
+                <div className="sw-form-group" style={{ gridColumn: 'span 2' }}>
+                  <label>Job Role Description &amp; Scope</label>
+                  <input
+                    type="text"
+                    placeholder="Laying bricks, concrete blocks, mortar preparation, and plumb checking..."
+                    value={newQpDesc}
+                    onChange={(e) => setNewQpDesc(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div style={{ marginTop: '16px' }}>
+                <button type="submit" className="sw-btn-primary" style={{ padding: '8px 18px', fontSize: '13px' }}>
+                  <span className="material-symbols-outlined">library_add</span>
+                  Register Qualification Pack into Database
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>
