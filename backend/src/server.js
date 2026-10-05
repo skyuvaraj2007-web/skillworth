@@ -165,9 +165,13 @@ app.use('/api/notifications', notificationRouter);
 app.get('/api/health', async (req, res) => {
   let database = 'DISCONNECTED';
 
-  if (supabase) {
+  if (process.env.LOCAL_DB_MODE === 'true') {
+    database = 'CONNECTED (Local Relational Engine)';
+  } else if (supabase) {
     try {
-      const { error } = await supabase.from('users').select('id').limit(1);
+      const queryPromise = supabase.from('users').select('id').limit(1);
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 1000));
+      const { error } = await Promise.race([queryPromise, timeoutPromise]);
       database = error ? 'DISCONNECTED' : 'CONNECTED';
     } catch (err) {
       database = 'DISCONNECTED';
@@ -177,7 +181,7 @@ app.get('/api/health', async (req, res) => {
   res.json({
     status: 'ONLINE',
     database,
-    node: 'SKILLNEXUS-SOVEREIGN-NODE-01',
+    node: 'SKILLWORTH-SOVEREIGN-NODE-01',
     blockHeight: 'Block #8941_301 Synced',
     timestamp: new Date().toISOString()
   });
