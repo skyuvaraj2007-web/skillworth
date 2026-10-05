@@ -71,6 +71,28 @@
       "profileId": "LRN-BIRM1O",
       "verificationStatus": "ACTIVE",
       "createdAt": "2026-10-05T13:28:40.739Z"
+    },
+    {
+      "id": "usr_1791207133488_w1kr9",
+      "userId": "usr_1791207133488_w1kr9",
+      "email": "candidate_1791207133486@university.edu",
+      "passwordHash": "$2b$10$wlY9Hb61.BZzfbn.HgFDk.kynvibmcK7Hp.oVfOtZLR6yMbYTXybW",
+      "role": "LEARNER",
+      "preferredLanguage": "en",
+      "profileId": "LRN-HLTT8O",
+      "verificationStatus": "ACTIVE",
+      "createdAt": "2026-10-05T13:32:13.568Z"
+    },
+    {
+      "id": "usr_1791207241684_8gul3",
+      "userId": "usr_1791207241684_8gul3",
+      "email": "candidate_1791207241681@university.edu",
+      "passwordHash": "$2b$10$jd1JQMTiY/QSWLUt8zol3OfpEUKb4cj9lMn6d71nDFYlqZnZ2E3Bu",
+      "role": "LEARNER",
+      "preferredLanguage": "en",
+      "profileId": "LRN-K0F5NT",
+      "verificationStatus": "ACTIVE",
+      "createdAt": "2026-10-05T13:34:01.763Z"
     }
   ],
   "learner_profiles": [
@@ -176,6 +198,56 @@
       "areasOfInterest": [],
       "preferredLanguage": "en",
       "createdAt": "2026-10-05T13:28:40.739Z"
+    },
+    {
+      "id": "LRN-HLTT8O",
+      "learnerId": "LRN-HLTT8O",
+      "userId": "usr_1791207133488_w1kr9",
+      "fullName": "Ravi Chandran",
+      "email": "candidate_1791207133486@university.edu",
+      "mobile": "",
+      "dob": "",
+      "profilePhoto": "",
+      "collegeName": "Coimbatore Institute of Technology",
+      "department": "Information Technology",
+      "degree": "B.Tech",
+      "specialization": "",
+      "currentYear": "3rd Year",
+      "studentId": "CIT-2026-IT",
+      "graduationYear": "2026",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "city": "Coimbatore",
+      "primarySkill": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "areasOfInterest": [],
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T13:32:13.568Z"
+    },
+    {
+      "id": "LRN-K0F5NT",
+      "learnerId": "LRN-K0F5NT",
+      "userId": "usr_1791207241684_8gul3",
+      "fullName": "Ravi Chandran",
+      "email": "candidate_1791207241681@university.edu",
+      "mobile": "",
+      "dob": "",
+      "profilePhoto": "",
+      "collegeName": "Coimbatore Institute of Technology",
+      "department": "Information Technology",
+      "degree": "B.Tech",
+      "specialization": "",
+      "currentYear": "3rd Year",
+      "studentId": "CIT-2026-IT",
+      "graduationYear": "2026",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "city": "Coimbatore",
+      "primarySkill": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "areasOfInterest": [],
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T13:34:01.763Z"
     }
   ],
   "institution_profiles": [
@@ -370,7 +442,7 @@
         "decision": "APPROVE",
         "feedback": "Candidate successfully demonstrated token bucket rate limiter with sliding window counters.",
         "assessorName": "Dr. S. Meenakshi Sundaram",
-        "decidedAt": "2026-10-05T13:28:40.798Z"
+        "decidedAt": "2026-10-05T13:34:01.813Z"
       },
       "submittedAt": "2026-10-05T10:41:51.049Z"
     }
@@ -509,6 +581,40 @@
       "aiSummary": "AI performance telemetry confirms 100% alignment with ISO 17024 competency matrix. Practical task answers forwarded to lead assessor for validation.",
       "assessorDecision": "APPROVE",
       "submittedAt": "2026-10-05T13:28:40.753Z"
+    },
+    {
+      "id": "RES-NSZK0J",
+      "attemptId": "ATT-L22FW3",
+      "assessmentId": "asm_py_intermediate",
+      "assessmentTitle": "Python Software Engineering Skill Verification Protocol",
+      "learnerId": "LRN-HLTT8O",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "totalScore": 80,
+      "maxScore": 80,
+      "percentage": 100,
+      "passed": true,
+      "aiSummary": "AI performance telemetry confirms 100% alignment with ISO 17024 competency matrix. Practical task answers forwarded to lead assessor for validation.",
+      "assessorDecision": "APPROVE",
+      "submittedAt": "2026-10-05T13:32:13.584Z"
+    },
+    {
+      "id": "RES-WF37NE",
+      "attemptId": "ATT-1J7P92",
+      "assessmentId": "asm_py_intermediate",
+      "assessmentTitle": "Python Software Engineering Skill Verification Protocol",
+      "learnerId": "LRN-K0F5NT",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "totalScore": 80,
+      "maxScore": 80,
+      "percentage": 100,
+      "passed": true,
+      "aiSummary": "AI performance telemetry confirms 100% alignment with ISO 17024 competency matrix. Practical task answers forwarded to lead assessor for validation.",
+      "assessorDecision": "APPROVE",
+      "submittedAt": "2026-10-05T13:34:01.779Z"
     }
   ],
   "credentials": [
@@ -614,6 +720,66 @@
       "status": "VERIFIED",
       "assessmentDate": "05/10/2026",
       "issueDate": "2026-10-05T13:28:40.798Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-IB3PRK",
+      "credentialId": "SW-IB3PRK",
+      "learnerId": "LRN-HLTT8O",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "verifiedByAssessor": "Authorized Lead Assessor",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:32:13.695Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-NRE9SL",
+      "credentialId": "SW-NRE9SL",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth Verified Institution",
+      "verifiedByAssessor": "Dr. S. Meenakshi Sundaram",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:32:13.717Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-QWFCEJ",
+      "credentialId": "SW-QWFCEJ",
+      "learnerId": "LRN-K0F5NT",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "verifiedByAssessor": "Authorized Lead Assessor",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:34:01.801Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-11OWCX",
+      "credentialId": "SW-11OWCX",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth Verified Institution",
+      "verifiedByAssessor": "Dr. S. Meenakshi Sundaram",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:34:01.813Z",
       "validity": "PERMANENT",
       "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
     }
