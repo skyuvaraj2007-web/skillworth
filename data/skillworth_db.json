@@ -1,0 +1,622 @@
+{
+  "meta": {
+    "platform": "SkillWorth",
+    "version": "1.0.0",
+    "database": "skillworth_db",
+    "createdAt": "2026-10-05T10:41:51.048Z"
+  },
+  "users": [
+    {
+      "id": "usr_demo_learner_01",
+      "userId": "usr_demo_learner_01",
+      "email": "learner.demo@skillworth.org",
+      "passwordHash": "$2b$10$MMauRbKwJDjdJSPRlsyv3OZSgrM5ckMqMnztI9.79nBaKuhpkYGDG",
+      "role": "LEARNER",
+      "preferredLanguage": "en",
+      "profileId": "LRN-DEMO-01",
+      "verificationStatus": "ACTIVE",
+      "createdAt": "2026-10-05T10:41:51.049Z"
+    },
+    {
+      "id": "usr_demo_assessor_01",
+      "userId": "usr_demo_assessor_01",
+      "email": "assessor.demo@skillworth.org",
+      "passwordHash": "$2b$10$MMauRbKwJDjdJSPRlsyv3OZSgrM5ckMqMnztI9.79nBaKuhpkYGDG",
+      "role": "INSTITUTION",
+      "preferredLanguage": "en",
+      "profileId": "INST-DEMO-01",
+      "verificationStatus": "VERIFIED",
+      "createdAt": "2026-10-05T10:41:51.049Z"
+    },
+    {
+      "id": "usr_demo_industry_01",
+      "userId": "usr_demo_industry_01",
+      "email": "industry.demo@skillworth.org",
+      "passwordHash": "$2b$10$MMauRbKwJDjdJSPRlsyv3OZSgrM5ckMqMnztI9.79nBaKuhpkYGDG",
+      "role": "INDUSTRY",
+      "preferredLanguage": "en",
+      "profileId": "IND-DEMO-01",
+      "verificationStatus": "VERIFIED",
+      "createdAt": "2026-10-05T10:41:51.049Z"
+    },
+    {
+      "id": "usr_1791205331768_n952g",
+      "userId": "usr_1791205331768_n952g",
+      "email": "candidate_1791205331765@university.edu",
+      "passwordHash": "$2b$10$0JILQaX2RNlPGIrLC11uC.9BCyahN9Wd.JAtshJrYgT.Ggvg49yLi",
+      "role": "LEARNER",
+      "preferredLanguage": "en",
+      "profileId": "LRN-R9BL3A",
+      "verificationStatus": "ACTIVE",
+      "createdAt": "2026-10-05T13:02:11.853Z"
+    },
+    {
+      "id": "usr_1791206811795_7m1d5",
+      "userId": "usr_1791206811795_7m1d5",
+      "email": "candidate_1791206811791@university.edu",
+      "passwordHash": "$2b$10$er1ySuzE.7xr0IX2wYpgJeqRLNNz3RKLVcC2M2yxFmUbqhUC6/53m",
+      "role": "LEARNER",
+      "preferredLanguage": "en",
+      "profileId": "LRN-116C7S",
+      "verificationStatus": "ACTIVE",
+      "createdAt": "2026-10-05T13:26:51.915Z"
+    },
+    {
+      "id": "usr_1791206920661_31lyv",
+      "userId": "usr_1791206920661_31lyv",
+      "email": "candidate_1791206920658@university.edu",
+      "passwordHash": "$2b$10$tpSb853fxHTGj1oE4uo0tOy2D7CmU9WoMLd.Z24STprCTY35fwRz2",
+      "role": "LEARNER",
+      "preferredLanguage": "en",
+      "profileId": "LRN-BIRM1O",
+      "verificationStatus": "ACTIVE",
+      "createdAt": "2026-10-05T13:28:40.739Z"
+    }
+  ],
+  "learner_profiles": [
+    {
+      "id": "LRN-DEMO-01",
+      "learnerId": "LRN-DEMO-01",
+      "userId": "usr_demo_learner_01",
+      "fullName": "Arun Kumar",
+      "email": "learner.demo@skillworth.org",
+      "mobile": "+91 98765 43210",
+      "dob": "2004-05-18",
+      "profilePhoto": "",
+      "collegeName": "PSG College of Technology",
+      "department": "Computer Science and Engineering",
+      "degree": "B.Tech",
+      "specialization": "Artificial Intelligence & Software Systems",
+      "currentYear": "3rd Year",
+      "studentId": "22CS104",
+      "graduationYear": "2026",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "city": "Coimbatore",
+      "primarySkill": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "areasOfInterest": [
+        "Cloud Computing",
+        "AsyncIO"
+      ],
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T10:41:51.049Z"
+    },
+    {
+      "id": "LRN-R9BL3A",
+      "learnerId": "LRN-R9BL3A",
+      "userId": "usr_1791205331768_n952g",
+      "fullName": "Ravi Chandran",
+      "email": "candidate_1791205331765@university.edu",
+      "mobile": "",
+      "dob": "",
+      "profilePhoto": "",
+      "collegeName": "Coimbatore Institute of Technology",
+      "department": "Information Technology",
+      "degree": "B.Tech",
+      "specialization": "",
+      "currentYear": "3rd Year",
+      "studentId": "CIT-2026-IT",
+      "graduationYear": "2026",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "city": "Coimbatore",
+      "primarySkill": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "areasOfInterest": [],
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T13:02:11.853Z"
+    },
+    {
+      "id": "LRN-116C7S",
+      "learnerId": "LRN-116C7S",
+      "userId": "usr_1791206811795_7m1d5",
+      "fullName": "Ravi Chandran",
+      "email": "candidate_1791206811791@university.edu",
+      "mobile": "",
+      "dob": "",
+      "profilePhoto": "",
+      "collegeName": "Coimbatore Institute of Technology",
+      "department": "Information Technology",
+      "degree": "B.Tech",
+      "specialization": "",
+      "currentYear": "3rd Year",
+      "studentId": "CIT-2026-IT",
+      "graduationYear": "2026",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "city": "Coimbatore",
+      "primarySkill": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "areasOfInterest": [],
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T13:26:51.915Z"
+    },
+    {
+      "id": "LRN-BIRM1O",
+      "learnerId": "LRN-BIRM1O",
+      "userId": "usr_1791206920661_31lyv",
+      "fullName": "Ravi Chandran",
+      "email": "candidate_1791206920658@university.edu",
+      "mobile": "",
+      "dob": "",
+      "profilePhoto": "",
+      "collegeName": "Coimbatore Institute of Technology",
+      "department": "Information Technology",
+      "degree": "B.Tech",
+      "specialization": "",
+      "currentYear": "3rd Year",
+      "studentId": "CIT-2026-IT",
+      "graduationYear": "2026",
+      "state": "Tamil Nadu",
+      "district": "Coimbatore",
+      "city": "Coimbatore",
+      "primarySkill": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "areasOfInterest": [],
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T13:28:40.739Z"
+    }
+  ],
+  "institution_profiles": [
+    {
+      "id": "INST-DEMO-01",
+      "institutionId": "INST-DEMO-01",
+      "userId": "usr_demo_assessor_01",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "institutionType": "Autonomous Technical University",
+      "officialEmail": "assessor.demo@skillworth.org",
+      "officialPhone": "+91 44 2235 7004",
+      "website": "https://skillworth.org",
+      "recognitionId": "NIRF-ENG-001",
+      "address": "Guindy National Highway, Chennai",
+      "state": "Tamil Nadu",
+      "district": "Chennai",
+      "city": "Chennai",
+      "repFullName": "Dr. S. Meenakshi Sundaram",
+      "repDesignation": "Director of Assessor Accreditation",
+      "repEmail": "assessor.demo@skillworth.org",
+      "repPhone": "+91 94440 12345",
+      "verificationStatus": "VERIFIED",
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T10:41:51.049Z"
+    }
+  ],
+  "industry_profiles": [
+    {
+      "id": "IND-DEMO-01",
+      "companyId": "IND-DEMO-01",
+      "userId": "usr_demo_industry_01",
+      "companyName": "HexaCloud Technologies Global",
+      "companyLogo": "",
+      "industrySector": "Enterprise Software & Cloud Platforms",
+      "website": "https://hexacloud.tech",
+      "officialEmail": "industry.demo@skillworth.org",
+      "officialPhone": "+91 80 4000 8800",
+      "address": "Ecospace Business Park, Bellandur, Bengaluru",
+      "state": "Karnataka",
+      "district": "Bengaluru",
+      "city": "Bengaluru",
+      "repFullName": "Karthik Narayanan",
+      "repDesignation": "Head of Global University Talent & Competency",
+      "repEmail": "industry.demo@skillworth.org",
+      "repPhone": "+91 98800 11223",
+      "recruitmentPreferences": {
+        "skills": [
+          "Python Software Engineering",
+          "Full Stack Web Development"
+        ],
+        "levels": [
+          "Intermediate",
+          "Advanced"
+        ],
+        "roles": [
+          "Full Stack Engineer",
+          "Backend Specialist"
+        ],
+        "internships": true
+      },
+      "verificationStatus": "VERIFIED",
+      "preferredLanguage": "en",
+      "createdAt": "2026-10-05T10:41:51.049Z"
+    }
+  ],
+  "assessors": [
+    {
+      "id": "ASSR-DEMO-01",
+      "assessorId": "ASSR-DEMO-01",
+      "userId": "usr_demo_assessor_01",
+      "institutionId": "INST-DEMO-01",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "fullName": "Dr. S. Meenakshi Sundaram",
+      "designation": "Professor & ISO 17024 Lead Evaluator",
+      "department": "Computer Science and Engineering",
+      "qualification": "Ph.D. Computer Science",
+      "specialization": "Software Architecture & Prior Learning Verification",
+      "yearsOfExperience": 18,
+      "assessableSkills": [
+        "Python Software Engineering",
+        "Full Stack Web Development"
+      ],
+      "certifications": "ISO/IEC 17024 Certified Master Assessor",
+      "status": "APPROVED",
+      "createdAt": "2026-10-05T10:41:51.049Z"
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill_python_dev",
+      "name": "Python Software Engineering",
+      "domain": "Software Engineering",
+      "level": "Intermediate",
+      "description": "Applied Python software engineering, asynchronous programming, APIs, and data modeling.",
+      "competencies": [
+        {
+          "id": "comp_py_1",
+          "name": "Object-Oriented Design & Clean Code Architecture",
+          "code": "PY-OOD-01"
+        },
+        {
+          "id": "comp_py_2",
+          "name": "API Development & Database Integration",
+          "code": "PY-API-02"
+        },
+        {
+          "id": "comp_py_3",
+          "name": "Concurrency, AsyncIO & Memory Profiling",
+          "code": "PY-ASYNC-03"
+        }
+      ]
+    },
+    {
+      "id": "skill_web_fullstack",
+      "name": "Full Stack Web Development",
+      "domain": "Information Technology",
+      "level": "Intermediate",
+      "description": "Modern full-stack web applications, REST/GraphQL endpoints, responsive React interfaces.",
+      "competencies": [
+        {
+          "id": "comp_fs_1",
+          "name": "Modern Component Design & State Systems",
+          "code": "FS-REACT-01"
+        },
+        {
+          "id": "comp_fs_2",
+          "name": "Server-Side Business Logic & Authentication",
+          "code": "FS-NODE-02"
+        },
+        {
+          "id": "comp_fs_3",
+          "name": "Relational Database Schema & Data Integrity",
+          "code": "FS-SQL-03"
+        }
+      ]
+    },
+    {
+      "id": "skill_cloud_devops",
+      "name": "Cloud Infrastructure & DevOps",
+      "domain": "Cloud Computing",
+      "level": "Advanced",
+      "description": "Automated CI/CD pipelines, container orchestration with Docker/Kubernetes, and cloud security.",
+      "competencies": [
+        {
+          "id": "comp_dev_1",
+          "name": "Docker Containerization & Image Optimization",
+          "code": "OPS-DOCKER-01"
+        },
+        {
+          "id": "comp_dev_2",
+          "name": "Kubernetes Cluster Deployment & Monitoring",
+          "code": "OPS-K8S-02"
+        }
+      ]
+    }
+  ],
+  "competencies": [],
+  "evidence": [
+    {
+      "id": "EVD-DEMO-01",
+      "evidenceId": "EVD-DEMO-01",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillId": "skill_python_dev",
+      "skillName": "Python Software Engineering",
+      "competency": "Concurrency, AsyncIO & Memory Profiling",
+      "evidenceType": "Video Demonstration",
+      "title": "High-Concurrency Token Bucket Rate Limiter Video Demo",
+      "description": "Live code walkthrough demonstrating asyncio rate limiting with sliding window counters and memory profiling analysis.",
+      "fileUrl": "",
+      "fileName": "async_rate_limiter_demo.mp4",
+      "fileSize": 18542000,
+      "mimeType": "video/mp4",
+      "isVideo": true,
+      "videoMetadata": {
+        "durationSeconds": 240,
+        "format": "video/mp4",
+        "resolution": "1080p"
+      },
+      "verificationStatus": "VERIFIED",
+      "aiAnalysis": {
+        "confidenceScore": 94,
+        "detectedSkill": "Python Software Engineering",
+        "verifiedCompetencies": [
+          "PY-ASYNC-03",
+          "PY-OOD-01"
+        ],
+        "summary": "Video shows clear implementation of sliding window token bucket rate limiter in Python AsyncIO with zero memory leaks.",
+        "recommendedStatus": "RECOMMENDED_FOR_ASSESSOR_REVIEW"
+      },
+      "assessorFeedback": {
+        "decision": "APPROVE",
+        "feedback": "Candidate successfully demonstrated token bucket rate limiter with sliding window counters.",
+        "assessorName": "Dr. S. Meenakshi Sundaram",
+        "decidedAt": "2026-10-05T13:28:40.798Z"
+      },
+      "submittedAt": "2026-10-05T10:41:51.049Z"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "asm_py_intermediate",
+      "title": "Python Software Engineering Skill Verification Protocol",
+      "skillId": "skill_python_dev",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "durationMinutes": 45,
+      "passingScore": 70,
+      "status": "PUBLISHED",
+      "competencies": [
+        "PY-OOD-01",
+        "PY-API-02",
+        "PY-ASYNC-03"
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "type": "MCQ",
+          "questionText": "In Python, which built-in construct is optimal for memory-efficient iteration over large data sequences without loading all elements into RAM at once?",
+          "options": [
+            "List comprehension with caching",
+            "Generators using the yield statement",
+            "Deepcopy dictionaries",
+            "Pre-allocated NumPy arrays only"
+          ],
+          "correctAnswer": "Generators using the yield statement",
+          "points": 20
+        },
+        {
+          "id": "q2",
+          "type": "MCQ",
+          "questionText": "When designing a thread-safe singleton or resource lock in Python, which library primitive ensures atomic acquisition?",
+          "options": [
+            "threading.Lock with context manager (with lock:)",
+            "Global variables with boolean checks",
+            "sys.setswitchinterval(0)",
+            "time.sleep(0.01)"
+          ],
+          "correctAnswer": "threading.Lock with context manager (with lock:)",
+          "points": 20
+        },
+        {
+          "id": "q3",
+          "type": "MCQ",
+          "questionText": "What is the primary difference between asyncio.gather() and asyncio.wait() in concurrent Python systems?",
+          "options": [
+            "gather returns results in the exact order futures were passed; wait returns sets of completed and pending tasks",
+            "wait runs synchronous multi-threading while gather is strictly for HTTP requests",
+            "gather runs only on Linux while wait works on Windows",
+            "There is no operational difference"
+          ],
+          "correctAnswer": "gather returns results in the exact order futures were passed; wait returns sets of completed and pending tasks",
+          "points": 20
+        },
+        {
+          "id": "q4",
+          "type": "MCQ",
+          "questionText": "In relational database design for high-throughput APIs, what is the best practice to prevent the N+1 queries problem when fetching linked entity relations?",
+          "options": [
+            "Perform SQL JOIN or select_related / prefetch_related in the ORM",
+            "Execute individual SELECT queries inside a for-loop",
+            "Increase the database connection pool to 10,000",
+            "Disable foreign key constraints"
+          ],
+          "correctAnswer": "Perform SQL JOIN or select_related / prefetch_related in the ORM",
+          "points": 20
+        },
+        {
+          "id": "q5",
+          "type": "PRACTICAL_TASK",
+          "questionText": "Practical Implementation Task: Implement a Python class RateLimiter implementing a token bucket or sliding window algorithm. Provide code snippet or upload demonstration video.",
+          "options": [],
+          "correctAnswer": "",
+          "points": 20
+        }
+      ]
+    }
+  ],
+  "assessment_questions": [],
+  "assessment_attempts": [],
+  "assessment_answers": [],
+  "assessment_results": [
+    {
+      "id": "RES-UG39EI",
+      "attemptId": "ATT-JTU65E",
+      "assessmentId": "asm_py_intermediate",
+      "assessmentTitle": "Python Software Engineering Skill Verification Protocol",
+      "learnerId": "LRN-R9BL3A",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "totalScore": 80,
+      "maxScore": 80,
+      "percentage": 100,
+      "passed": true,
+      "aiSummary": "AI performance telemetry confirms 100% alignment with ISO 17024 competency matrix. Practical task answers forwarded to lead assessor for validation.",
+      "assessorDecision": "APPROVE",
+      "submittedAt": "2026-10-05T13:02:11.868Z"
+    },
+    {
+      "id": "RES-WE4HEN",
+      "attemptId": "ATT-OCEVGF",
+      "assessmentId": "asm_py_intermediate",
+      "assessmentTitle": "Python Software Engineering Skill Verification Protocol",
+      "learnerId": "LRN-116C7S",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "totalScore": 80,
+      "maxScore": 80,
+      "percentage": 100,
+      "passed": true,
+      "aiSummary": "AI performance telemetry confirms 100% alignment with ISO 17024 competency matrix. Practical task answers forwarded to lead assessor for validation.",
+      "assessorDecision": "APPROVE",
+      "submittedAt": "2026-10-05T13:26:51.933Z"
+    },
+    {
+      "id": "RES-DTR9EW",
+      "attemptId": "ATT-LD2L1N",
+      "assessmentId": "asm_py_intermediate",
+      "assessmentTitle": "Python Software Engineering Skill Verification Protocol",
+      "learnerId": "LRN-BIRM1O",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "totalScore": 80,
+      "maxScore": 80,
+      "percentage": 100,
+      "passed": true,
+      "aiSummary": "AI performance telemetry confirms 100% alignment with ISO 17024 competency matrix. Practical task answers forwarded to lead assessor for validation.",
+      "assessorDecision": "APPROVE",
+      "submittedAt": "2026-10-05T13:28:40.753Z"
+    }
+  ],
+  "credentials": [
+    {
+      "id": "SW-884201",
+      "credentialId": "SW-884201",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "verifiedByAssessor": "Dr. S. Meenakshi Sundaram",
+      "status": "VERIFIED",
+      "assessmentDate": "15/09/2026",
+      "issueDate": "2026-10-05T10:41:51.049Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-MP8GO4",
+      "credentialId": "SW-MP8GO4",
+      "learnerId": "LRN-R9BL3A",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "verifiedByAssessor": "Authorized Lead Assessor",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:02:11.943Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-3TESQQ",
+      "credentialId": "SW-3TESQQ",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth Verified Institution",
+      "verifiedByAssessor": "Dr. S. Meenakshi Sundaram",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:02:11.955Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-EIQPD8",
+      "credentialId": "SW-EIQPD8",
+      "learnerId": "LRN-116C7S",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "verifiedByAssessor": "Authorized Lead Assessor",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:26:52.003Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-1C87FN",
+      "credentialId": "SW-1C87FN",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth Verified Institution",
+      "verifiedByAssessor": "Dr. S. Meenakshi Sundaram",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:26:52.019Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-15HVI5",
+      "credentialId": "SW-15HVI5",
+      "learnerId": "LRN-BIRM1O",
+      "learnerName": "Ravi Chandran",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth National Assessment Institute",
+      "verifiedByAssessor": "Authorized Lead Assessor",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:28:40.776Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    },
+    {
+      "id": "SW-RVIHFS",
+      "credentialId": "SW-RVIHFS",
+      "learnerId": "LRN-DEMO-01",
+      "learnerName": "Arun Kumar",
+      "skillName": "Python Software Engineering",
+      "skillLevel": "Intermediate",
+      "institutionName": "SkillWorth Verified Institution",
+      "verifiedByAssessor": "Dr. S. Meenakshi Sundaram",
+      "status": "VERIFIED",
+      "assessmentDate": "05/10/2026",
+      "issueDate": "2026-10-05T13:28:40.798Z",
+      "validity": "PERMANENT",
+      "standards": "ISO/IEC 17024 Compliant Recognition of Prior Learning"
+    }
+  ],
+  "notifications": []
+}

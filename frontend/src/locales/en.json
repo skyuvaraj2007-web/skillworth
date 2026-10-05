@@ -1,0 +1,64 @@
+{
+  "appName": "SkillWorth",
+  "tagline": "AI-Assisted Recognition of Prior Learning & Skill Verification",
+  "heroTitle": "Skills Earned. Experience Recognized.",
+  "heroSubtitle": "Demonstrate skills gained through real-world experience, upload video demonstrations, and complete standardized ISO 17024 assessments verified by accredited assessors.",
+  "startJourney": "Start Your Journey",
+  "signIn": "Sign In to Workspace",
+  "createAccount": "Create your SkillWorth account",
+  "whoAreYou": "Who are you?",
+  "roles": {
+    "learner": "Learner / Candidate",
+    "learnerDesc": "Demonstrate prior skills, submit video evidence, take assessments, and earn verifiable ISO 17024 credentials.",
+    "institution": "Institution / Assessor",
+    "institutionDesc": "Accredit assessors, review practical candidate evidence, evaluate competencies, and approve skill certificates.",
+    "industry": "Industry / Company",
+    "industryDesc": "Directly verify SkillWorth credentials (SW-XXXXXX), discover verified technical talent, and evaluate candidates."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "skills": "Skills & Competencies",
+    "evidence": "Submit Evidence",
+    "videoEvidence": "Video Demonstration",
+    "assessments": "Assessments",
+    "credentials": "My Credentials",
+    "verifyCredential": "Verify Credential",
+    "logout": "Log Out"
+  },
+  "evidence": {
+    "title": "Evidence Portfolio",
+    "uploadTitle": "Submit Practical Evidence",
+    "uploadVideo": "Upload Video Demonstration",
+    "selectSkill": "Select Skill Domain",
+    "evidenceType": "Evidence Category",
+    "description": "Evidence Description & Technical Overview",
+    "submitBtn": "Submit for AI Analysis & Assessor Review",
+    "aiAnalysisTitle": "AI Competency Telemetry",
+    "pendingReview": "Pending Assessor Review",
+    "verified": "Verified Credential Granted"
+  },
+  "assessment": {
+    "title": "Skill Verification Protocols",
+    "takeAssessment": "Take Protocol Assessment",
+    "question": "Question",
+    "submitAnswers": "Submit Assessment",
+    "practicalTask": "Practical Task Execution"
+  },
+  "credential": {
+    "title": "Verified SkillWorth Credential",
+    "credentialId": "Credential ID",
+    "skill": "Verified Skill",
+    "level": "Proficiency Level",
+    "verifiedBy": "Accredited Assessor",
+    "institution": "Authorized Institution",
+    "status": "ISO 17024 Verified",
+    "verifyBtn": "Verify Credential Authenticity"
+  },
+  "industry": {
+    "verifyTitle": "Industry Credential Verification",
+    "enterId": "Enter SkillWorth Credential ID (e.g. SW-884201)",
+    "checkBtn": "Verify Credential",
+    "validBadge": "VALID VERIFIED CREDENTIAL",
+    "invalidBadge": "INVALID OR UNVERIFIED CREDENTIAL"
+  }
+}

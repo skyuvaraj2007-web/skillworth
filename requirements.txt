@@ -1,0 +1,3 @@
+# SkillWorth - Recognition of Prior Learning Platform
+# Python Startup Requirements
+# Python 3.8+ required. app.py orchestrates using standard library.
