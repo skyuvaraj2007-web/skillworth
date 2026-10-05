@@ -12,6 +12,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Google Material Symbols Outlined -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <!-- Google Stitch Tailwind Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#176B68",
+              "primary-hover": "#125654",
+              "primary-container": "#176B68",
+              "primary-fixed": "#a5f0eb",
+              "primary-fixed-dim": "#89d3cf",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#9ee9e4",
+              secondary: "#555f6b",
+              "secondary-container": "#d6e1ef",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#59646f",
+              tertiary: "#604400",
+              "tertiary-container": "#7e5a00",
+              "tertiary-fixed": "#ffd68c",
+              "tertiary-fixed-dim": "#f0bf5f",
+              "on-tertiary": "#ffffff",
+              error: "#ba1a1a",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              surface: "#fbf9f3",
+              background: "#fbf9f3",
+              "surface-bright": "#fbf9f3",
+              "surface-dim": "#dcdad4",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f5f3ed",
+              "surface-container": "#f0eee8",
+              "surface-container-high": "#eae8e2",
+              "surface-container-highest": "#e4e2dd",
+              "on-surface": "#1b1c18",
+              "on-surface-variant": "#3f4948",
+              outline: "#6f7978",
+              "outline-variant": "#bec9c7",
+              "inverse-surface": "#17212b",
+              "inverse-on-surface": "#f3f1eb"
+            }
+          }
+        }
+      };
+    </script>
   </head>
   <body class="bg-surface font-body-md text-on-surface antialiased">
     <div id="root"></div>
