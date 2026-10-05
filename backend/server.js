@@ -28,8 +28,8 @@ app.use('/uploads', express.static(uploadsDir));
 
 const { isSupabaseConfigured } = require('./database/supabaseClient');
 
-// Health Check
-app.get('/api/health', (req, res) => {
+// Health Check handler
+const healthHandler = (req, res) => {
   res.json({
     status: 'OK',
     application: 'SkillWorth — Recognition of Prior Learning Platform',
@@ -37,17 +37,44 @@ app.get('/api/health', (req, res) => {
     supabaseConnected: Boolean(isSupabaseConfigured),
     timestamp: new Date().toISOString()
   });
-});
+};
+
+app.get('/api/health', healthHandler);
+app.get('/health', healthHandler);
 
 // API Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/skills', require('./routes/skills'));
-app.use('/api/evidence', require('./routes/evidence'));
-app.use('/api/assessments', require('./routes/assessments'));
-app.use('/api/assessor', require('./routes/assessor'));
-app.use('/api/credentials', require('./routes/credentials'));
-app.use('/api/rpl', require('./routes/rpl'));
-app.use('/api/notifications', require('./routes/notifications'));
+const authRouter = require('./routes/auth');
+const skillsRouter = require('./routes/skills');
+const evidenceRouter = require('./routes/evidence');
+const assessmentsRouter = require('./routes/assessments');
+const assessorRouter = require('./routes/assessor');
+const credentialsRouter = require('./routes/credentials');
+const rplRouter = require('./routes/rpl');
+const notificationsRouter = require('./routes/notifications');
+
+app.use('/api/auth', authRouter);
+app.use('/auth', authRouter);
+
+app.use('/api/skills', skillsRouter);
+app.use('/skills', skillsRouter);
+
+app.use('/api/evidence', evidenceRouter);
+app.use('/evidence', evidenceRouter);
+
+app.use('/api/assessments', assessmentsRouter);
+app.use('/assessments', assessmentsRouter);
+
+app.use('/api/assessor', assessorRouter);
+app.use('/assessor', assessorRouter);
+
+app.use('/api/credentials', credentialsRouter);
+app.use('/credentials', credentialsRouter);
+
+app.use('/api/rpl', rplRouter);
+app.use('/rpl', rplRouter);
+
+app.use('/api/notifications', notificationsRouter);
+app.use('/notifications', notificationsRouter);
 
 // Global error handler
 app.use((err, req, res, next) => {

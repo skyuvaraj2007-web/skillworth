@@ -6,7 +6,7 @@
     "api/**/*.js": {
       "includeFiles": "{backend/**,data/**}"
     },
-    "api/index.js": {
+    "api/*.js": {
       "includeFiles": "{backend/**,data/**}"
     }
   },
@@ -33,8 +33,8 @@
     }
   ],
   "rewrites": [
-    { "source": "/api", "destination": "/api/index.js" },
-    { "source": "/api/(.*)", "destination": "/api/index.js" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/api", "destination": "/api" },
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/((?!api|manifest\\.webmanifest|sw\\.js).*)", "destination": "/index.html" }
   ]
 }
