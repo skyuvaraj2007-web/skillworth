@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "services": {
-    "frontend": {
-      "root": "frontend/"
-    },
-    "backend": {
-      "root": "backend/"
+  "buildCommand": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
+  "outputDirectory": "frontend/dist",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "{backend/**,data/**}"
     }
   },
   "headers": [
@@ -31,23 +30,8 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": {
-        "service": "backend"
-      }
-    },
-    {
-      "source": "/api",
-      "destination": {
-        "service": "backend"
-      }
-    },
-    {
-      "source": "/(.*)",
-      "destination": {
-        "service": "frontend"
-      }
-    }
+    { "source": "/api", "destination": "/api/index.js" },
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }

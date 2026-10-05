@@ -8,28 +8,40 @@ function getAuthHeader() {
 export const api = {
   // Auth
   async register(userData) {
-    const res = await fetch('/api/auth/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData)
-    });
-    return res.json();
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: 'Connection error during registration: ' + err.message };
+    }
   },
 
   async login(email, password, role) {
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, role })
-    });
-    return res.json();
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, role })
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: 'Connection error during login: ' + err.message };
+    }
   },
 
   async getMe() {
-    const res = await fetch('/api/auth/me', {
-      headers: { ...getAuthHeader() }
-    });
-    return res.json();
+    try {
+      const res = await fetch('/api/auth/me', {
+        headers: { ...getAuthHeader() }
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: 'Session validation error: ' + err.message };
+    }
   },
 
   async getDemoUsers() {

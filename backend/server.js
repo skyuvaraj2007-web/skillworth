@@ -15,9 +15,14 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Static uploads serving
-const uploadsDir = path.resolve(__dirname, '../uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+const isVercel = Boolean(process.env.VERCEL);
+const uploadsDir = isVercel ? path.resolve('/tmp', 'uploads') : path.resolve(__dirname, '../uploads');
+try {
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  }
+} catch (err) {
+  // Graceful fallback for read-only environments
 }
 app.use('/uploads', express.static(uploadsDir));
 
