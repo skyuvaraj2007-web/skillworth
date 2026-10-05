@@ -3,6 +3,9 @@
   "buildCommand": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
   "outputDirectory": "frontend/dist",
   "functions": {
+    "api/**/*.js": {
+      "includeFiles": "{backend/**,data/**}"
+    },
     "api/index.js": {
       "includeFiles": "{backend/**,data/**}"
     }
