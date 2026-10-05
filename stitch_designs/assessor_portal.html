@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"surface-dim":"#dcdad4","secondary-fixed":"#d9e3f1","on-tertiary-fixed":"#271900","primary-fixed":"#a5f0eb","on-error":"#ffffff","outline":"#6f7978","inverse-on-surface":"#f3f1eb","on-secondary-container":"#59646f","on-surface-variant":"#3f4948","surface-variant":"#e4e2dd","error":"#ba1a1a","primary":"#00524f","primary-fixed-dim":"#89d3cf","on-surface":"#1b1c18","tertiary":"#604400","on-tertiary-container":"#ffd68c","on-tertiary-fixed-variant":"#5d4200","tertiary-fixed-dim":"#f0bf5f","on-primary-fixed-variant":"#00504d","on-secondary-fixed-variant":"#3e4853","background":"#fbf9f3","secondary-container":"#d6e1ef","inverse-primary":"#89d3cf","on-error-container":"#93000a","surface-container-lowest":"#ffffff","tertiary-container":"#7e5a00","outline-variant":"#bec9c7","on-primary":"#ffffff","secondary":"#555f6b","surface-container":"#f0eee8","primary-container":"#176b68","on-secondary":"#ffffff","on-tertiary":"#ffffff","surface-container-highest":"#e4e2dd","surface":"#fbf9f3","surface-bright":"#fbf9f3","surface-container-low":"#f5f3ed","secondary-fixed-dim":"#bdc7d5","on-secondary-fixed":"#121c26","error-container":"#ffdad6","on-primary-fixed":"#00201f","on-background":"#1b1c18","surface-container-high":"#eae8e2","on-primary-container":"#9ee9e4"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin":"2rem","gutter":"1.5rem","gutter-lg":"2rem","margin-lg":"3.5rem","space-md":"1rem","space-xl":"2.5rem","margin-sm":"1rem","space-sm":"0.5rem","gutter-sm":"1rem","space-xs":"0.25rem","space-lg":"1.5rem"},"fontFamily":{"display-lg-mobile":["Manrope"],"headline-md":["Manrope"],"headline-xl":["Manrope"],"label-sm":["Inter"],"headline-sm":["Manrope"],"label-md":["Inter"],"headline-lg":["Manrope"],"display-lg":["Manrope"],"body-lg":["Inter"],"body-md":["Inter"],"headline-xl-mobile":["Manrope"],"body-sm":["Inter"]},"fontSize":{"display-lg-mobile":["34px",{"lineHeight":"42px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"0","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"headline-lg":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"400"}],"body-md":["15px",{"lineHeight":"22px","letterSpacing":"0","fontWeight":"400"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0","fontWeight":"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-inverse-surface z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-inverse-surface"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">verified</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-inverse-on-surface tracking-tight leading-none">SkillWorth</span><span class="font-label-sm text-label-sm text-outline-variant uppercase tracking-widest">Institutional Portal</span></div></div><div class="px-space-md py-space-sm"><div class="p-space-sm rounded-lg bg-surface-variant/10 flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary-fixed"></span><span class="font-label-sm text-label-sm text-inverse-on-surface">Session: Evaluator</span></div><span class="font-label-sm text-label-sm text-outline-variant font-mono">SEC-889</span></div></div><nav class="flex flex-col gap-space-xs px-space-md mt-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-label-md rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-variant/10 hover:text-inverse-on-surface transition-all" data-path="worker-portal" href="#"><span class="material-symbols-outlined text-[18px]">badge</span><span>Worker Experience</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-all bg-primary-container text-on-primary-container font-label-md rounded-lg" data-path="assessor-workspace" href="#"><span class="material-symbols-outlined text-[18px]">rate_review</span><span>Assessor Workspace</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-variant/10 hover:text-inverse-on-surface transition-all" data-path="institution-portal" href="#"><span class="material-symbols-outlined text-[18px]">account_balance</span><span>Institution Management</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-variant/10 hover:text-inverse-on-surface transition-all" data-path="public-credential-verification" href="#"><span class="material-symbols-outlined text-[18px]">verified_user</span><span>Credential Registry</span></a></nav></div><div class="p-space-md flex flex-col gap-space-sm bg-inverse-surface"><div class="p-space-sm rounded-lg bg-surface-variant/10 flex flex-col gap-space-xs"><div class="flex items-center justify-between text-outline-variant"><span class="font-label-sm text-label-sm">Appraisal Cadence</span><span class="font-label-sm text-label-sm text-tertiary-fixed">84%</span></div><div class="w-full h-1.5 bg-surface-dim/20 rounded-full overflow-hidden"><div class="bg-primary-fixed h-full w-[84%]"></div></div></div><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-variant/10 hover:text-inverse-on-surface transition-colors" data-path="public-landing" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Exit to Public Portal</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-full w-full px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary px-space-sm py-space-xs rounded bg-surface-container">National RPL Authority</span><span class="text-outline-variant">•</span><span class="font-body-sm text-body-sm text-on-surface-variant">ISO 17024 Assessment Pipeline</span></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container-high"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-on-surface">Registry Online</span></div><button class="p-space-xs text-on-surface-variant hover:text-on-surface transition-colors relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full px-margin-lg py-space-lg max-w-[1440px] mx-auto flex flex-col gap-space-lg">
+<!-- Sub-header / Assessor Identity Strip -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="relative">
+<img class="w-14 h-14 rounded-full object-cover shadow-sm" data-alt="Distinguished South Asian female senior technical engineer in a professional tailored blazer, natural library lighting, dignified expression, soft neutral background, high resolution portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXnM6ws1vEPaOUOPV3UdPfZWW6vbUB72G_1j5l-K5Lz7-lHhL289gCshgEUzt3HJhD2Et171kJxvQiaCGR189TiRL36MvzkIL4bcv_H0pcUJzzU8DVyi_-ZCe0rcnlf0KNnHXoR5iGEypu_5YKDqAZdWU7fheUeiz7H7tx2V1UVqDqU1_qRDv_Q-YsebQvmqzjigLsMBX3zdZ3ay__x-PwfJVe4o3YDAJkxZUNmPA238_BhuVVJRPE1w"/>
+<div class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-primary flex items-center justify-center ring-2 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[10px] text-on-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Dr. Meenakshi Sundaram</h1>
+<span class="px-space-sm py-space-xs rounded bg-primary/10 text-primary font-label-sm text-label-sm uppercase tracking-wider">Lead Technical Assessor</span>
+<span class="font-label-sm text-label-sm text-secondary px-space-xs py-0.5 rounded bg-surface-container">SEC-AUDIT-409</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-space-xs mt-0.5">
+<span>Specialization: Electrical &amp; Mechanical Systems</span>
+<span class="text-outline-variant">•</span>
+<span class="font-mono text-primary font-medium">ISO/IEC 17024 Accredited</span>
+</p>
+</div>
+</div>
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[18px] text-outline">search</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Search candidate, dossier, rubric..." type="text"/>
+</div>
+<div class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-high">
+<span class="material-symbols-outlined text-primary text-[18px]">fact_check</span>
+<span class="font-label-md text-label-md text-on-surface">Active Session:</span>
+<span class="font-label-md text-label-md text-primary font-bold">18 Assigned</span>
+</div>
+</div>
+</div>
+<!-- Metrics Stat Row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Assigned Dossiers</span>
+<span class="font-headline-xl text-headline-xl text-on-surface mt-1">18</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span> 4 due this week
+          </span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[24px]">assignment</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">In Progress</span>
+<span class="font-headline-xl text-headline-xl text-primary mt-1">06</span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">timelapse</span> 2 under active rubric
+          </span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-primary-fixed/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">pending_actions</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Completed Audits</span>
+<span class="font-headline-xl text-headline-xl text-on-surface mt-1">42</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 98.2% compliance
+          </span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">task_alt</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between group hover:shadow-md transition-shadow">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary">Awaiting Review</span>
+<span class="font-headline-xl text-headline-xl text-tertiary mt-1">04</span>
+<span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">priority_high</span> Calibration flags
+          </span>
+</div>
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed/40 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">flag</span>
+</div>
+</div>
+</div>
+<!-- Interactive Navigation Tabs -->
+<div class="flex items-center justify-between gap-space-md flex-wrap">
+<div class="flex items-center gap-space-xs p-1 bg-surface-container-high rounded-lg">
+<button class="px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition-all flex items-center gap-space-xs" id="tab-eval" onclick="switchMainTab('eval')" type="button">
+<span class="material-symbols-outlined text-[18px] text-primary">rate_review</span>
+<span>Active Calibration: Rajesh Kumar</span>
+</button>
+<button class="px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-space-xs" id="tab-candidates" onclick="switchMainTab('candidates')" type="button">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span>Candidates Roster (18)</span>
+</button>
+<button class="px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-space-xs" id="tab-evidence" onclick="switchMainTab('evidence')" type="button">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+<span>Evidence Queue (9 Unverified)</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm text-label-sm font-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-primary"></span> Auto-Sync: Active</span>
+<span class="text-outline-variant">•</span>
+<span>Standard: NCVT-RPL-2024-V2</span>
+</div>
+</div>
+<!-- VIEW 1: ACTIVE CALIBRATION & EVALUATION MODULE (Master-Detail Split) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start" id="eval-view">
+<!-- LEFT COLUMN (4 Cols): Candidate Dossier & Competency Matrix -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Candidate Information Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-md">
+<img class="w-16 h-16 rounded-xl object-cover shadow-sm" data-alt="South Asian male industrial electrician in mid-thirties, wearing navy work shirt and safety lanyard, warm calm demeanor, soft daylight workshop setting, highly detailed portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSVryYyEzCq7CWB3iePgPIg5E-yYw4-FAutQCPTQfjw4rECZd3oSYyO4rwTPU04d-B6b0OmVn-5mU1vpefJToIyi8_ZaaT8fGHmpwMQBJ0dyVA4bTZc8wkDdzDCk5kzB8n5I-bDlKy9ojWwzml68i_nWjpzZB5g47RNDEuteLfQyYJ902KprjJ_ydqcFKCqFSak0tU8YgAu5jEu1SWtLR5tW-mTPv8Fn96UEL_tcrvkE6JFbKx0wCMFA"/>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Candidate Dossier</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Rajesh Kumar</h2>
+<span class="font-label-sm text-label-sm text-outline-variant font-mono">APP-2024-88412</span>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Batch 24-B</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Experience</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">7 Years Field</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Trade Mapping</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold">NCVT Level 4</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex justify-between items-center py-1">
+<span class="text-secondary">Primary Domain:</span>
+<span class="font-medium text-on-surface">Electrical Maintenance</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="text-secondary">Current Workplace:</span>
+<span class="font-medium text-on-surface">Bharat Heavy Logistics Ltd.</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="text-secondary">Verification Pathway:</span>
+<span class="font-medium text-on-surface">RPL - Prior Learning Portfolio</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Identity Verified (DigiLocker / Aadhaar)</span>
+</div>
+<button class="text-primary hover:text-primary-container font-label-sm text-label-sm underline" type="button">View ID</button>
+</div>
+</div>
+<!-- Competency Scoring Matrix -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Unit Mapping</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Competency Matrix</h3>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-mono font-medium">4 Core Modules</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Unit 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">1. Workplace Safety &amp; LOTO</span>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">5 / 5 Verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lockout/Tagout protocol execution and OSHA compliance.</p>
+<div class="w-full h-1.5 bg-surface-dim rounded-full overflow-hidden mt-1">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+<!-- Unit 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">2. Tool Calibration &amp; Usage</span>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">4 / 5 Verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Oscilloscope, true-RMS meter, and thermal imager calibration.</p>
+<div class="w-full h-1.5 bg-surface-dim rounded-full overflow-hidden mt-1">
+<div class="h-full bg-primary w-[80%]"></div>
+</div>
+</div>
+<!-- Unit 3: Active Unit -->
+<div class="p-space-md rounded-xl bg-primary/5 ring-2 ring-primary/40 flex flex-col gap-space-xs relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-md text-label-md text-primary font-bold">3. Fault Diagnosis (Active)</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-tertiary/15 text-tertiary font-label-sm text-label-sm font-semibold">4 / 5 Under Review</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">Substation 415V distribution panel ground fault rectification.</p>
+<div class="w-full h-1.5 bg-surface-dim rounded-full overflow-hidden mt-1">
+<div class="h-full bg-primary-container w-[80%]"></div>
+</div>
+</div>
+<!-- Unit 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">4. System Testing &amp; Commissioning</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">3 / 5 In Progress</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Post-repair energization verification and load balance tests.</p>
+<div class="w-full h-1.5 bg-surface-dim rounded-full overflow-hidden mt-1">
+<div class="h-full bg-secondary-fixed-dim w-[60%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Assessor Calibration Standard Notice -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs text-on-surface-variant">
+<div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px]">balance</span>
+<span>Inter-Assessor Agreement Metric</span>
+</div>
+<p class="font-body-sm text-body-sm">
+            Current cohort calibration delta is within <strong class="text-on-surface">±3.2%</strong>. Your historical variance with senior board benchmarks is optimal (0.4 Cohen's Kappa divergence).
+          </p>
+</div>
+</div>
+<!-- RIGHT COLUMN (8 Cols): Detailed Rubric Assessment Panel -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Active Unit Header Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold">Unit 3 of 4 • Rubric Evaluation</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-0.5">Fault Diagnosis &amp; Systematic Isolation</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Competency Ref: ELEC-M4-082 • Weight: 25% of Final Certification</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Unit 2</span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1 transition-colors" type="button">
+<span>Unit 4</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Candidate Uploaded Evidence Section -->
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">attach_file</span>
+<span>Candidate Submitted Evidence Items (2 items attached)</span>
+</span>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Evidence 1: Photo Readout -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="relative overflow-hidden rounded-lg group">
+<img class="w-full h-40 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300" data-alt="High contrast close-up photograph of a professional digital multimeter showing high impedance numerical readout connected to industrial circuit breaker terminals, sharp focus on digital LCD display, engineering workshop setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKXk7sQxbJZ9blufghz7RcWdlzluezxrbOrMMlxD6M-4G0n1tIR8uffZLNRComh6RmeQPfVlPvZy50WlVNAvFSxCPDOQN-OjZTgktAq1bz9A33B1JwaCsnNGfcGRqBIuQjohIsptc9d_gDuucCtUrp3sOYpMVaW2SaOrAevofkiN6xZIzWAAl6Rber5XWcufI-SCyBIJM2TuMttn7ZzDPiESUZV0Nk1YA74nqmLWgIUopHgJfYn3MCNw"/>
+<div class="absolute inset-0 bg-inverse-surface/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-space-sm">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">zoom_in</span> Enlarge
+                    </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm font-semibold flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span> Raw
+                    </button>
+</div>
+<span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-inverse-surface/80 text-inverse-on-surface font-mono text-[10px]">IMG_9041_CALIB.JPG</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Multimeter Ground Readout</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">EXIF Verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Readout indicates 482 kΩ impedance check across phase lines to ground bus.</p>
+</div>
+</div>
+<!-- Evidence 2: Audio Clip Explanation -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[18px]">mic</span>
+<span>Verbal Rationale Recording</span>
+</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">01:48 min</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Candidate explaining sequence of events: breaker trip, thermal reading, and systematic branch disconnect.</p>
+</div>
+<!-- Custom Audio Waveform Simulation -->
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<button class="w-9 h-9 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 hover:bg-primary-container transition-colors" id="audio-play-btn" onclick="toggleAudio()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="audio-icon">play_arrow</span>
+</button>
+<div class="flex-1 flex items-center gap-0.5 h-8">
+<!-- 28 bars of simulated audio wave -->
+<span class="w-1 bg-primary/40 rounded-full h-3"></span>
+<span class="w-1 bg-primary/60 rounded-full h-5"></span>
+<span class="w-1 bg-primary rounded-full h-7"></span>
+<span class="w-1 bg-primary rounded-full h-4"></span>
+<span class="w-1 bg-primary rounded-full h-6"></span>
+<span class="w-1 bg-primary rounded-full h-8"></span>
+<span class="w-1 bg-primary/70 rounded-full h-5"></span>
+<span class="w-1 bg-primary/80 rounded-full h-7"></span>
+<span class="w-1 bg-primary rounded-full h-3"></span>
+<span class="w-1 bg-primary rounded-full h-6"></span>
+<span class="w-1 bg-primary rounded-full h-8"></span>
+<span class="w-1 bg-primary rounded-full h-5"></span>
+<span class="w-1 bg-outline-variant rounded-full h-4"></span>
+<span class="w-1 bg-outline-variant rounded-full h-6"></span>
+<span class="w-1 bg-outline-variant rounded-full h-3"></span>
+<span class="w-1 bg-outline-variant rounded-full h-5"></span>
+<span class="w-1 bg-outline-variant rounded-full h-7"></span>
+<span class="w-1 bg-outline-variant rounded-full h-4"></span>
+<span class="w-1 bg-outline-variant rounded-full h-2"></span>
+<span class="w-1 bg-outline-variant rounded-full h-5"></span>
+<span class="w-1 bg-outline-variant rounded-full h-6"></span>
+<span class="w-1 bg-outline-variant rounded-full h-3"></span>
+<span class="w-1 bg-outline-variant rounded-full h-4"></span>
+<span class="w-1 bg-outline-variant rounded-full h-2"></span>
+</div>
+<span class="font-mono text-label-sm text-label-sm text-secondary shrink-0">00:44 / 01:48</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-outline px-1">
+<span>Language: Hindi / English Technical</span>
+<span>Confidence: 96% Clarity</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">HASH: 7a8f9c2d</span>
+<button class="text-primary font-label-sm text-label-sm hover:underline" type="button">Transcript &amp; Timecodes</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Standardized 1-5 Rubric Scale -->
+<div class="flex flex-col gap-space-sm pt-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Standardized 5-Level Rubric Criterion</span>
+<span class="font-label-sm text-label-sm text-secondary">Click level to select score</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-space-xs" id="rubric-grid">
+<!-- Level 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col justify-between gap-space-xs border-2 border-transparent" id="score-1" onclick="selectScore(1)">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm font-bold text-secondary">Level 1</span>
+<span class="w-5 h-5 rounded-full bg-surface-dim flex items-center justify-center font-label-sm text-label-sm text-on-surface">1</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface block">Novice</span>
+<p class="text-[12px] text-on-surface-variant leading-tight mt-1">Requires continuous direct oversight. Cannot isolate ground leakage safely.</p>
+</div>
+</div>
+<!-- Level 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col justify-between gap-space-xs border-2 border-transparent" id="score-2" onclick="selectScore(2)">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm font-bold text-secondary">Level 2</span>
+<span class="w-5 h-5 rounded-full bg-surface-dim flex items-center justify-center font-label-sm text-label-sm text-on-surface">2</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface block">Developing</span>
+<p class="text-[12px] text-on-surface-variant leading-tight mt-1">Identifies obvious component failure; struggles with intermittent fault isolation.</p>
+</div>
+</div>
+<!-- Level 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col justify-between gap-space-xs border-2 border-transparent" id="score-3" onclick="selectScore(3)">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm font-bold text-secondary">Level 3</span>
+<span class="w-5 h-5 rounded-full bg-surface-dim flex items-center justify-center font-label-sm text-label-sm text-on-surface">3</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface block">Competent</span>
+<p class="text-[12px] text-on-surface-variant leading-tight mt-1">Independent diagnosis matching standard shop floor SOPs and safety norms.</p>
+</div>
+</div>
+<!-- Level 4: Selected -->
+<div class="p-space-sm rounded-lg bg-primary-container text-on-primary-container transition-all cursor-pointer flex flex-col justify-between gap-space-xs shadow-sm" id="score-4" onclick="selectScore(4)">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm font-bold text-primary-fixed">Level 4</span>
+<span class="w-5 h-5 rounded-full bg-on-primary-container text-primary-container flex items-center justify-center font-label-sm text-label-sm font-bold">4</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-on-primary block">Advanced Competence</span>
+<p class="text-[12px] text-on-primary-container leading-tight mt-1">Demonstrates systematic root-cause diagnosis using multi-parameter measurement.</p>
+</div>
+<div class="flex items-center gap-1 text-[11px] text-primary-fixed mt-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Current Selected
+                </div>
+</div>
+<!-- Level 5 -->
+<div class="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col justify-between gap-space-xs border-2 border-transparent" id="score-5" onclick="selectScore(5)">
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-sm text-label-sm font-bold text-secondary">Level 5</span>
+<span class="w-5 h-5 rounded-full bg-surface-dim flex items-center justify-center font-label-sm text-label-sm text-on-surface">5</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface block">Master Practitioner</span>
+<p class="text-[12px] text-on-surface-variant leading-tight mt-1">Anticipates cascading failure modes; can instruct and calibrate junior techs on site.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Assessor Observation Note Area -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-space-xs" for="assessor-notes">
+<span class="material-symbols-outlined text-primary text-[18px]">edit_note</span>
+<span>Assessor Calibration &amp; Direct Observation Notes</span>
+</label>
+<span class="font-label-sm text-label-sm text-secondary">Autosaved 1 min ago</span>
+</div>
+<textarea class="w-full p-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest transition-all" id="assessor-notes" rows="3">Candidate systematically isolated the ground fault in distribution panel B using impedance testing before resetting breaker.</textarea>
+<span class="text-[12px] text-on-surface-variant">Observations are permanently logged into the institutional candidate dossier for ISO 17024 compliance.</span>
+</div>
+<!-- Action Buttons with Live Feedback Toast container -->
+<div class="flex items-center justify-between gap-space-md pt-space-sm flex-wrap">
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-colors" onclick="navigateUnit(-1)" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Previous Unit</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-dim text-on-surface font-label-md text-label-md flex items-center gap-space-xs transition-colors" onclick="navigateUnit(1)" type="button">
+<span>Next Unit</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-lg py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold shadow-sm flex items-center gap-space-xs transition-all active:scale-95" id="save-score-btn" onclick="saveScoreFeedback()" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span id="save-btn-text">Save Rubric Score</span>
+</button>
+</div>
+</div>
+<!-- Live feedback alert banner (hidden by default, toggled via JS) -->
+<div class="hidden p-space-sm rounded-lg bg-primary/10 text-primary flex items-center justify-between" id="save-confirmation">
+<div class="flex items-center gap-space-xs font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>Score of 4/5 saved and logged for Unit 3: Fault Diagnosis.</span>
+</div>
+<button class="text-primary hover:text-on-surface" onclick="dismissSaveNotice()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- AI Assistance Advisory Box -->
+<div class="p-space-lg rounded-xl bg-tertiary-fixed/20 flex flex-col gap-space-md">
+<div class="flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-tertiary text-on-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Calibration Advisory</span>
+<span class="px-2 py-0.5 rounded bg-tertiary text-on-tertiary font-label-sm text-label-sm font-semibold">Review Suggested</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-1 leading-snug">
+                  The recorded observation notes <strong class="text-tertiary">impedance testing</strong>, which exceeds standard Level 3 requirements. Ensure verification of safety lock-out documentation before finalizing Level 4 award.
+                </p>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pt-space-xs">
+<div class="flex items-center gap-space-xs text-[12px] text-on-surface-variant italic">
+<span class="material-symbols-outlined text-[16px] text-tertiary">info</span>
+<span>AI provides assessment support only. The authorized assessor makes the final decision.</span>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition-colors shadow-sm" onclick="alert('Opening LOTO verification logs for cross-check...')" type="button">
+                Review Lock-Out Docs
+              </button>
+<button class="px-space-md py-2 rounded-lg bg-tertiary text-on-tertiary hover:opacity-90 font-label-md text-label-md transition-all shadow-sm" onclick="alert('Level 4 confirmed with assessor endorsement.')" type="button">
+                Keep Score (4/5)
+              </button>
+</div>
+</div>
+</div>
+<!-- Final Decision Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Final Determination</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Overall Candidate Dossier Status</h3>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-secondary">Composite Score</span>
+<span class="font-headline-xl text-headline-xl text-primary font-bold">84 <span class="text-headline-sm font-normal text-secondary">/ 100</span></span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-secondary">Competency Progress</span>
+<span class="font-headline-xl text-headline-xl text-on-surface font-bold">8 <span class="text-headline-sm font-normal text-secondary">/ 10 Units</span></span>
+</div>
+</div>
+</div>
+<!-- Decision Selector Radio Group -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Authorized Determination:</span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm" id="decision-selector">
+<button class="p-space-md rounded-xl bg-primary text-on-primary flex flex-col gap-1 transition-all text-left shadow-sm" id="dec-competent" onclick="selectDecision('competent')" type="button">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-primary">Competent</span>
+<span class="material-symbols-outlined text-[20px] text-primary-fixed">verified</span>
+</div>
+<span class="text-[12px] text-on-primary-container leading-tight">Meets or exceeds all NCVT Level 4 occupational benchmarks.</span>
+</button>
+<button class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col gap-1 transition-all text-left" id="dec-nyc" onclick="selectDecision('nyc')" type="button">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Not Yet Competent</span>
+<span class="material-symbols-outlined text-[20px] text-outline">cancel</span>
+</div>
+<span class="text-[12px] text-on-surface-variant leading-tight">Critical safety or diagnostic gaps observed; re-training required.</span>
+</button>
+<button class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col gap-1 transition-all text-left" id="dec-further" onclick="selectDecision('further')" type="button">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface">Further Assessment</span>
+<span class="material-symbols-outlined text-[20px] text-outline">help</span>
+</div>
+<span class="text-[12px] text-on-surface-variant leading-tight">Requires secondary workplace simulation or oral viva examination.</span>
+</button>
+</div>
+</div>
+<!-- Submission Footer with Confirmation Modal State -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pt-space-sm">
+<div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">lock</span>
+<span>Submitting cryptographically signs this dossier via Dr. M. Sundaram.</span>
+</div>
+<button class="px-space-xl py-3 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm font-semibold shadow-md transition-all active:scale-95 flex items-center justify-center gap-space-xs" id="submit-decision-btn" onclick="submitFinalDecision()" type="button">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+<span id="submit-decision-text">Submit Final Decision</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- VIEW 2: CANDIDATES LIST TAB (Hidden by default) -->
+<div class="hidden flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm" id="candidates-view">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Candidate Appraisal Queue</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Active assessments assigned under Electrical &amp; Mechanical Systems cohort</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-md py-1.5 rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface">18 Total Assigned</span>
+<span class="px-space-md py-1.5 rounded-lg bg-primary/10 font-label-sm text-label-sm text-primary">6 Active Calibration</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="p-space-md rounded-l-lg">Candidate</th>
+<th class="p-space-md">Trade / Domain</th>
+<th class="p-space-md">Target Level</th>
+<th class="p-space-md">Verified Units</th>
+<th class="p-space-md">Status</th>
+<th class="p-space-md rounded-r-lg text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-body-sm font-body-sm text-on-surface">
+<!-- Row 1: Active -->
+<tr class="hover:bg-surface-container-low/50 transition-colors bg-primary/5">
+<td class="p-space-md font-medium flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-bold text-on-surface">Rajesh Kumar</span>
+<span class="text-outline-variant font-mono text-[11px]">(APP-88412)</span>
+</td>
+<td class="p-space-md text-on-surface-variant">Electrical Maintenance</td>
+<td class="p-space-md"><span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">NCVT L4</span></td>
+<td class="p-space-md font-mono">8 / 10</td>
+<td class="p-space-md"><span class="px-2 py-0.5 rounded bg-tertiary-fixed/30 text-tertiary font-label-sm text-label-sm">Active Review</span></td>
+<td class="p-space-md text-right">
+<button class="px-3 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold" onclick="switchMainTab('eval')" type="button">Resume</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-space-md font-medium flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-dim"></span>
+<span class="font-semibold text-on-surface">Sunita Venkatesh</span>
+<span class="text-outline-variant font-mono text-[11px]">(APP-88415)</span>
+</td>
+<td class="p-space-md text-on-surface-variant">Industrial Automation &amp; PLC</td>
+<td class="p-space-md"><span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">NCVT L5</span></td>
+<td class="p-space-md font-mono">5 / 10</td>
+<td class="p-space-md"><span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">Pending Rubric</span></td>
+<td class="p-space-md text-right">
+<button class="px-3 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high" type="button">Open Dossier</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-space-md font-medium flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-dim"></span>
+<span class="font-semibold text-on-surface">Tariq Ahmed</span>
+<span class="text-outline-variant font-mono text-[11px]">(APP-88421)</span>
+</td>
+<td class="p-space-md text-on-surface-variant">HVAC &amp; Chiller Plants</td>
+<td class="p-space-md"><span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">NCVT L4</span></td>
+<td class="p-space-md font-mono">10 / 10</td>
+<td class="p-space-md"><span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm">Awaiting Sign-off</span></td>
+<td class="p-space-md text-right">
+<button class="px-3 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high" type="button">Sign Off</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-space-md font-medium flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-dim"></span>
+<span class="font-semibold text-on-surface">Ananya Mukherjee</span>
+<span class="text-outline-variant font-mono text-[11px]">(APP-88439)</span>
+</td>
+<td class="p-space-md text-on-surface-variant">Solar PV System Installation</td>
+<td class="p-space-md"><span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">NCVT L4</span></td>
+<td class="p-space-md font-mono">2 / 10</td>
+<td class="p-space-md"><span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm">Evidence Gap</span></td>
+<td class="p-space-md text-right">
+<button class="px-3 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high" type="button">Request Info</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- VIEW 3: EVIDENCE REVIEW QUEUE TAB (Hidden by default) -->
+<div class="hidden flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm" id="evidence-view">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Institutional Evidence Queue</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Incoming multimedia portfolio evidence requiring assessor validation and integrity checking</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-md py-1.5 rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface">9 Unverified Artifacts</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Evidence Card 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-mono text-secondary">DOC-8911</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed/30 text-tertiary font-label-sm text-label-sm font-semibold">Needs Review</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Transformer Oil Test Certificate</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Submitted by Sunita V. • Breakdown voltage dielectric report from accredited NABL lab.</p>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-label-sm text-label-sm text-outline">PDF • 2.4 MB</span>
+<button class="px-3 py-1.5 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold" type="button">Examine</button>
+</div>
+</div>
+<!-- Evidence Card 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-mono text-secondary">VID-4402</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed/30 text-tertiary font-label-sm text-label-sm font-semibold">Needs Review</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">LOTO Field Demonstration</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Submitted by Rajesh Kumar • Video recording of lockout procedure on main bus disconnect.</p>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-label-sm text-label-sm text-outline">MP4 • 14.8 MB</span>
+<button class="px-3 py-1.5 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold" type="button">Play Video</button>
+</div>
+</div>
+<!-- Evidence Card 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-sm">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-mono text-secondary">IMG-1092</span>
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm font-semibold">Assessor Validated</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">Busbar Megger Test Log</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Submitted by Tariq Ahmed • Insulation resistance log table with supervisor countersign.</p>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-label-sm text-label-sm text-outline">PNG • 1.1 MB</span>
+<button class="px-3 py-1.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold" type="button">View Record</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentSelectedScore = 4;
+  let currentDecision = 'competent';
+  let isAudioPlaying = false;
+
+  function switchMainTab(tab) {
+    const evalView = document.getElementById('eval-view');
+    const candView = document.getElementById('candidates-view');
+    const evidView = document.getElementById('evidence-view');
+
+    const tabEval = document.getElementById('tab-eval');
+    const tabCand = document.getElementById('tab-candidates');
+    const tabEvid = document.getElementById('tab-evidence');
+
+    evalView.classList.add('hidden');
+    candView.classList.add('hidden');
+    evidView.classList.add('hidden');
+
+    tabEval.className = 'px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-space-xs';
+    tabCand.className = 'px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-space-xs';
+    tabEvid.className = 'px-space-md py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-space-xs';
+
+    if (tab === 'eval') {
+      evalView.classList.remove('hidden');
+      tabEval.className = 'px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition-all flex items-center gap-space-xs';
+    } else if (tab === 'candidates') {
+      candView.classList.remove('hidden');
+      candView.classList.add('flex');
+      tabCand.className = 'px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition-all flex items-center gap-space-xs';
+    } else if (tab === 'evidence') {
+      evidView.classList.remove('hidden');
+      evidView.classList.add('flex');
+      tabEvid.className = 'px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition-all flex items-center gap-space-xs';
+    }
+  }
+
+  function selectScore(level) {
+    currentSelectedScore = level;
+    for (let i = 1; i <= 5; i++) {
+      const el = document.getElementById('score-' + i);
+      if (i === level) {
+        el.className = 'p-space-sm rounded-lg bg-primary-container text-on-primary-container transition-all cursor-pointer flex flex-col justify-between gap-space-xs shadow-sm';
+      } else {
+        el.className = 'p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col justify-between gap-space-xs border-2 border-transparent';
+      }
+    }
+  }
+
+  function toggleAudio() {
+    isAudioPlaying = !isAudioPlaying;
+    const icon = document.getElementById('audio-icon');
+    icon.textContent = isAudioPlaying ? 'pause' : 'play_arrow';
+  }
+
+  function saveScoreFeedback() {
+    const btn = document.getElementById('save-score-btn');
+    const btnText = document.getElementById('save-btn-text');
+    const notice = document.getElementById('save-confirmation');
+
+    btnText.textContent = 'Saving...';
+    setTimeout(() => {
+      btnText.textContent = 'Score Saved';
+      btn.classList.add('bg-primary');
+      notice.classList.remove('hidden');
+      setTimeout(() => {
+        btnText.textContent = 'Save Rubric Score';
+      }, 2500);
+    }, 400);
+  }
+
+  function dismissSaveNotice() {
+    document.getElementById('save-confirmation').classList.add('hidden');
+  }
+
+  function navigateUnit(direction) {
+    const units = ['Workplace Safety & LOTO', 'Tool Calibration & Usage', 'Fault Diagnosis & Systematic Isolation', 'System Testing & Commissioning'];
+    alert('Navigating to ' + (direction > 0 ? 'Next' : 'Previous') + ' Unit in Rubric Sequence.');
+  }
+
+  function selectDecision(dec) {
+    currentDecision = dec;
+    const decComp = document.getElementById('dec-competent');
+    const decNyc = document.getElementById('dec-nyc');
+    const decFurther = document.getElementById('dec-further');
+
+    decComp.className = 'p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col gap-1 transition-all text-left';
+    decNyc.className = 'p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col gap-1 transition-all text-left';
+    decFurther.className = 'p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface flex flex-col gap-1 transition-all text-left';
+
+    if (dec === 'competent') {
+      decComp.className = 'p-space-md rounded-xl bg-primary text-on-primary flex flex-col gap-1 transition-all text-left shadow-sm';
+    } else if (dec === 'nyc') {
+      decNyc.className = 'p-space-md rounded-xl bg-error text-on-error flex flex-col gap-1 transition-all text-left shadow-sm';
+    } else if (dec === 'further') {
+      decFurther.className = 'p-space-md rounded-xl bg-tertiary text-on-tertiary flex flex-col gap-1 transition-all text-left shadow-sm';
+    }
+  }
+
+  function submitFinalDecision() {
+    const btn = document.getElementById('submit-decision-btn');
+    const btnText = document.getElementById('submit-decision-text');
+
+    const confirmed = confirm('Confirm Final Certification Assessment for Rajesh Kumar (APP-2024-88412)?\n\nDecision: ' + currentDecision.toUpperCase() + '\nAssessor: Dr. Meenakshi Sundaram\nStandard: ISO/IEC 17024 Accredited');
+    if (confirmed) {
+      btnText.textContent = 'Cryptographically Sealed';
+      btn.disabled = true;
+      btn.classList.remove('bg-primary', 'hover:bg-primary-container');
+      btn.classList.add('bg-surface-dim', 'text-on-surface');
+      alert('Verification Sealed: Certificate generated and logged to National RPL Authority registry.');
+    }
+  }
+</script></main></div></body></html>

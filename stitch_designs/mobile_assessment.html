@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><title>SkillWorth Field Assessment</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#fbf9f3;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#ffdad6", "primary": "#00524f", "surface-container-lowest": "#ffffff", "tertiary-fixed": "#ffdea6", "on-secondary": "#ffffff", "surface-variant": "#e4e2dd", "surface-dim": "#dcdad4", "on-tertiary-fixed": "#271900", "inverse-primary": "#89d3cf", "on-surface-variant": "#3f4948", "on-secondary-container": "#59646f", "surface-bright": "#fbf9f3", "on-tertiary-container": "#ffd68c", "surface-container-low": "#f5f3ed", "on-primary": "#ffffff", "background": "#fbf9f3", "primary-fixed-dim": "#89d3cf", "secondary-fixed-dim": "#bdc7d5", "secondary-container": "#d6e1ef", "surface-container-high": "#eae8e2", "inverse-on-surface": "#f3f1eb", "inverse-surface": "#30312d", "tertiary-container": "#7e5a00", "primary-container": "#176b68", "surface-tint": "#146966", "on-tertiary-fixed-variant": "#5d4200", "primary-fixed": "#a5f0eb", "on-error": "#ffffff", "tertiary-fixed-dim": "#f0bf5f", "on-error-container": "#93000a", "on-primary-fixed": "#00201f", "tertiary": "#604400", "outline": "#6f7978", "outline-variant": "#bec9c7", "on-primary-fixed-variant": "#00504d", "secondary": "#555f6b", "on-tertiary": "#ffffff", "on-background": "#1b1c18", "on-surface": "#1b1c18", "on-secondary-fixed-variant": "#3e4853", "error": "#ba1a1a", "surface": "#fbf9f3", "on-secondary-fixed": "#121c26", "on-primary-container": "#9ee9e4", "secondary-fixed": "#d9e3f1", "surface-container": "#f0eee8", "surface-container-highest": "#e4e2dd" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "1rem", "margin": "2rem", "space-xs": "0.25rem", "gutter-lg": "2rem", "space-lg": "1.5rem", "gutter": "1.5rem", "margin-lg": "3.5rem", "space-sm": "0.5rem", "gutter-sm": "1rem", "space-xl": "2.5rem", "margin-sm": "1rem" }, "fontFamily": { "display-lg": ["Manrope"], "body-md": ["Inter"], "headline-sm": ["Manrope"], "headline-lg": ["Manrope"], "display-lg-mobile": ["Manrope"], "body-lg": ["Inter"], "label-md": ["Inter"], "headline-xl": ["Manrope"], "headline-xl-mobile": ["Manrope"], "headline-md": ["Manrope"], "body-sm": ["Inter"], "label-sm": ["Inter"] }, "fontSize": { "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0", "fontWeight": "400" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600" }], "headline-lg": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-lg-mobile": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "label-md": ["13px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen antialiased"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-sm flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="SkillWorth official brand logo with institutional seal, recognition path mark, and crisp typography" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1X4ycBEjWFa2wX6T-fzN1arSSF2ODTgX2Ow4Zq8uOSaxDVLcJofC1wt2f92sRqclUzVUDM0Mkfw1oBGQwWsOosuqG_lPjpMMHTbDMfbYg6HmGgJlBvT_osbDMCKAL2q0np0F_ZQEQetqsSStMuow4NLFhNfDCMle1k5j3Bd_Rj0jSNAKwt-D1Hiw5sBqT-xOHKxy-g4qYaKB0Hi0aVif68fVcW8F84FUQAofcK-ziZVBVt4EW6OvrSUoe8"/><div class="flex flex-col truncate"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none truncate">SkillWorth</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider truncate leading-tight mt-0.5">Field Assessment Tasks</span></div></div><div class="flex items-center gap-space-xs flex-shrink-0"><div class="hidden xs:flex sm:flex items-center gap-1.5 px-2.5 py-1 bg-surface-container rounded-full shadow-sm"><span class="material-symbols-outlined text-[14px] text-tertiary animate-pulse">sync</span><span class="font-label-sm text-label-sm text-on-surface-variant font-medium whitespace-nowrap">Offline</span></div><button aria-label="Switch Language" class="w-11 h-11 flex items-center justify-center rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">translate</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col flex-1 relative w-full pt-16 pb-24 bg-surface px-gutter-sm"><div class="flex flex-col w-full space-y-space-md">
+<!-- Candidate Identity & Offline Context Ribbon -->
+<section class="bg-surface-container-low rounded-xl p-space-md shadow-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of Rajesh Kumar, an Indian electrical maintenance technician wearing a hard hat, safety glasses, and high-visibility industrial vest inside an electrical distribution substation with ambient industrial illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATWVQsb4YJ2w-Lc3gnwcWqmjn58NnWYajc3yobZJs9kFR-ZfiPznQCO8WQKZJ4ZZHa12hez9awFB7v_BZgu7rWs_3WINKVq36HXlnDcPYFZZVTjkIxtu8xnBoVcEBesWYv30LdmE4JKUT91l8UcZyxv-BNdC9R_wjoWSYnVloKfULSdtE71Ah4TRNLj6LLnmvuqPggTEC_yCejIs5SLOsEhJDGxNJ8uZBpG-eB8hEP3qmXhVxNlbHTRw"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-primary-container rounded-full ring-2 ring-surface"></div>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Rajesh Kumar</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-variant text-on-surface-variant font-label-sm text-label-sm">RPL-8842-IN</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Industrial Electrical Maintenance • NCVT L4</p>
+</div>
+</div>
+<div class="flex flex-col items-end flex-shrink-0">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[12px] text-tertiary">cloud_off</span>
+          Offline Cache
+        </span>
+<span class="font-label-sm text-label-sm text-outline mt-1 text-right">Will sync on Wi-Fi</span>
+</div>
+</div>
+<!-- Progress Meter -->
+<div class="mt-space-md pt-space-sm">
+<div class="flex justify-between items-center mb-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Unit 3 of 4: Motor Control Center (MCC)</span>
+<span class="font-label-md text-label-md text-primary font-semibold">75% Complete</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-variant flex gap-1 p-0.5">
+<div class="h-full rounded-full bg-primary-container flex-1"></div>
+<div class="h-full rounded-full bg-primary-container flex-1"></div>
+<div class="h-full rounded-full bg-primary-container flex-1"></div>
+<div class="h-full rounded-full bg-surface-dim flex-1"></div>
+</div>
+</div>
+</section>
+<!-- Active Practical Task Card -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold tracking-wide">
+        TASK 07
+      </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified_user</span>
+        ELEC-MTC-007 • NSQF L5
+      </span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface leading-snug">
+      Practical Fault Diagnosis &amp; Systematic Isolation
+    </h1>
+<div class="mt-space-sm p-space-sm rounded-lg bg-surface-container-low text-on-surface-variant">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container mt-0.5 flex-shrink-0">warning</span>
+<div class="text-body-sm font-body-sm leading-relaxed">
+<strong class="text-on-surface font-semibold">Incident Scenario (14:15 hrs):</strong> 55kW Induction Motor #4 tripped on thermal overload after 20 mins under 80% nominal load. Assessor injected simulated 482 kΩ phase-to-ground impedance fault.
+        </div>
+</div>
+</div>
+</article>
+<!-- Assessment Criteria Checklist -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between px-1">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Required Rubric Competencies</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 of 4 Verified</span>
+</div>
+<!-- Item 1: Verified -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-md bg-primary text-on-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">1. Correct Fault Identification</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-medium">Verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Identified Phase B winding inter-turn short and impedance drop via thermal camera scan and multimeter.
+        </p>
+</div>
+</div>
+<!-- Item 2: Verified -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-md bg-primary text-on-primary flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">2. Safe Isolation (LOTO Procedure)</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-medium">Verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Lockout/Tagout applied at 415V MCC upstream breaker. Confirmed 0V potential with calibrated Fluke 87V.
+        </p>
+</div>
+</div>
+<!-- Item 3: Active Action Required -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md ring-1 ring-primary/20 flex flex-col gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<button class="w-6 h-6 rounded-md bg-surface-container-high text-primary flex items-center justify-center flex-shrink-0 mt-0.5 hover:bg-primary hover:text-on-primary transition-colors" id="toggle-criteria-3" type="button">
+<span class="material-symbols-outlined text-[18px]" id="check-icon-3">radio_button_unchecked</span>
+</button>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">3. Diagnostic Testing Method</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-medium">In Progress</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            Perform DLRO micro-ohmmeter test and 1000V DC insulation resistance test across stator coils. Record exact reading values.
+          </p>
+</div>
+</div>
+<!-- Rubric Value Capture Form -->
+<div class="bg-surface-container-low rounded-lg p-space-sm mt-1 space-y-space-sm">
+<div class="grid grid-cols-2 gap-space-sm">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Coil Insulation (MΩ)</label>
+<div class="relative">
+<input class="w-full h-10 px-2.5 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="e.g. 0.5" step="0.1" type="number" value="0.48"/>
+<span class="absolute right-2.5 top-2.5 font-label-sm text-label-sm text-outline">MΩ</span>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Phase Delta (mΩ)</label>
+<div class="relative">
+<input class="w-full h-10 px-2.5 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="e.g. 12.0" step="0.01" type="number" value="14.2"/>
+<span class="absolute right-2.5 top-2.5 font-label-sm text-label-sm text-outline">mΩ</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span class="inline-flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[14px]">tune</span> Tolerance: ±5% IEC-60034
+          </span>
+<span class="text-tertiary font-medium">Readings Out of Norm</span>
+</div>
+</div>
+</div>
+<!-- Item 4: Pending -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm opacity-80 flex items-start gap-space-sm">
+<div class="w-6 h-6 rounded-md bg-surface-container-high text-outline flex items-center justify-center flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">4. Remediation &amp; Log Sign-off</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-medium">Pending Test</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          Complete handover register log, quarantine tag affixation, and replacement requisition docket.
+        </p>
+</div>
+</div>
+</section>
+<!-- Evidence Quick Capture Strip -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">perm_media</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">On-Site Evidence Artifacts</h2>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+        2 Staged (SHA-256)
+      </span>
+</div>
+<!-- Action Buttons for Gloves / Harsh plant environments -->
+<div class="grid grid-cols-3 gap-2 pt-1">
+<!-- Capture Camera Button -->
+<button class="flex flex-col items-center justify-center p-3 rounded-lg bg-surface-container-low hover:bg-surface-container-high active:bg-surface-dim transition-colors group" type="button">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-sm text-primary mb-1 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">photo_camera</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold text-center leading-tight">Add Photo</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">EXIF Timestamp</span>
+</button>
+<!-- Record Voice Memo Button -->
+<button class="flex flex-col items-center justify-center p-3 rounded-lg bg-surface-container-low hover:bg-surface-container-high active:bg-surface-dim transition-colors group" type="button">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-sm text-primary mb-1 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">mic</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold text-center leading-tight">Voice Note</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">Hindi / English</span>
+</button>
+<!-- Attach Document Button -->
+<button class="flex flex-col items-center justify-center p-3 rounded-lg bg-surface-container-low hover:bg-surface-container-high active:bg-surface-dim transition-colors group" type="button">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-sm text-primary mb-1 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[22px]">upload_file</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold text-center leading-tight">Job Card</span>
+<span class="font-label-sm text-[10px] text-outline mt-0.5">PDF or Scan</span>
+</button>
+</div>
+<!-- Attached Evidence Mini-Gallery -->
+<div class="space-y-2 pt-1">
+<!-- Evidence 1: Meter Photo -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-12 h-12 rounded bg-surface-container-high flex-shrink-0 overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="High-resolution digital macro photograph of a calibrated digital industrial multimeter screen displaying 482 k-ohms with testing probes attached to industrial motor terminal lugs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn5rl4ZoWywv3lsgrwmxvRv2FU3N1BI02u5agovK9kS3_JD1yZoNDlXWeNooPA5fPDtcjPCbVtfj_TYqENj0gUpW3jkXYz-veebgysOh_pwNJAeVZ9q7zB25UVC4VLZY8PtItglwj66A5a62QcD6wnuuHMvlAF_rEZOKCv5hK_qrs3bwRjNTGiPsXpB77Bj7jtlUTDqFyTnBk2Otnbz8EgGzT7VxqL8PMo2K82LHk-B0hJ-nMOihrZiw"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">IMG_Fluke87V_482kOhm.raw</span>
+<div class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant truncate">
+<span>14:28:11</span>
+<span>•</span>
+<span class="truncate">GPS: 19.0760° N, 72.8777° E</span>
+</div>
+</div>
+</div>
+<button class="w-8 h-8 rounded flex items-center justify-center text-outline hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+<!-- Evidence 2: Voice Memo -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-12 h-12 rounded bg-primary-fixed flex items-center justify-center flex-shrink-0 text-on-primary-fixed">
+<span class="material-symbols-outlined text-[24px]">graphic_eq</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">AUDIO_Isolation_StepByStep.m4a</span>
+<div class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant">
+<span>01:48</span>
+<span>•</span>
+<span>Hindi Explanation</span>
+<span>•</span>
+<span class="text-primary font-medium">Cached</span>
+</div>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center hover:scale-105 transition-transform" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Assessor Observation & Co-presence Block -->
+<section class="bg-surface-container-low rounded-xl p-space-md shadow-sm">
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover" data-alt="Institutional profile photo of Dr. Meenakshi Sundaram, an Indian female certification auditor wearing formal attire with credential badge and clipboard in an engineering plant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcXoJLQTi4ArIRHKb0iXHHfjA-LXFvRVioIesgYWOyvbePZQzUvsFsG2y0Ha5JMEo7aa3Zw5fFB1I2nWNi2I3013DXjNAbigAx6IIPXjvUmndeYUX7rH2pIGNnGpQ8BRnTr_3N-Qz9K9hozkM7nD366KbO9pcCfJiZdBaquaPls8QXH1lugpzCTBKUmdsTSW14F0p_2kU2eoTKXcs-xcM2Ff4ZGlLuWCNfvkyloyCbBY_TUwu3cP5T0w"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline block">Co-Present Assessor</span>
+<span class="font-headline-sm text-headline-sm text-on-surface block leading-tight">Dr. M. Sundaram</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SEC-AUDIT-409 • Accredited Lead</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm flex items-center gap-1 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-ping"></span>
+        Ready to Sign
+      </span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">draw</span>
+<span class="font-body-sm text-body-sm text-on-surface">Assessor In-Person Touch Signature</span>
+</div>
+<button class="px-3 py-1.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm hover:bg-surface-container-high transition-colors font-medium" type="button">
+        Prompt Lead
+      </button>
+</div>
+</section>
+<!-- Action Tray Controls -->
+<section class="pt-space-xs pb-space-sm space-y-space-sm">
+<div class="flex items-center gap-space-sm">
+<button class="w-1/3 h-12 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm font-label-md text-label-md font-semibold flex items-center justify-center gap-1.5 hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Save Draft</span>
+</button>
+<button class="w-2/3 h-12 rounded-lg bg-primary-container text-on-primary shadow-md font-label-md text-label-md font-semibold flex items-center justify-center gap-2 hover:bg-primary transition-colors active:scale-[0.99]" id="submit-btn" type="button">
+<span>Submit for Sign-Off</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<p class="font-label-sm text-label-sm text-center text-outline">
+      SkillWorth Offline Integrity Protocol v3.4 • ISO/IEC 17024 Compliant
+    </p>
+</section>
+</div>
+<script>
+  // Micro-interaction for toggling rubric criterion 3 checklist state
+  const toggleBtn = document.getElementById('toggle-criteria-3');
+  const checkIcon = document.getElementById('check-icon-3');
+  let isChecked = false;
+
+  if (toggleBtn && checkIcon) {
+    toggleBtn.addEventListener('click', () => {
+      isChecked = !isChecked;
+      if (isChecked) {
+        toggleBtn.classList.remove('bg-surface-container-high', 'text-primary');
+        toggleBtn.classList.add('bg-primary', 'text-on-primary');
+        checkIcon.textContent = 'check';
+      } else {
+        toggleBtn.classList.add('bg-surface-container-high', 'text-primary');
+        toggleBtn.classList.remove('bg-primary', 'text-on-primary');
+        checkIcon.textContent = 'radio_button_unchecked';
+      }
+    });
+  }
+
+  // Submit button visual feedback
+  const submitBtn = document.getElementById('submit-btn');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[18px] animate-spin">refresh</span>
+        <span>Hashing Artifacts...</span>
+      `;
+      submitBtn.disabled = true;
+      setTimeout(() => {
+        submitBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[18px]">done_all</span>
+          <span>Awaiting Assessor Stylus</span>
+        `;
+        submitBtn.classList.remove('bg-primary-container');
+        submitBtn.classList.add('bg-primary');
+      }, 1100);
+    });
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary-container font-semibold"><div class="flex items-center justify-around h-16 px-gutter-sm max-w-lg mx-auto"><a class="flex flex-col items-center justify-center gap-1 min-w-[64px] min-h-[44px] text-on-surface-variant hover:text-primary transition-colors" data-path="field-overview" href="#"><span class="material-symbols-outlined text-[22px]">explore</span><span class="font-label-sm text-label-sm leading-none">Home</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-1 min-w-[64px] min-h-[44px] transition-colors text-primary-container font-semibold" data-path="field-assessment-tasks" href="#"><span class="material-symbols-outlined text-[22px]">fact_check</span><span class="font-label-sm text-label-sm leading-none">Assessment</span></a><a class="flex flex-col items-center justify-center gap-1 min-w-[64px] min-h-[44px] text-on-surface-variant hover:text-primary transition-colors" data-path="evidence-vault" href="#"><span class="material-symbols-outlined text-[22px]">perm_media</span><span class="font-label-sm text-label-sm leading-none">Evidence</span></a><a class="flex flex-col items-center justify-center gap-1 min-w-[64px] min-h-[44px] text-on-surface-variant hover:text-primary transition-colors" data-path="evaluator-credentials" href="#"><span class="material-symbols-outlined text-[22px]">badge</span><span class="font-label-sm text-label-sm leading-none">Profile</span></a></div></nav></body></html>

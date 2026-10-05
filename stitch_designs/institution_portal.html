@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"surface-dim":"#dcdad4","secondary-fixed":"#d9e3f1","on-tertiary-fixed":"#271900","primary-fixed":"#a5f0eb","on-error":"#ffffff","outline":"#6f7978","inverse-on-surface":"#f3f1eb","on-secondary-container":"#59646f","on-surface-variant":"#3f4948","surface-variant":"#e4e2dd","error":"#ba1a1a","primary":"#00524f","primary-fixed-dim":"#89d3cf","on-surface":"#1b1c18","tertiary":"#604400","on-tertiary-container":"#ffd68c","on-tertiary-fixed-variant":"#5d4200","tertiary-fixed-dim":"#f0bf5f","on-primary-fixed-variant":"#00504d","on-secondary-fixed-variant":"#3e4853","background":"#fbf9f3","secondary-container":"#d6e1ef","inverse-primary":"#89d3cf","on-error-container":"#93000a","surface-container-lowest":"#ffffff","tertiary-container":"#7e5a00","outline-variant":"#bec9c7","on-primary":"#ffffff","secondary":"#555f6b","surface-container":"#f0eee8","primary-container":"#176b68","on-secondary":"#ffffff","on-tertiary":"#ffffff","surface-container-highest":"#e4e2dd","surface":"#fbf9f3","surface-bright":"#fbf9f3","surface-container-low":"#f5f3ed","secondary-fixed-dim":"#bdc7d5","on-secondary-fixed":"#121c26","error-container":"#ffdad6","on-primary-fixed":"#00201f","on-background":"#1b1c18","surface-container-high":"#eae8e2","on-primary-container":"#9ee9e4"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"margin":"2rem","gutter":"1.5rem","gutter-lg":"2rem","margin-lg":"3.5rem","space-md":"1rem","space-xl":"2.5rem","margin-sm":"1rem","space-sm":"0.5rem","gutter-sm":"1rem","space-xs":"0.25rem","space-lg":"1.5rem"},"fontFamily":{"display-lg-mobile":["Manrope"],"headline-md":["Manrope"],"headline-xl":["Manrope"],"label-sm":["Inter"],"headline-sm":["Manrope"],"label-md":["Inter"],"headline-lg":["Manrope"],"display-lg":["Manrope"],"body-lg":["Inter"],"body-md":["Inter"],"headline-xl-mobile":["Manrope"],"body-sm":["Inter"]},"fontSize":{"display-lg-mobile":["34px",{"lineHeight":"42px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"0","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"headline-lg":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-lg":["18px",{"lineHeight":"28px","letterSpacing":"-0.005em","fontWeight":"400"}],"body-md":["15px",{"lineHeight":"22px","letterSpacing":"0","fontWeight":"400"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0","fontWeight":"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-inverse-surface z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.06)]"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-inverse-surface"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[20px]">verified</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-inverse-on-surface tracking-tight leading-none">SkillWorth</span><span class="font-label-sm text-label-sm text-outline-variant uppercase tracking-widest">Institutional Portal</span></div></div><div class="px-space-md py-space-sm"><div class="p-space-sm rounded-lg bg-surface-variant/10 flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary-fixed"></span><span class="font-label-sm text-label-sm text-inverse-on-surface">Session: Evaluator</span></div><span class="font-label-sm text-label-sm text-outline-variant font-mono">SEC-889</span></div></div><nav class="flex flex-col gap-space-xs px-space-md mt-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-label-md rounded-lg"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-variant/10 hover:text-inverse-on-surface transition-all" data-path="worker-portal" href="#"><span class="material-symbols-outlined text-[18px]">badge</span><span>Worker Experience</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-variant/10 hover:text-inverse-on-surface transition-all" data-path="assessor-workspace" href="#"><span class="material-symbols-outlined text-[18px]">rate_review</span><span>Assessor Workspace</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-variant/10 hover:text-inverse-on-surface transition-all" data-path="institution-portal" href="#"><span class="material-symbols-outlined text-[18px]">account_balance</span><span>Institution Management</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-variant/10 hover:text-inverse-on-surface transition-all" data-path="public-credential-verification" href="#"><span class="material-symbols-outlined text-[18px]">verified_user</span><span>Credential Registry</span></a></nav></div><div class="p-space-md flex flex-col gap-space-sm bg-inverse-surface"><div class="p-space-sm rounded-lg bg-surface-variant/10 flex flex-col gap-space-xs"><div class="flex items-center justify-between text-outline-variant"><span class="font-label-sm text-label-sm">Appraisal Cadence</span><span class="font-label-sm text-label-sm text-tertiary-fixed">84%</span></div><div class="w-full h-1.5 bg-surface-dim/20 rounded-full overflow-hidden"><div class="bg-primary-fixed h-full w-[84%]"></div></div></div><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg font-label-md text-label-md text-outline-variant hover:bg-surface-variant/10 hover:text-inverse-on-surface transition-colors" data-path="public-landing" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Exit to Public Portal</span></a></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-full w-full px-space-lg flex items-center justify-between"><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary px-space-sm py-space-xs rounded bg-surface-container">National RPL Authority</span><span class="text-outline-variant">•</span><span class="font-body-sm text-body-sm text-on-surface-variant">ISO 17024 Assessment Pipeline</span></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container-high"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-on-surface">Registry Online</span></div><button class="p-space-xs text-on-surface-variant hover:text-on-surface transition-colors relative" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-tertiary"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-gutter-lg py-space-lg flex flex-col gap-space-lg max-w-[1400px] mx-auto w-full">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm text-label-sm font-label-sm text-secondary uppercase tracking-widest">
+<span>NSDC Accreditation #892-RPL</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<span>Regulatory Council Tier-1</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Institutional Assessment Cockpit</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          National framework compliance engine for Prior Learning recognition, rubric verification, and cryptographic registry distribution.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-label-md text-label-md transition-all flex items-center gap-space-xs shadow-sm" id="open-issue-modal" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Issue Credential</span>
+</button>
+<button class="px-space-md py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-all flex items-center gap-space-xs shadow-md" id="open-wizard-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Create Assessment</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-primary/5 transition-transform group-hover:scale-125"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md text-secondary">Total Learners</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">1,480</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +12.4%
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Registered across 18 vocational domains</span>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-tertiary/5 transition-transform group-hover:scale-125"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md text-secondary">Active Assessments</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">28</span>
+<span class="px-space-xs py-0.5 rounded bg-tertiary-fixed/30 text-tertiary font-label-sm text-label-sm">4 in audit</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Average completion turnaround: 4.2 days</span>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-primary-fixed/20 transition-transform group-hover:scale-125"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md text-secondary">Assessments Completed</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">task_alt</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">892</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 94.8% pass
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Compliant with ISO/IEC 17024 standards</span>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 rounded-full bg-primary/10 transition-transform group-hover:scale-125"></div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md text-secondary">Credentials Issued</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-headline-xl text-headline-xl text-on-surface">814</span>
+<span class="font-label-sm text-label-sm text-secondary">On-chain &amp; PDF</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Tamper-evident W3C Verifiable Credentials</span>
+</div>
+</div>
+<div class="hidden rounded-xl bg-surface-container-lowest shadow-md p-space-lg flex-col gap-space-lg transition-all duration-300" id="wizard-container">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-dim">
+<div class="flex items-center gap-space-sm">
+<span class="w-3 h-3 rounded-full bg-primary animate-pulse"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Assessment Protocol Designer</span>
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container text-secondary">Workflow Studio v3.4</span>
+</div>
+<button class="text-secondary hover:text-on-surface" id="close-wizard-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between overflow-x-auto pb-space-xs gap-space-md">
+<div class="wizard-step flex items-center gap-space-xs cursor-pointer" data-step="1">
+<span class="step-num w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">01</span>
+<span class="step-label font-label-md text-label-md text-on-surface font-semibold">Skill</span>
+</div>
+<div class="h-0.5 w-8 bg-surface-variant"></div>
+<div class="wizard-step flex items-center gap-space-xs cursor-pointer opacity-50" data-step="2">
+<span class="step-num w-7 h-7 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-sm text-label-sm">02</span>
+<span class="step-label font-label-md text-label-md text-secondary">Details</span>
+</div>
+<div class="h-0.5 w-8 bg-surface-variant"></div>
+<div class="wizard-step flex items-center gap-space-xs cursor-pointer opacity-50" data-step="3">
+<span class="step-num w-7 h-7 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-sm text-label-sm">03</span>
+<span class="step-label font-label-md text-label-md text-secondary">Criteria</span>
+</div>
+<div class="h-0.5 w-8 bg-surface-variant"></div>
+<div class="wizard-step flex items-center gap-space-xs cursor-pointer opacity-50" data-step="4">
+<span class="step-num w-7 h-7 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-sm text-label-sm">04</span>
+<span class="step-label font-label-md text-label-md text-secondary">Evidence</span>
+</div>
+<div class="h-0.5 w-8 bg-surface-variant"></div>
+<div class="wizard-step flex items-center gap-space-xs cursor-pointer opacity-50" data-step="5">
+<span class="step-num w-7 h-7 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-sm text-label-sm">05</span>
+<span class="step-label font-label-md text-label-md text-secondary">Assessor</span>
+</div>
+<div class="h-0.5 w-8 bg-surface-variant"></div>
+<div class="wizard-step flex items-center gap-space-xs cursor-pointer opacity-50" data-step="6">
+<span class="step-num w-7 h-7 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-sm text-label-sm">06</span>
+<span class="step-label font-label-md text-label-md text-secondary">Review</span>
+</div>
+<div class="h-0.5 w-8 bg-surface-variant"></div>
+<div class="wizard-step flex items-center gap-space-xs cursor-pointer opacity-50" data-step="7">
+<span class="step-num w-7 h-7 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-sm text-label-sm">07</span>
+<span class="step-label font-label-md text-label-md text-secondary">Publish</span>
+</div>
+</div>
+<div class="wizard-pane" id="pane-1">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer ring-2 ring-primary">
+<span class="material-symbols-outlined text-primary text-[28px] mb-space-xs">code</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Full-Stack Web Engineering</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">National Qualification Level 6 • ICT Framework</p>
+<div class="mt-space-md flex items-center justify-between text-label-sm font-label-sm text-primary">
+<span>Selected for mapping</span>
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<span class="material-symbols-outlined text-secondary text-[28px] mb-space-xs">analytics</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Data Analytics &amp; Modeling</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Applied Statistics Level 5 • Enterprise Analytics</p>
+<div class="mt-space-md flex items-center justify-between text-label-sm font-label-sm text-secondary">
+<span>Select competency</span>
+<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<span class="material-symbols-outlined text-secondary text-[28px] mb-space-xs">bolt</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Industrial High-Voltage Systems</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Electrotechnical Standard 441 • Heavy Grid</p>
+<div class="mt-space-md flex items-center justify-between text-label-sm font-label-sm text-secondary">
+<span>Select competency</span>
+<span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</div>
+<div class="wizard-pane hidden" id="pane-2">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Assessment Title</label>
+<input class="h-10 px-space-sm rounded bg-surface-container-low text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" type="text" value="Enterprise React &amp; REST Microservices Verification"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Assessment Duration</label>
+<input class="h-10 px-space-sm rounded bg-surface-container-low text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" type="text" value="14 Calendar Days (Asynchronous Portfolio)"/>
+</div>
+<div class="flex flex-col gap-space-xs md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Institutional Objective</label>
+<textarea class="p-space-sm rounded bg-surface-container-low text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary" rows="3">Validation of non-formal prior work history in scalable single page applications, state persistence, and token-based security.</textarea>
+</div>
+</div>
+</div>
+<div class="wizard-pane hidden" id="pane-3">
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">checklist</span>
+<span class="font-body-md text-body-md text-on-surface">Criterion 1: Architectural Component Decomposition &amp; Virtual DOM Lifecycle</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-highest text-secondary">Weight: 30%</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">checklist</span>
+<span class="font-body-md text-body-md text-on-surface">Criterion 2: Asynchronous State Management &amp; Resilient Fault Tolerances</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-highest text-secondary">Weight: 40%</span>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">checklist</span>
+<span class="font-body-md text-body-md text-on-surface">Criterion 3: CI/CD Pipeline Verification &amp; Automated Unit Testing Suites</span>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-surface-container-highest text-secondary">Weight: 30%</span>
+</div>
+</div>
+</div>
+<div class="wizard-pane hidden" id="pane-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Direct Work Samples</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Production code repositories, pull requests, architectural design briefs (min 2 items).</span>
+<div class="mt-space-sm flex items-center gap-space-xs text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check</span> Strict SHA-256 integrity hashing enforced
+            </div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Supervisor Attestation</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Signed third-party declaration from registered employer or project sponsor.</span>
+<div class="mt-space-sm flex items-center gap-space-xs text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">check</span> eIDAS &amp; Aadhaar e-sign acceptable
+            </div>
+</div>
+</div>
+</div>
+<div class="wizard-pane hidden" id="pane-5">
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-headline-sm">DM</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Dr. Marcus Vance</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Certified RPL Lead Assessor • Lead Systems Architect</p>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded bg-primary text-on-primary font-label-md text-label-md">Selected</button>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-headline-sm">AL</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Ananya Lokhande</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Senior ISO 17024 Evaluator • Technical Reviewer</p>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded bg-surface-container-highest text-secondary font-label-md text-label-md">Assign Alternate</button>
+</div>
+</div>
+</div>
+<div class="wizard-pane hidden" id="pane-6">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-secondary">Target Domain:</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Full-Stack Web Engineering (Level 6)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-secondary">Assigned Lead:</span>
+<span class="font-body-md text-body-md text-on-surface">Dr. Marcus Vance (NSDC-ID: 7449)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-secondary">Total Rubric Criteria:</span>
+<span class="font-body-md text-body-md text-on-surface">3 Comprehensive Benchmarks</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-secondary">Audit Trail Status:</span>
+<span class="font-label-sm text-label-sm text-primary px-2 py-0.5 rounded bg-primary/10">Pre-flight Validation Clear</span>
+</div>
+</div>
+</div>
+<div class="wizard-pane hidden" id="pane-7">
+<div class="text-center py-space-lg flex flex-col items-center justify-center gap-space-sm">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[36px]">verified_user</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Ready for Public Registry Dispatch</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+            Publishing activates live candidate submissions and anchors the rubric specifications to the immutable institutional ledger.
+          </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-md border-t border-surface-dim">
+<button class="px-space-md py-2 rounded-lg bg-surface-container text-secondary font-label-md text-label-md hover:bg-surface-container-high transition-colors" id="wizard-prev-btn" type="button">
+          Previous Step
+        </button>
+<button class="px-space-lg py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" id="wizard-next-btn" type="button">
+          Continue
+        </button>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-low p-1.5 rounded-xl self-start">
+<button class="cockpit-tab px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container-lowest text-primary shadow-sm" data-tab="overview">
+        Overview &amp; Activity
+      </button>
+<button class="cockpit-tab px-space-md py-2 rounded-lg font-label-md text-label-md text-secondary hover:text-on-surface" data-tab="learners">
+        Learners Directory
+      </button>
+<button class="cockpit-tab px-space-md py-2 rounded-lg font-label-md text-label-md text-secondary hover:text-on-surface flex items-center gap-1" data-tab="evidence">
+        Evidence Review Queue <span class="px-1.5 py-0.2 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">4</span>
+</button>
+<button class="cockpit-tab px-space-md py-2 rounded-lg font-label-md text-label-md text-secondary hover:text-on-surface" data-tab="credentials">
+        Credential Management
+      </button>
+</div>
+<div class="tab-content flex flex-col gap-space-lg" id="tab-overview">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Institutional Assessment Volume</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Monthly completed audits vs intake claims (2024)</p>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-1.5 font-label-sm text-label-sm text-secondary">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span> Completed
+                </span>
+<span class="flex items-center gap-1.5 font-label-sm text-label-sm text-secondary">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed-dim"></span> Intake
+                </span>
+</div>
+</div>
+<div class="w-full h-56 pt-space-sm">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 700 200">
+<defs>
+<lineargradient id="primary-fade" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00524f" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#00524f" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<line stroke="#eae8e2" stroke-width="1" x1="0" x2="700" y1="180" y2="180"></line>
+<line stroke="#eae8e2" stroke-dasharray="4" stroke-width="1" x1="0" x2="700" y1="120" y2="120"></line>
+<line stroke="#eae8e2" stroke-dasharray="4" stroke-width="1" x1="0" x2="700" y1="60" y2="60"></line>
+<path d="M 20 160 Q 120 140, 200 130 T 400 90 T 550 50 T 680 40 L 680 180 L 20 180 Z" fill="url(#primary-fade)"></path>
+<path d="M 20 160 Q 120 140, 200 130 T 400 90 T 550 50 T 680 40" fill="none" stroke="#00524f" stroke-linecap="round" stroke-width="3"></path>
+<path d="M 20 170 Q 120 165, 200 145 T 400 120 T 550 95 T 680 80" fill="none" stroke="#f0bf5f" stroke-dasharray="3,3" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="200" cy="130" fill="#00524f" r="4"></circle>
+<circle cx="400" cy="90" fill="#00524f" r="4"></circle>
+<circle cx="550" cy="50" fill="#00524f" r="4"></circle>
+<circle cx="680" cy="40" fill="#00524f" r="5"></circle>
+<text fill="#6f7978" font-family="Inter" font-size="11" x="20" y="196">Jan</text>
+<text fill="#6f7978" font-family="Inter" font-size="11" x="130" y="196">Mar</text>
+<text fill="#6f7978" font-family="Inter" font-size="11" x="260" y="196">May</text>
+<text fill="#6f7978" font-family="Inter" font-size="11" x="390" y="196">Jul</text>
+<text fill="#6f7978" font-family="Inter" font-size="11" x="520" y="196">Sep</text>
+<text fill="#6f7978" font-family="Inter" font-size="11" x="650" y="196">Nov</text>
+</svg>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Domain Competency Distribution</h3>
+<div class="flex flex-col gap-space-sm">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface font-medium">Enterprise Web Systems &amp; Architecture</span>
+<span class="text-secondary font-mono">540 Candidates (36.5%)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 36.5%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface font-medium">Python, Automation &amp; AI Tooling</span>
+<span class="text-secondary font-mono">390 Candidates (26.3%)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 26.3%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface font-medium">Heavy Industrial &amp; Electrical Infrastructure</span>
+<span class="text-secondary font-mono">310 Candidates (20.9%)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="bg-tertiary-fixed-dim h-full rounded-full" style="width: 20.9%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-md text-label-md">
+<span class="text-on-surface font-medium">Applied Data Analytics &amp; Forecasting</span>
+<span class="text-secondary font-mono">240 Candidates (16.3%)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="bg-secondary-fixed-dim h-full rounded-full" style="width: 16.3%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Needs Immediate Attention</h3>
+<span class="px-space-xs py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm">3 High Priority</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-error font-semibold">Audit Window Expiring</span>
+<span class="font-label-sm text-label-sm text-secondary">2h remaining</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">Sunil Rao - Electrical Safety Verification Dossier</p>
+<div class="flex items-center gap-space-xs mt-1">
+<button class="px-2 py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm">Review Now</button>
+<button class="px-2 py-1 rounded bg-surface-container text-secondary font-label-sm text-label-sm">Delegate</button>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary font-semibold">Evidence Incongruity</span>
+<span class="font-label-sm text-label-sm text-secondary">1d ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">Hash mismatch on repository bundle for Fatima Zahra</p>
+<div class="flex items-center gap-space-xs mt-1">
+<button class="px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">Request Recertification</button>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Assessor Backlog</span>
+<span class="font-label-sm text-label-sm text-secondary">5 dossiers</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface">Lead Assessor Elena Rostova allocated at 110% capacity</p>
+<div class="flex items-center gap-space-xs mt-1">
+<button class="px-2 py-1 rounded bg-surface-container text-secondary font-label-sm text-label-sm">Rebalance Load</button>
+</div>
+</div>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Live Ledger Pipeline</h3>
+<div class="flex flex-col gap-space-md relative pl-4 before:content-[''] before:absolute before:left-1.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-variant">
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-[22px] top-1.5 w-3 h-3 rounded-full bg-primary ring-4 ring-surface-container-lowest"></span>
+<span class="font-label-sm text-label-sm text-secondary">10 minutes ago</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Credential #SKW-8812 anchored to Public Hash Registry</p>
+</div>
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-[22px] top-1.5 w-3 h-3 rounded-full bg-tertiary-fixed-dim ring-4 ring-surface-container-lowest"></span>
+<span class="font-label-sm text-label-sm text-secondary">42 minutes ago</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Evidence approved for Anita Patel (Python NQL-5)</p>
+</div>
+<div class="relative flex flex-col gap-0.5">
+<span class="absolute -left-[22px] top-1.5 w-3 h-3 rounded-full bg-surface-variant ring-4 ring-surface-container-lowest"></span>
+<span class="font-label-sm text-label-sm text-secondary">2 hours ago</span>
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Council Board updated ISO accreditation schema</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-content hidden flex flex-col gap-space-md" id="tab-learners">
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm w-full md:w-96 bg-surface-container-low px-space-sm py-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[20px]">search</span>
+<input class="w-full bg-transparent font-body-sm text-body-sm text-on-surface focus:outline-none placeholder-outline" placeholder="Search learner by name, government ID, or RPL tracking..." type="text"/>
+</div>
+<div class="flex items-center gap-space-sm w-full md:w-auto">
+<select class="px-space-sm py-2 rounded-lg bg-surface-container-low text-secondary font-label-md text-label-md focus:outline-none">
+<option>All Specializations</option>
+<option>Web Engineering</option>
+<option>Python &amp; Data</option>
+<option>Industrial Systems</option>
+</select>
+<select class="px-space-sm py-2 rounded-lg bg-surface-container-low text-secondary font-label-md text-label-md focus:outline-none">
+<option>Status: All</option>
+<option>Active Appraisal</option>
+<option>Pending Verification</option>
+<option>Credentialed</option>
+</select>
+</div>
+</div>
+<div class="rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Learner Dossier</th>
+<th class="py-space-sm px-space-md">Skill &amp; Level</th>
+<th class="py-space-sm px-space-md">Assessment Progress</th>
+<th class="py-space-sm px-space-md">Assigned Assessor</th>
+<th class="py-space-sm px-space-md">Status</th>
+<th class="py-space-sm px-space-md text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-dim font-body-sm text-body-sm">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-secondary-container text-secondary flex items-center justify-center font-label-md">TR</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Tariq Ramadan</p>
+<p class="font-label-sm text-label-sm text-secondary font-mono">RPL-2024-0941</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<p class="font-medium text-on-surface">Full-Stack Web Engineering</p>
+<p class="font-label-sm text-label-sm text-secondary">NQL Tier 6</p>
+</td>
+<td class="py-space-md px-space-md w-48">
+<div class="flex items-center justify-between text-label-sm font-label-sm mb-1">
+<span>85% Verified</span>
+<span class="text-primary font-mono">6/7 Units</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container">
+<div class="h-full rounded-full bg-primary" style="width: 85%"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<p class="text-on-surface">Dr. Marcus Vance</p>
+<p class="font-label-sm text-label-sm text-secondary">Chief Assessor</p>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">Active Appraisal</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="p-1 rounded hover:bg-surface-container text-secondary hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-label-md">SC</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Sita Chandrasekhar</p>
+<p class="font-label-sm text-label-sm text-secondary font-mono">RPL-2024-1102</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<p class="font-medium text-on-surface">Data Analytics &amp; Pipeline Engineering</p>
+<p class="font-label-sm text-label-sm text-secondary">NQL Tier 5</p>
+</td>
+<td class="py-space-md px-space-md w-48">
+<div class="flex items-center justify-between text-label-sm font-label-sm mb-1">
+<span>100% Verified</span>
+<span class="text-primary font-mono">5/5 Units</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container">
+<div class="h-full rounded-full bg-primary" style="width: 100%"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<p class="text-on-surface">Elena Rostova</p>
+<p class="font-label-sm text-label-sm text-secondary">Lead ISO Reviewer</p>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2.5 py-1 rounded-full bg-primary/15 text-primary font-label-sm text-label-sm font-semibold">Ready for Issuance</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="p-1 rounded hover:bg-surface-container text-secondary hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high text-secondary flex items-center justify-center font-label-md">KL</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Kofi Larsson</p>
+<p class="font-label-sm text-label-sm text-secondary font-mono">RPL-2024-0498</p>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<p class="font-medium text-on-surface">Industrial High-Voltage Systems</p>
+<p class="font-label-sm text-label-sm text-secondary">Standard 441</p>
+</td>
+<td class="py-space-md px-space-md w-48">
+<div class="flex items-center justify-between text-label-sm font-label-sm mb-1">
+<span>40% Submitted</span>
+<span class="text-tertiary font-mono">2/5 Units</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container">
+<div class="h-full rounded-full bg-tertiary-fixed-dim" style="width: 40%"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<p class="text-on-surface">Rajesh Gokhale</p>
+<p class="font-label-sm text-label-sm text-secondary">Technical Assessor</p>
+</td>
+<td class="py-space-md px-space-md">
+<span class="px-2.5 py-1 rounded-full bg-tertiary-fixed/30 text-tertiary font-label-sm text-label-sm">Evidence Gap</span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<button class="p-1 rounded hover:bg-surface-container text-secondary hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="tab-content hidden flex flex-col gap-space-md" id="tab-evidence">
+<div class="grid grid-cols-1 gap-space-md">
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-xl">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed/30 text-tertiary font-label-sm text-label-sm">Pending Assessor Decision</span>
+<span class="font-label-sm text-label-sm text-secondary">Submitted 4 hours ago</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Distributed Task Queue Architecture Proof</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Learner: <strong class="text-on-surface">Devin Zhao</strong> • Competency: <span class="font-mono">CS-COMP-782</span> (Async Message Queues)
+            </p>
+<div class="flex items-center gap-space-md mt-space-xs">
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">folder_zip</span> devin-zhao-broker-impl.tar.gz (14.2 MB)
+              </span>
+<span class="font-label-sm text-label-sm font-mono text-outline">SHA256: d8a2...3f1c</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end md:self-center">
+<button class="px-space-md py-2 rounded-lg bg-surface-container text-error hover:bg-error-container font-label-md text-label-md transition-colors">
+              Reject
+            </button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container text-tertiary hover:bg-surface-container-high font-label-md text-label-md transition-colors" id="open-rf-modal">
+              Request Information
+            </button>
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md transition-colors">
+              Approve Evidence
+            </button>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col md:flex-row justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-xl">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed/30 text-tertiary font-label-sm text-label-sm">Pending Assessor Decision</span>
+<span class="font-label-sm text-label-sm text-secondary">Submitted 18 hours ago</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Live Transformer Substation Calibration Log</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Learner: <strong class="text-on-surface">Maria Santos</strong> • Competency: <span class="font-mono">ELEC-HIGH-09</span> (High Voltage Safety)
+            </p>
+<div class="flex items-center gap-space-md mt-space-xs">
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span> signed_telemetry_2024_02.pdf (4.8 MB)
+              </span>
+<span class="font-label-sm text-label-sm font-mono text-outline">SHA256: 77b1...aa94</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end md:self-center">
+<button class="px-space-md py-2 rounded-lg bg-surface-container text-error hover:bg-error-container font-label-md text-label-md transition-colors">
+              Reject
+            </button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container text-tertiary hover:bg-surface-container-high font-label-md text-label-md transition-colors">
+              Request Information
+            </button>
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md transition-colors">
+              Approve Evidence
+            </button>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-content hidden flex flex-col gap-space-md" id="tab-credentials">
+<div class="rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Recipient</th>
+<th class="py-space-sm px-space-md">Qualification Title</th>
+<th class="py-space-sm px-space-md">Registry UID</th>
+<th class="py-space-sm px-space-md">Issue Date</th>
+<th class="py-space-sm px-space-md">Cryptographic State</th>
+<th class="py-space-sm px-space-md text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-dim font-body-sm text-body-sm">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-medium text-on-surface">Arjun Nair</td>
+<td class="py-space-md px-space-md">Full-Stack Cloud Architect (Level 6)</td>
+<td class="py-space-md px-space-md font-mono text-outline">SKW-2024-C9981</td>
+<td class="py-space-md px-space-md">Oct 24, 2024</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">lock</span> Immutable
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-space-xs">
+<button class="verify-cred-btn px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm flex items-center gap-1" data-credential="SKW-2024-C9981" data-learner="Arjun Nair" data-skill="Full-Stack Cloud Architect (Level 6)">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span> Verify
+                    </button>
+<button class="p-1 rounded hover:bg-surface-container text-secondary">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md font-medium text-on-surface">Maya Lin</td>
+<td class="py-space-md px-space-md">Python Data Modeling &amp; Optimization</td>
+<td class="py-space-md px-space-md font-mono text-outline">SKW-2024-C9975</td>
+<td class="py-space-md px-space-md">Oct 21, 2024</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">lock</span> Immutable
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex items-center gap-space-xs">
+<button class="verify-cred-btn px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-label-sm text-label-sm flex items-center gap-1" data-credential="SKW-2024-C9975" data-learner="Maya Lin" data-skill="Python Data Modeling &amp; Optimization">
+<span class="material-symbols-outlined text-[16px]">qr_code_2</span> Verify
+                    </button>
+<button class="p-1 rounded hover:bg-surface-container text-secondary">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="modal-rf">
+<div class="w-full max-w-lg rounded-xl bg-surface-container-lowest p-space-lg shadow-xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-surface-dim">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Request Additional Evidence</h3>
+<button class="text-secondary hover:text-on-surface" id="close-rf-modal">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Specify explicit rubric gaps to the candidate. This initiates a 72-hour formal correction window.
+      </p>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Deficiency Rubric Area</label>
+<select class="px-space-sm py-2 rounded bg-surface-container-low text-body-md text-on-surface focus:outline-none">
+<option>Code Quality &amp; Automated Coverage Under 80%</option>
+<option>Missing Supervised Industrial Timesheet</option>
+<option>Telemetry Artifact Unreadable or Corrupt</option>
+</select>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Assessor Instructions</label>
+<textarea class="p-space-sm rounded bg-surface-container-low text-body-md text-on-surface focus:outline-none placeholder-outline" placeholder="Provide actionable feedback detailing acceptable re-submission formats..." rows="3"></textarea>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-2 rounded bg-surface-container text-secondary font-label-md text-label-md" id="cancel-rf-modal">Cancel</button>
+<button class="px-space-md py-2 rounded bg-tertiary-container text-on-tertiary-container font-label-md text-label-md" id="submit-rf-modal">Send Correction Order</button>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="modal-issue">
+<div class="w-full max-w-lg rounded-xl bg-surface-container-lowest p-space-lg shadow-xl flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs border-b border-surface-dim">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Direct Credential Minting</h3>
+<button class="text-secondary hover:text-on-surface" id="close-issue-modal">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Execute cryptographic seal and registrar anchoring for qualified candidates.
+      </p>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Select Certified Learner</label>
+<select class="px-space-sm py-2 rounded bg-surface-container-low text-body-md text-on-surface focus:outline-none">
+<option>Sita Chandrasekhar (RPL-2024-1102) - 100% Passed</option>
+<option>Vikram Anand (RPL-2024-0321) - 100% Passed</option>
+</select>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">National Vocational Level</label>
+<input class="h-10 px-space-sm rounded bg-surface-container text-secondary text-body-md focus:outline-none" readonly="" type="text" value="Level 5 Applied Data Engineering"/>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm text-primary">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+<span class="font-body-sm text-body-sm">Requires Active NSDC Institutional Signing Key #KEY-990</span>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-xs">
+<button class="px-space-md py-2 rounded bg-surface-container text-secondary font-label-md text-label-md" id="cancel-issue-modal">Dismiss</button>
+<button class="px-space-md py-2 rounded bg-primary text-on-primary font-label-md text-label-md" id="confirm-issue-modal">Sign &amp; Anchor</button>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-space-md" id="modal-verify">
+<div class="w-full max-w-2xl rounded-2xl bg-surface-container-lowest p-space-xl shadow-2xl flex flex-col gap-space-lg relative border-2 border-primary/20">
+<button class="absolute top-4 right-4 text-secondary hover:text-on-surface" id="close-verify-modal">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+<div class="flex items-center gap-space-md pb-space-sm border-b border-surface-dim">
+<div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[28px]">verified</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary">National Skills Registry</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-label-sm text-label-sm text-secondary">Verified Valid</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight" id="verify-recipient">Arjun Nair</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Credential Designation</span>
+<span class="font-headline-sm text-headline-sm text-on-surface" id="verify-qualification">Full-Stack Cloud Architect</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">NSDC RPL Qualification Tier 6</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Institutional Issuer</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">SkillWorth Apex Authority</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Accreditation #892-RPL • Council Tier-1</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Validated Competencies</span>
+<div class="flex flex-wrap gap-space-xs">
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">High-Scale Architecture</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Fault-Tolerant Distributed APIs</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Automated Test Discipline</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Enterprise Identity / Auth</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-high/60 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-semibold uppercase text-secondary">Registry UID</span>
+<span class="font-label-sm text-label-sm font-mono text-on-surface" id="verify-uid">SKW-2024-C9981</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-semibold uppercase text-secondary">Tamper-Evident Hash</span>
+<span class="font-label-sm text-label-sm font-mono text-outline">SHA256: 9e83...55bd3a0199</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-semibold uppercase text-secondary">Digital Seal</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span> Valid Cryptographic Signature
+          </span>
+</div>
+</div>
+</div>
+</div>
+<script>
+    (function() {
+      // Tab Navigation
+      const tabs = document.querySelectorAll('.cockpit-tab');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.getAttribute('data-tab');
+          tabs.forEach(t => {
+            t.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+            t.classList.add('text-secondary');
+          });
+          tab.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+          tab.classList.remove('text-secondary');
+
+          contents.forEach(c => {
+            c.classList.add('hidden');
+            if (c.id === `tab-${target}`) {
+              c.classList.remove('hidden');
+            }
+          });
+        });
+      });
+
+      // Wizard Controls
+      const wizard = document.getElementById('wizard-container');
+      const openWizardBtn = document.getElementById('open-wizard-btn');
+      const closeWizardBtn = document.getElementById('close-wizard-btn');
+      const prevBtn = document.getElementById('wizard-prev-btn');
+      const nextBtn = document.getElementById('wizard-next-btn');
+      const stepItems = document.querySelectorAll('.wizard-step');
+      let currentStep = 1;
+
+      function updateWizardUI() {
+        stepItems.forEach(item => {
+          const step = parseInt(item.getAttribute('data-step'), 10);
+          const numSpan = item.querySelector('.step-num');
+          const labelSpan = item.querySelector('.step-label');
+
+          if (step === currentStep) {
+            item.classList.remove('opacity-50');
+            numSpan.className = 'step-num w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm';
+            labelSpan.className = 'step-label font-label-md text-label-md text-on-surface font-semibold';
+          } else if (step < currentStep) {
+            item.classList.remove('opacity-50');
+            numSpan.className = 'step-num w-7 h-7 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-sm text-label-sm';
+            labelSpan.className = 'step-label font-label-md text-label-md text-secondary';
+          } else {
+            item.classList.add('opacity-50');
+            numSpan.className = 'step-num w-7 h-7 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-sm text-label-sm';
+            labelSpan.className = 'step-label font-label-md text-label-md text-secondary';
+          }
+        });
+
+        for (let i = 1; i <= 7; i++) {
+          const pane = document.getElementById(`pane-${i}`);
+          if (pane) {
+            if (i === currentStep) {
+              pane.classList.remove('hidden');
+            } else {
+              pane.classList.add('hidden');
+            }
+          }
+        }
+
+        prevBtn.disabled = currentStep === 1;
+        prevBtn.classList.toggle('opacity-40', currentStep === 1);
+        if (currentStep === 7) {
+          nextBtn.textContent = 'Publish to Institutional Registry';
+        } else {
+          nextBtn.textContent = 'Continue';
+        }
+      }
+
+      openWizardBtn.addEventListener('click', () => {
+        wizard.classList.remove('hidden');
+        wizard.classList.add('flex');
+        wizard.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      closeWizardBtn.addEventListener('click', () => {
+        wizard.classList.add('hidden');
+        wizard.classList.remove('flex');
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (currentStep < 7) {
+          currentStep++;
+          updateWizardUI();
+        } else {
+          wizard.classList.add('hidden');
+          wizard.classList.remove('flex');
+          currentStep = 1;
+          updateWizardUI();
+        }
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (currentStep > 1) {
+          currentStep--;
+          updateWizardUI();
+        }
+      });
+
+      stepItems.forEach(item => {
+        item.addEventListener('click', () => {
+          currentStep = parseInt(item.getAttribute('data-step'), 10);
+          updateWizardUI();
+        });
+      });
+
+      // Verification Modal
+      const verifyBtns = document.querySelectorAll('.verify-cred-btn');
+      const verifyModal = document.getElementById('modal-verify');
+      const closeVerifyModal = document.getElementById('close-verify-modal');
+
+      verifyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cred = btn.getAttribute('data-credential');
+          const learner = btn.getAttribute('data-learner');
+          const skill = btn.getAttribute('data-skill');
+
+          document.getElementById('verify-uid').textContent = cred;
+          document.getElementById('verify-recipient').textContent = learner;
+          document.getElementById('verify-qualification').textContent = skill;
+
+          verifyModal.classList.remove('hidden');
+        });
+      });
+
+      closeVerifyModal.addEventListener('click', () => {
+        verifyModal.classList.add('hidden');
+      });
+
+      // Request Information Modal
+      const rfBtn = document.getElementById('open-rf-modal');
+      const rfModal = document.getElementById('modal-rf');
+      const closeRfModal = document.getElementById('close-rf-modal');
+      const cancelRfModal = document.getElementById('cancel-rf-modal');
+      const submitRfModal = document.getElementById('submit-rf-modal');
+
+      if (rfBtn) {
+        rfBtn.addEventListener('click', () => rfModal.classList.remove('hidden'));
+      }
+      [closeRfModal, cancelRfModal, submitRfModal].forEach(el => {
+        if (el) el.addEventListener('click', () => rfModal.classList.add('hidden'));
+      });
+
+      // Direct Issue Modal
+      const issueBtn = document.getElementById('open-issue-modal');
+      const issueModal = document.getElementById('modal-issue');
+      const closeIssueModal = document.getElementById('close-issue-modal');
+      const cancelIssueModal = document.getElementById('cancel-issue-modal');
+      const confirmIssueModal = document.getElementById('confirm-issue-modal');
+
+      if (issueBtn) {
+        issueBtn.addEventListener('click', () => issueModal.classList.remove('hidden'));
+      }
+      [closeIssueModal, cancelIssueModal, confirmIssueModal].forEach(el => {
+        if (el) el.addEventListener('click', () => issueModal.classList.add('hidden'));
+      });
+
+    })();
+  </script>
+</div></main></div></body></html>

@@ -1,0 +1,130 @@
+/* CareerJourney.css */
+/* Modern vertical timeline with glassmorphism and subtle animations */
+
+.career-journey-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  color: #f0f0f0;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.career-journey-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(45deg, #ff6a00, #ff8e53);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.timeline {
+  position: relative;
+  margin: 2rem 0;
+  padding-left: 40px;
+}
+
+/* Central vertical line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #ff6a00, #ff8e53);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 2rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -9px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: #ff6a00;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.1);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,106,0,0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(255,106,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,106,0,0); }
+}
+
+.timeline-content {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #ff8e53;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.timeline-content:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateX(5px);
+}
+
+.timeline-content h2 {
+  margin-top: 0;
+  font-size: 1.75rem;
+  color: #ff8e53;
+}
+
+.timeline-content p, .timeline-content li {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.json-block {
+  background: rgba(0,0,0,0.3);
+  color: #e0e0e0;
+  padding: 0.75rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+/* Loading and error states */
+.career-journey-loading,
+.career-journey-error {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 3rem;
+  color: #ff8e53;
+}
+
+@media (max-width: 768px) {
+  .career-journey-container {
+    padding: 1rem;
+  }
+  .timeline {
+    padding-left: 30px;
+  }
+  .timeline::before {
+    left: 15px;
+  }
+  .timeline-icon {
+    left: -7px;
+    width: 16px;
+    height: 16px;
+  }
+}

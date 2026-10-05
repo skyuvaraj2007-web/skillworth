@@ -1,0 +1,1915 @@
+<USER_REQUEST>
+MASTER PROMPT — SKILLNEXUS AI
+COLLEGE VERIFIED PROJECTS + CERTIFICATES + INDUSTRY PARTNERSHIP
++ TARGETED STUDENT SEARCH + COURSE BENCHMARK + NEXUS AI
+
+IMPORTANT:
+Do NOT rebuild the application.
+Do NOT remove or break any existing functionality.
+
+Preserve:
+- Student authentication
+- Institution authentication
+- Industry authentication
+- OTP
+- Student → Institution mapping
+- Institution → Industry collaboration
+- Learning
+- Courses
+- Course progress
+- Quizzes
+- Assessments
+- Projects
+- Certificates
+- Verified Skills
+- Skill Intelligence
+- Activity telemetry
+- NEXUS AI
+- Notifications
+- Existing APIs
+- Existing database relationships
+- Existing navigation
+- Existing dark mode
+
+FIRST INSPECT THE COMPLETE EXISTING SYSTEM.
+
+Find and understand:
+- Student Project page
+- Student Certificate page
+- Student Verified Skills page
+- Student Learning page
+- Institution dashboard
+- Institution partnership/collaboration page
+- Industry dashboard
+- Industry candidate/student search
+- Existing matching service
+- Existing course progress system
+- Existing assessment/quiz system
+- Existing communication/aptitude/logical reasoning skill data
+- Existing student → institution mapping
+- Existing institution ↔ industry partnership model
+- Existing authorization/tenant isolation
+- Existing NEXUS AI services
+- Existing telemetry
+- Existing database schema
+- Existing file storage
+
+Reuse existing functionality wherever possible.
+
+==================================================
+1. INSTITUTION — PROJECT VERIFICATION
+==================================================
+
+Add project verification to the Institution portal.
+
+Create:
+
+"PROJECT VERIFICATION"
+
+Institution management can see projects submitted by students
+mapped to that institution.
+
+STRICT TENANT ISOLATION:
+
+Institution A can see only projects of students mapped to
+Institution A.
+
+Institution A MUST NOT see students/projects belonging to
+Institution B.
+
+==================================================
+2. INSTITUTION PROJECT VERIFICATION
+==================================================
+
+Project status:
+
+PENDING
+UNDER REVIEW
+VERIFIED
+REJECTED
+NEEDS CORRECTION
+
+Institution management can:
+
+- View project
+- Open GitHub link
+- Open live/demo link
+- View uploaded images
+- View project documents
+- View technologies
+- View skills
+- View activities
+- View milestones
+- View student contribution
+- View project outcomes
+- Verify
+- Reject
+- Request correction
+
+If rejecting/requesting correction:
+
+require actual reason.
+
+Never generate fake reasons.
+
+==================================================
+3. STUDENT PROJECT VERIFICATION
+==================================================
+
+Student should see:
+
+Project Verification Status
+
+Example:
+
+Pending Verification
+
+or
+
+Verified by Institution
+
+or
+
+Rejected
+
+or
+
+Needs Correction
+
+If verified:
+
+show:
+
+✓ Institution Verified Project
+
+Verified by:
+Authorized institution management
+
+Verified date:
+Actual timestamp
+
+==================================================
+4. CERTIFICATE VERIFICATION
+==================================================
+
+Use the certificate verification system already implemented.
+
+Institution can verify:
+
+- PDF certificates
+- PPT/PPTX
+- DOC/DOCX
+- PNG
+- JPG/JPEG
+- other supported safe formats
+
+Certificate verification:
+
+PENDING
+UNDER REVIEW
+VERIFIED
+REJECTED
+NEEDS CORRECTION
+
+Only VERIFIED certificates should count as:
+
+"Verified Certificate Evidence"
+
+==================================================
+5. VERIFIED PROJECT + VERIFIED CERTIFICATE
+==================================================
+
+A student's professional evidence should distinguish:
+
+PROJECT:
+Student-created technical evidence
+
+CERTIFICATE:
+Credential evidence
+
+COURSE:
+Learning evidence
+
+ASSESSMENT:
+Performance evidence
+
+ACTIVITY:
+Behavior/evidence telemetry
+
+SKILL:
+Derived intelligence
+
+Do not merge all of these into one score.
+
+==================================================
+6. INSTITUTION PARTNERSHIP / COLLABORATION
+==================================================
+
+Connect verified student evidence with:
+
+INSTITUTION ↔ INDUSTRY PARTNERSHIP
+
+The existing partnership system must become the authorization
+boundary for Industry student visibility.
+
+Relationship:
+
+Industry Company
+      ↓
+Partnership / Collaboration
+      ↓
+Institution
+      ↓
+Mapped Students
+      ↓
+Verified Student Evidence
+      ↓
+Industry Visibility
+
+==================================================
+7. COMPANY CAN VIEW STUDENT EVIDENCE
+==================================================
+
+When an Institution and Company have an ACTIVE/ACCEPTED partnership,
+the company may view eligible student information.
+
+Company can view, according to permissions:
+
+STUDENT PROFILE
+
+- Name
+- Academic information allowed by existing privacy rules
+- Institution
+- Department
+- Degree
+- Specialization
+- Skills
+- Verified skills
+
+PROJECTS
+
+- Verified projects
+- Project title
+- Description
+- Technologies
+- Skills demonstrated
+- Student contribution
+- Project activities
+- Project progress
+- GitHub link
+- Live/demo link
+- Project images
+- Project evidence
+- Achievements
+
+CERTIFICATES
+
+- Verified certificates
+- Certificate title
+- Issuing organization
+- Issue date
+- Related skills
+- Certificate verification status
+- Certificate viewer
+
+LEARNING
+
+- Enrolled courses
+- Course title
+- Course category
+- Course progress
+- Modules completed
+- Lessons completed
+- Quiz/test performance where permission allows
+- Project completion
+- Course completion status
+
+COURSE BENCHMARK
+
+Show actual benchmark/readiness information generated from
+the student's real learning evidence.
+
+==================================================
+8. COURSE BENCHMARK
+==================================================
+
+For each course visible to the company:
+
+Course:
+C Programming
+
+Student Course Progress:
+82%
+
+Completed Modules:
+8 / 10
+
+Quiz Performance:
+78%
+
+Assessment:
+84%
+
+Project:
+Completed
+
+Course Skill Evidence:
+C Programming
+Problem Solving
+Logical Reasoning
+
+Benchmark:
+Strong / Moderate / Developing
+
+IMPORTANT:
+
+Benchmark must be calculated from actual available data.
+
+Do NOT hardcode:
+
+"Top Student"
+
+"90%"
+
+"Excellent"
+
+unless the underlying data actually supports it.
+
+==================================================
+9. BENCHMARK LOGIC
+==================================================
+
+Create an explainable benchmark.
+
+Use available real evidence such as:
+
+- Course completion
+- Lesson completion
+- Quiz results
+- Assessment results
+- Course project
+- Skill evidence
+- Activity consistency
+- Relevant project evidence
+- Verified certificates
+
+Do not create a meaningless single score.
+
+If there is insufficient evidence:
+
+show:
+
+"Insufficient data for benchmark."
+
+==================================================
+10. INDUSTRY — NEW PAGE
+==================================================
+
+Inside the Industry portal add a new page:
+
+"TARGETED STUDENT SEARCH"
+
+This becomes the company's targeted talent discovery workspace.
+
+Navigation:
+
+Industry Dashboard
+Opportunities
+Candidates
+Targeted Student Search
+Partnerships
+Messages
+Company Profile
+
+Reuse existing navigation conventions.
+
+==================================================
+11. TARGETED STUDENT SEARCH — CORE RULE
+==================================================
+
+THIS IS THE MOST IMPORTANT RULE.
+
+The company must NOT search the entire SkillNexus student database.
+
+Search scope MUST be:
+
+AUTHENTICATED COMPANY
+        ↓
+ACTIVE/ACCEPTED PARTNERSHIPS
+        ↓
+PARTNERED INSTITUTIONS
+        ↓
+STUDENTS MAPPED TO THOSE INSTITUTIONS
+        ↓
+AUTHORIZED STUDENT DATA
+        ↓
+TARGETED SEARCH
+
+If the company has NO active institution partnership:
+
+Targeted Student Search must return:
+
+"No partnered students available."
+
+Do NOT show global students.
+
+==================================================
+12. TARGETED SKILL SELECTION
+==================================================
+
+At the top of the page:
+
+"Search Students by Skill"
+
+Allow company to select:
+
+- C
+- C++
+- Java
+- Python
+- JavaScript
+- React
+- Node.js
+- SQL
+- AI/ML
+- Data Analytics
+- Cloud
+- etc.
+
+Use the existing Skill/Technology taxonomy.
+
+Do NOT create duplicate skill names.
+
+Allow search by:
+
+- Skill
+- Technology
+- Role
+- Department
+- Degree
+- Specialization
+- Course
+- Certification
+- Institution
+- Readiness/benchmark
+- Project technology
+
+==================================================
+13. EXAMPLE — C PROGRAMMING
+==================================================
+
+Company selects:
+
+C Programming
+
+System must search only:
+
+Partnered colleges
+        ↓
+Mapped students
+        ↓
+Students with C skill evidence
+        ↓
+Relevant projects
+        ↓
+Verified certificates
+        ↓
+Course performance
+        ↓
+Aptitude
+        ↓
+Logical reasoning
+        ↓
+Communication
+        ↓
+Benchmark/readiness
+
+Then show eligible students.
+
+If no eligible students:
+
+show:
+
+"No matching students found in your partnered institutions."
+
+Do NOT show students from unrelated colleges.
+
+==================================================
+14. TARGETED STUDENT RESULT CARD
+==================================================
+
+Each result should show:
+
+Student Name
+
+Institution
+
+Department
+
+Degree
+
+Specialization
+
+Primary Skill:
+C
+
+Skill Evidence:
+Verified / Activity-based / Project-based
+
+Projects:
+3
+
+Relevant Projects:
+2
+
+Verified Certificates:
+4
+
+Relevant Course:
+C Programming
+
+Course Progress:
+92%
+
+Course Benchmark:
+Strong
+
+Aptitude:
+High / Medium / Developing
+
+Logical Reasoning:
+High / Medium / Developing
+
+Communication:
+High / Medium / Developing
+
+Overall Readiness:
+Based on real evidence
+
+NEXUS AI Match:
+Explainable match percentage if the existing matching system
+supports this.
+
+==================================================
+15. DO NOT USE FAKE RANKINGS
+==================================================
+
+Never create random:
+
+- aptitude score
+- logical reasoning score
+- communication score
+- benchmark
+- match percentage
+- skill percentage
+
+Every displayed value must originate from:
+
+Database
+or
+existing activity/assessment telemetry
+or
+existing NEXUS AI calculation.
+
+If unavailable:
+
+show:
+
+"Not available"
+
+Do NOT show fake data.
+
+==================================================
+16. HIGH-BENCHMARK STUDENT FILTER
+==================================================
+
+Add:
+
+"Benchmark"
+
+Filters:
+
+- Strong
+- Moderate
+- Developing
+- Insufficient Data
+
+Or use the existing benchmark levels if already defined.
+
+Company can select:
+
+"Show students with Strong benchmark"
+
+Then search only eligible students.
+
+==================================================
+17. APTITUDE FILTER
+==================================================
+
+Add:
+
+"Aptitude"
+
+Possible filters:
+
+- High
+- Medium
+- Developing
+- Not Available
+
+Only use actual aptitude assessment data.
+
+If no aptitude assessment exists:
+
+do not classify the student.
+
+Show:
+
+"Not assessed"
+
+==================================================
+18. LOGICAL REASONING FILTER
+==================================================
+
+Add:
+
+"Logical Reasoning"
+
+Possible filters:
+
+- High
+- Medium
+- Developing
+- Not Assessed
+
+Use actual assessment data.
+
+==================================================
+19. COMMUNICATION FILTER
+==================================================
+
+Add:
+
+"Communication"
+
+Possible filters:
+
+- High
+- Medium
+- Developing
+- Not Assessed
+
+Use actual communication activity/assessment evidence.
+
+This should connect to the existing Duolingo-style Communication
+learning/telemetry system if implemented.
+
+==================================================
+20. CERTIFICATE FILTER
+==================================================
+
+Add:
+
+"Verified Certificates"
+
+Filters:
+
+- Has verified certificate
+- No verified certificate
+- Certificate related to selected skill
+
+Example:
+
+Company selects:
+
+Python
+
+AND
+
+Verified Python Certificate
+
+Then return only eligible students satisfying those actual conditions.
+
+==================================================
+21. PROJECT FILTER
+==================================================
+
+Add:
+
+"Project Evidence"
+
+Filters:
+
+- Has relevant project
+- Multiple relevant projects
+- Verified project
+- GitHub available
+- Live demo available
+
+Example:
+
+C Programming
+
++
+Verified Project
+
+returns students who have actual verified projects associated
+with C programming.
+
+==================================================
+22. COURSE FILTER
+==================================================
+
+Company can select a relevant course.
+
+Example:
+
+Course:
+C Programming
+
+Filters:
+
+Course Progress:
+- 80%+
+- 90%+
+- Completed
+
+Course Benchmark:
+- Strong
+
+Quiz:
+- Passed
+- High performance
+
+Assessment:
+- Passed
+
+Project:
+- Completed
+
+All filters must operate on real data.
+
+==================================================
+23. COMBINED TARGETED SEARCH
+==================================================
+
+Allow multiple filters.
+
+Example:
+
+Skill:
+C Programming
+
+Project:
+Verified C project
+
+Certificate:
+Verified C certificate
+
+Course:
+C Programming
+
+Course Progress:
+80%+
+
+Benchmark:
+Strong
+
+Aptitude:
+High
+
+Logical Reasoning:
+High
+
+Communication:
+High
+
+Institution:
+Only partnered institutions
+
+Then:
+
+NEXUS AI searches the authorized candidate pool.
+
+==================================================
+24. NEXUS AI TARGETED TALENT ANALYSIS
+==================================================
+
+NEXUS AI should rank/explain candidates using actual evidence.
+
+For each candidate explain:
+
+WHY THIS STUDENT MATCHES
+
+Example:
+
+"Strong C programming evidence comes from completed coursework,
+a verified project, and assessment performance."
+
+CERTIFICATE EVIDENCE
+
+"2 verified certificates related to C/programming."
+
+PROJECT EVIDENCE
+
+"2 verified projects using C."
+
+COURSE EVIDENCE
+
+"C Programming course completed at 94%."
+
+APTITUDE
+
+"High based on completed aptitude assessment."
+
+LOGICAL REASONING
+
+"Strong based on recorded assessment results."
+
+COMMUNICATION
+
+"Strong based on communication assessment/activity evidence."
+
+SKILL GAPS
+
+"Linux systems knowledge is not yet supported by sufficient
+evidence."
+
+Never invent explanations.
+
+==================================================
+25. COMPANY STUDENT PROFILE VIEW
+==================================================
+
+When company clicks a student:
+
+Open:
+
+"Student Talent Profile"
+
+Sections:
+
+Overview
+
+Academic Background
+
+Skills
+
+Verified Skills
+
+Projects
+
+Certificates
+
+Learning
+
+Course Progress
+
+Course Benchmarks
+
+Assessments
+
+Aptitude
+
+Logical Reasoning
+
+Communication
+
+Achievements
+
+NEXUS AI Insights
+
+Skill Gaps
+
+Relevant Opportunities
+
+Only show information authorized for Industry viewing.
+
+==================================================
+26. PROJECT VIEW FOR COMPANY
+==================================================
+
+Company can open the student's project.
+
+Show:
+
+Project title
+Description
+Student role
+Contribution
+Technologies
+Skills
+Activities
+Milestones
+Progress
+GitHub
+Live Demo
+Images
+Evidence
+Institution Verification
+Project Verification Status
+
+Company is VIEW-ONLY.
+
+Company must NOT:
+
+- edit project
+- verify project
+- delete project
+- modify student data
+
+Only view according to authorization.
+
+==================================================
+27. CERTIFICATE VIEW FOR COMPANY
+==================================================
+
+Company can view verified certificates.
+
+Open certificate in website.
+
+Supported:
+
+PDF
+PPT/PPTX
+DOC/DOCX
+PNG
+JPG/JPEG
+etc. supported safe formats.
+
+Company is VIEW-ONLY.
+
+Company cannot alter verification status.
+
+Verification is controlled by the institution.
+
+==================================================
+28. COURSE PROGRESS VIEW FOR COMPANY
+==================================================
+
+Company can view relevant course progress.
+
+Example:
+
+C Programming
+
+Progress:
+94%
+
+Lessons:
+18 / 20
+
+Quizzes:
+4 / 4
+
+Assessment:
+88%
+
+Project:
+Completed
+
+Course Benchmark:
+Strong
+
+This must come from actual learning records.
+
+==================================================
+29. STUDENT BENCHMARK PROFILE
+==================================================
+
+Add a professional capability snapshot:
+
+TECHNICAL
+
+C
+C++
+Java
+Python
+
+PROBLEM SOLVING
+
+Based on actual evidence
+
+APTITUDE
+
+Based on actual assessments
+
+LOGICAL REASONING
+
+Based on actual assessments
+
+COMMUNICATION
+
+Based on actual communication learning/assessment evidence
+
+PROJECT EXPERIENCE
+
+Based on verified projects
+
+CERTIFICATION
+
+Based on verified certificates
+
+COURSE READINESS
+
+Based on actual course progress and assessment evidence
+
+No fake/default percentages.
+
+==================================================
+30. INDUSTRY — SHORTLIST
+==================================================
+
+Allow company to:
+
+- Bookmark student
+- Shortlist student
+- Remove bookmark
+- Add internal note
+- Add student to talent pool
+
+Do not modify student data.
+
+Shortlist data belongs to the company.
+
+==================================================
+31. INDUSTRY OPPORTUNITY CONNECTION
+==================================================
+
+If company already has an opportunity:
+
+Example:
+
+C Programmer
+
+Required Skill:
+C
+
+Required:
+Problem Solving
+Aptitude
+Logical Reasoning
+Communication
+
+The company can click:
+
+"Find Matching Students"
+
+This opens:
+
+Targeted Student Search
+
+with filters automatically applied.
+
+Flow:
+
+Opportunity
+ ↓
+Required Skills
+ ↓
+Partnered Colleges
+ ↓
+Eligible Students
+ ↓
+Evidence
+ ↓
+NEXUS AI
+ ↓
+Ranked/Explained Results
+
+==================================================
+32. INSTITUTION PARTNERSHIP PAGE
+==================================================
+
+Update the existing Institution Partnership/Collaboration page.
+
+For each company partnership show:
+
+Company
+Partnership Status
+Start Date
+Supported Programs/Skills
+Opportunities
+Eligible Student Pool
+Verified Skills
+Projects
+Certificates
+Course readiness
+
+This creates the bridge:
+
+Institution
+↔
+Company
+↔
+Students
+
+==================================================
+33. COMPANY PARTNERSHIP PAGE
+==================================================
+
+Company can see:
+
+Partnered Institutions
+
+For each institution:
+
+Institution Name
+Departments
+Specializations
+Eligible student count
+Skill distribution
+Verified projects
+Verified certificates
+Course readiness
+Available talent
+
+Do NOT expose unrelated students.
+
+==================================================
+34. PARTNERSHIP-BASED TALENT POOL
+==================================================
+
+Create:
+
+"Partner Talent Pool"
+
+For every company:
+
+Talent Pool =
+Students belonging to ACTIVE partnered institutions.
+
+No partnership:
+
+Talent Pool = EMPTY
+
+Partnership accepted:
+
+Talent Pool = eligible mapped students
+
+This should be calculated dynamically.
+
+==================================================
+35. PRIVACY AND AUTHORIZATION
+==================================================
+
+VERY IMPORTANT.
+
+Company A must NOT see:
+
+- students from non-partnered colleges
+- private projects
+- private certificates
+- private documents
+- private contact details
+- unauthorized assessment details
+- unrelated student information
+
+Company can only view data allowed by:
+
+1. Active institution partnership
+2. Student visibility/consent rules
+3. Existing Industry authorization rules
+
+If permission is unavailable:
+
+hide the field or show:
+
+"Not available"
+
+==================================================
+36. DATA FLOW
+==================================================
+
+STUDENT
+
+Student
+ ↓
+Skills
+ ↓
+Learning
+ ↓
+Course Progress
+ ↓
+Quizzes
+ ↓
+Assessments
+ ↓
+Projects
+ ↓
+Project Activities
+ ↓
+Certificates
+ ↓
+Institution Verification
+ ↓
+Verified Evidence
+
+INSTITUTION
+
+Verified Student Evidence
+ ↓
+Institution Skill Intelligence
+ ↓
+Industry Partnership
+
+INDUSTRY
+
+Company
+ ↓
+Active Partnerships
+ ↓
+Partner Institutions
+ ↓
+Eligible Students
+ ↓
+Targeted Student Search
+ ↓
+NEXUS AI
+ ↓
+Skill/Project/Certificate/Course Evidence
+ ↓
+Candidate Insights
+
+==================================================
+37. REAL-TIME REQUIREMENT
+==================================================
+
+When:
+
+Student completes a course
+Student completes a quiz
+Student completes an assessment
+Student completes a project
+Institution verifies a project
+Institution verifies a certificate
+Student adds a skill
+Student completes communication practice
+
+the relevant intelligence must update from actual data.
+
+Do not require hardcoded manual updates.
+
+Use existing telemetry/event infrastructure.
+
+==================================================
+38. EXAMPLE COMPLETE FLOW
+==================================================
+
+Company:
+
+"ABC Technologies"
+
+has active partnership with:
+
+College A
+College B
+
+Company wants:
+
+"C Programming Students"
+
+Targeted Student Search:
+
+Skill = C
+
+The system searches ONLY:
+
+College A students
++
+College B students
+
+Then filters:
+
+C Skill Evidence
++
+Verified C Projects
++
+Verified Certificates
++
+C Course Progress
++
+Course Benchmark
++
+Aptitude
++
+Logical Reasoning
++
+Communication
+
+Results:
+
+Student 1
+College A
+C Skill: Strong
+Projects: 3
+Verified C Certificates: 2
+C Course: 94%
+Benchmark: Strong
+Aptitude: High
+Logical Reasoning: High
+Communication: Strong
+
+Student 2
+College B
+C Skill: Strong
+Projects: 2
+Verified C Certificates: 1
+C Course: 89%
+Benchmark: Strong
+Aptitude: High
+Logical Reasoning: Medium
+Communication: Strong
+
+Student 3
+College A
+C Skill: Developing
+Project: 1
+Certificate: 0
+Course: 65%
+Benchmark: Developing
+
+NEXUS AI explains why each student appears.
+
+==================================================
+39. IF NO DATA EXISTS
+==================================================
+
+If company has no partnerships:
+
+"No active college partnerships.
+Targeted Student Search is unavailable until a college partnership
+is established."
+
+If partnership exists but no matching students:
+
+"No students matching the selected criteria were found in your
+partnered institutions."
+
+If student has no certificate:
+
+"0 verified certificates"
+
+If no project:
+
+"No verified project evidence"
+
+If no assessment:
+
+"Not assessed"
+
+If no course:
+
+"No relevant course data"
+
+NEVER fill missing data with fake values.
+
+==================================================
+40. NEW FEATURE — TALENT REQUIREMENT BUILDER
+==================================================
+
+Add another useful feature:
+
+"Talent Requirement"
+
+Company can create a talent requirement before searching.
+
+Example:
+
+Role:
+C Programmer
+
+Required Skills:
+C
+C++
+Problem Solving
+
+Preferred:
+Git
+Linux
+
+Required Course:
+C Programming
+
+Minimum Course Progress:
+80%
+
+Preferred:
+Verified Project
+
+Assessment:
+Aptitude
+
+Communication:
+Strong
+
+Then click:
+
+"Find Matching Students"
+
+This automatically launches Targeted Student Search.
+
+==================================================
+41. NEW FEATURE — AI TALENT SHORTLIST
+==================================================
+
+Add:
+
+"NEXUS AI Shortlist"
+
+NEXUS AI takes the company's requirement and searches the
+AUTHORIZED partnered-student pool.
+
+Output:
+
+Best Matching Students
+
+For each:
+
+Match explanation
+Matching skills
+Missing skills
+Project evidence
+Certificate evidence
+Course evidence
+Assessment evidence
+Benchmark
+Readiness
+Recommended action
+
+The AI must never search outside the authorized candidate pool.
+
+==================================================
+42. COMPANY VIEW-ONLY RULE
+==================================================
+
+Company can:
+
+VIEW
+SEARCH
+FILTER
+SHORTLIST
+BOOKMARK
+COMPARE AUTHORIZED STUDENTS
+VIEW VERIFIED EVIDENCE
+VIEW COURSE PROGRESS
+VIEW BENCHMARK
+VIEW PROJECTS
+VIEW CERTIFICATES
+
+Company cannot:
+
+EDIT STUDENT PROFILE
+EDIT PROJECT
+EDIT CERTIFICATE
+VERIFY CERTIFICATE
+VERIFY PROJECT
+CHANGE COURSE PROGRESS
+CHANGE SKILLS
+CHANGE ASSESSMENTS
+
+==================================================
+43. DATABASE / RELATIONSHIP
+==================================================
+
+Use existing models where possible.
+
+Conceptual relationship:
+
+IndustryCompany
+    ↓
+Partnership
+    ↓
+Institution
+    ↓
+Student
+    ↓
+Project
+    ↓
+ProjectVerification
+
+Student
+    ↓
+Certificate
+    ↓
+CertificateVerification
+
+Student
+    ↓
+CourseEnrollment
+    ↓
+CourseProgress
+    ↓
+Quiz
+    ↓
+Assessment
+
+Student
+    ↓
+Skills
+    ↓
+SkillEvidence
+
+All connected to:
+
+NEXUS AI
+
+Do not duplicate existing entities.
+
+==================================================
+44. API
+==================================================
+
+Inspect existing APIs first.
+
+If missing, implement equivalent APIs following existing conventions:
+
+GET
+/api/institution/projects/verification
+
+POST
+/api/institution/projects/:projectId/verify
+
+POST
+/api/institution/projects/:projectId/reject
+
+POST
+/api/institution/projects/:projectId/request-correction
+
+GET
+/api/industry/targeted-students
+
+GET
+/api/industry/targeted-students/:studentId
+
+GET
+/api/industry/partnered-students
+
+GET
+/api/industry/student/:studentId/projects
+
+GET
+/api/industry/student/:studentId/certificates
+
+GET
+/api/industry/student/:studentId/learning
+
+GET
+/api/industry/student/:studentId/benchmarks
+
+POST
+/api/industry/talent-requirements
+
+GET
+/api/industry/talent-requirements/:requirementId/matches
+
+Use existing endpoints if equivalent functionality already exists.
+
+==================================================
+45. SECURITY TESTING
+==================================================
+
+Test:
+
+Company A + College A partnership
+→ sees College A eligible students.
+
+Company A + College B no partnership
+→ does NOT see College B students.
+
+Company A searches C
+→ only authorized C students from partnered colleges.
+
+Company with no partnership
+→ zero students.
+
+Institution A
+→ sees only Institution A students.
+
+Institution A
+→ cannot see Institution B projects/certificates.
+
+Student A
+→ sees only own private information.
+
+Company
+→ cannot edit student project.
+
+Company
+→ cannot modify certificate verification.
+
+==================================================
+46. COMPLETE TEST CASE
+==================================================
+
+Create:
+
+College A
+Company A
+Student A
+Student B
+
+College A ↔ Company A:
+ACCEPTED
+
+Student A:
+C skill
+C project
+verified C certificate
+C course 92%
+aptitude high
+logical reasoning high
+communication strong
+
+Student B:
+Java skill
+Java project
+Java certificate
+
+Company searches:
+
+C
+
+Expected:
+
+Student A appears.
+
+Student B does NOT appear.
+
+Then Company searches:
+
+Java
+
+Expected:
+
+Student B appears.
+
+If Company A partnership is removed:
+
+Expected:
+
+No College A students appear.
+
+==================================================
+47. FINAL UI STRUCTURE
+==================================================
+
+INDUSTRY PORTAL
+
+Dashboard
+
+Opportunities
+
+Targeted Student Search
+
+Talent Requirements
+
+Partner Institutions
+
+Talent Pool
+
+Shortlisted Students
+
+Messages
+
+Company Profile
+
+TARGETED STUDENT SEARCH:
+
+[Select Skill]
+
+[Select Technology]
+
+[Select Role]
+
+[Institution]
+
+[Course]
+
+[Course Progress]
+
+[Benchmark]
+
+[Aptitude]
+
+[Logical Reasoning]
+
+[Communication]
+
+[Verified Certificate]
+
+[Verified Project]
+
+[Search]
+
+RESULTS:
+
+Student Card
+
+Name
+Institution
+Specialization
+Skill Evidence
+Projects
+Certificates
+Course Progress
+Benchmark
+Aptitude
+Logical Reasoning
+Communication
+NEXUS AI Match
+
+[View Profile]
+[View Projects]
+[View Certificates]
+[View Learning]
+[Shortlist]
+
+==================================================
+48. FINAL NEXUS AI ECOSYSTEM
+==================================================
+
+STUDENT
+
+Learning
+Projects
+Activities
+Certificates
+Assessments
+Skills
+Goals
+
+        ↓
+
+INSTITUTION
+
+Verification
+Student Intelligence
+Skill Gaps
+Industry Partnership
+
+        ↓
+
+INDUSTRY
+
+Talent Requirements
+Targeted Student Search
+Authorized Talent Pool
+NEXUS AI Matching
+
+        ↓
+
+NEXUS AI
+
+Skills
++
+Projects
++
+Certificates
++
+Course Progress
++
+Benchmarks
++
+Assessments
++
+Aptitude
++
+Logical Reasoning
++
+Communication
++
+Industry Requirements
+
+        ↓
+
+MATCHED TALENT
++
+SKILL GAPS
++
+EXPLANATION
++
+READINESS
+
+==================================================
+49. MOST IMPORTANT BUSINESS RULE
+==================================================
+
+DO NOT CREATE A GLOBAL STUDENT DATABASE SEARCH FOR COMPANIES.
+
+The company must NEVER be able to search:
+
+"all SkillNexus students"
+
+Instead:
+
+COMPANY
+ ↓
+ACTIVE PARTNERSHIP
+ ↓
+PARTNER COLLEGES
+ ↓
+MAPPED STUDENTS
+ ↓
+AUTHORIZED DATA
+ ↓
+TARGETED SEARCH
+
+This is mandatory.
+
+==================================================
+50. FINAL VALIDATION
+==================================================
+
+After implementation:
+
+1. Test project submission.
+2. Test project verification.
+3. Test certificate verification.
+4. Test institution partnership.
+5. Test company partnership.
+6. Test partnered student visibility.
+7. Test non-partnered student exclusion.
+8. Test targeted skill search.
+9. Test C/C++/Java/Python searches.
+10. Test project filtering.
+11. Test certificate filtering.
+12. Test course filtering.
+13. Test course benchmark.
+14. Test aptitude.
+15. Test logical reasoning.
+16. Test communication.
+17. Test combined filters.
+18. Test NEXUS AI matching.
+19. Test student profile view.
+20. Test project view.
+21. Test certificate view.
+22. Test learning progress view.
+23. Test company view-only permissions.
+24. Test institution tenant isolation.
+25. Test industry tenant isolation.
+26. Test student privacy.
+27. Test no-partnership zero state.
+28. Test no-matching-students zero state.
+29. Test real-time updates.
+30. Test telemetry.
+31. Test existing dashboards.
+32. Test existing Learning.
+33. Test existing Certificates.
+34. Test existing Skills.
+35. Test existing Projects.
+36. Test existing NEXUS AI.
+37. Test frontend production build.
+38. Test backend startup.
+
+Finally generate an implementation report containing:
+
+- Files changed
+- Components added
+- APIs added
+- Database changes
+- Project verification flow
+- Certificate verification flow
+- Partnership authorization flow
+- Targeted Student Search
+- Course benchmark logic
+- NEXUS AI matching
+- Security/tenant isolation
+- Privacy rules
+- Test results
+- Build result
+- Backend result
+- Remaining issues
+
+CORE PRINCIPLE:
+
+STUDENT CREATES EVIDENCE
+        ↓
+COLLEGE VERIFIES EVIDENCE
+        ↓
+INSTITUTION BUILDS TRUSTED STUDENT INTELLIGENCE
+        ↓
+COLLEGE PARTNERS WITH COMPANY
+        ↓
+COMPANY GETS AUTHORIZED TALENT POOL
+        ↓
+COMPANY DEFINES TALENT REQUIREMENT
+        ↓
+TARGETED STUDENT SEARCH
+        ↓
+NEXUS AI
+        ↓
+SKILLS + PROJECTS + CERTIFICATES + COURSE PROGRESS
++ BENCHMARK + APTITUDE + LOGICAL REASONING + COMMUNICATION
+        ↓
+EXPLAINABLE TALENT MATCH
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-09T19:25:04+05:30.
+
+The user's current state is as follows:
+Active Document: d:\SIH V2\backend\src\db\relationalManager.js (LANGUAGE_JAVASCRIPT)
+Cursor is on line: 1
+Other open documents:
+- d:\SIH V2\backend\src\db\relationalManager.js (LANGUAGE_JAVASCRIPT)
+</ADDITIONAL_METADATA>

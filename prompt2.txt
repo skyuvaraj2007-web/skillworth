@@ -1,0 +1,1629 @@
+<USER_REQUEST>
+MASTER PROMPT — SKILLNEXUS AI
+STUDENT PROJECT PORTFOLIO + PROJECT ACTIVITY + EVIDENCE + AI SKILL INTELLIGENCE
+LINKEDIN-STYLE PROFESSIONAL PROJECT EXPERIENCE
+
+IMPORTANT:
+Do NOT rebuild the existing application.
+Do NOT remove existing functionality.
+Do NOT break authentication, OTP, registration, Student→Institution mapping,
+Institution↔Industry collaboration, Learning, Courses, Quizzes, Assessments,
+Certificates, Verified Skills, Skill Intelligence, NEXUS AI, notifications,
+navigation, database relationships, APIs, or existing dark mode.
+
+FIRST INSPECT THE EXISTING PROJECT.
+
+Analyze:
+- Student Project page
+- Student Profile
+- Student Learning page
+- Verified Skills / Skill Intelligence
+- Self-Assessed Skills
+- Certificates
+- Course/learning models
+- Quiz/assessment models
+- Existing activity telemetry
+- Existing NEXUS AI services
+- Existing file upload/storage infrastructure
+- Existing student APIs
+- Existing database schema
+- Existing Institution and Industry connections
+
+Reuse existing architecture wherever possible.
+Only add missing functionality.
+
+==================================================
+1. STUDENT PROJECT PAGE — MAJOR UPGRADE
+==================================================
+
+Upgrade the existing Student "Projects" page into:
+
+"MY PROJECTS"
+
+The page should work like a professional portfolio/project showcase,
+similar in concept to LinkedIn's professional profile experience,
+but specifically designed around SkillNexus skill intelligence.
+
+Students should be able to:
+
+- Add project
+- Edit project
+- Delete project
+- Save draft
+- Publish project
+- Unpublish project
+- View project
+- Upload project evidence
+- Add GitHub link
+- Add live/demo link
+- Add additional project links
+- Upload project images
+- Add technologies
+- Add skills
+- Add project activities
+- Add their contribution
+- Add project outcomes
+- Add project challenges
+- Add project achievements
+- Add project team information
+- Add project duration
+- Add project role
+- Add project status
+
+==================================================
+2. PROJECT CREATION FORM
+==================================================
+
+Create:
+
+"Add Project"
+
+Fields:
+
+BASIC INFORMATION
+
+- Project Title
+- Short Description
+- Detailed Description
+- Project Category
+- Project Type
+- Project Status
+- Start Date
+- End Date
+- Currently Ongoing
+
+PROJECT ROLE
+
+- Student Role
+- Individual / Team Project
+- Team Size
+- Student Contribution
+
+Example:
+
+Role:
+Full Stack Developer
+
+Contribution:
+Designed the frontend, implemented REST APIs,
+integrated PostgreSQL and built authentication.
+
+==================================================
+3. PROJECT DESCRIPTION
+==================================================
+
+Allow a detailed project description.
+
+Sections:
+
+Problem Statement
+
+What problem does this project solve?
+
+Solution
+
+How did the student solve the problem?
+
+Objective
+
+What was the goal?
+
+Implementation
+
+How was the project developed?
+
+Outcome
+
+What was achieved?
+
+Challenges
+
+What technical or implementation challenges were faced?
+
+Solution to Challenges
+
+How were those challenges solved?
+
+Future Improvements
+
+What could be improved in the future?
+
+Do not use placeholder/fake content.
+
+If no information is entered, show an empty state.
+
+==================================================
+4. PROJECT TECHNOLOGIES
+==================================================
+
+Add:
+
+"Technologies Used"
+
+Students can select/add technologies.
+
+Examples:
+
+Programming Languages:
+- Python
+- Java
+- JavaScript
+- C++
+- C
+- TypeScript
+
+Frontend:
+- React
+- HTML
+- CSS
+- Tailwind
+
+Backend:
+- Node.js
+- Express
+- Django
+- Spring Boot
+
+Database:
+- PostgreSQL
+- MySQL
+- MongoDB
+
+AI/ML:
+- TensorFlow
+- PyTorch
+- Scikit-learn
+
+Cloud:
+- AWS
+- Azure
+- GCP
+
+Tools:
+- Git
+- GitHub
+- Docker
+- Postman
+
+IMPORTANT:
+
+Do not hardcode only the above technologies.
+
+Use the existing Skill/Technology taxonomy if available.
+
+Allow:
+"Add Technology"
+
+Prevent duplicate technology entries.
+
+==================================================
+5. PROJECT SKILLS
+==================================================
+
+Add:
+
+"Skills Demonstrated"
+
+Students can associate skills with the project.
+
+Example:
+
+Project:
+AI Recruitment Platform
+
+Skills:
+- Python
+- Machine Learning
+- React
+- Node.js
+- PostgreSQL
+- REST API
+- Problem Solving
+- Teamwork
+
+These skills must connect to the existing Skill Intelligence system.
+
+Do NOT create duplicate skills.
+
+==================================================
+6. PROJECT LINKS
+==================================================
+
+Add a dedicated:
+
+"Project Links"
+
+Students can add:
+
+- GitHub Repository
+- Live Demo
+- Project Website
+- Documentation
+- Demo Video
+- Figma
+- Deployment URL
+- Portfolio URL
+- Other Project Link
+
+Allow multiple links.
+
+Each link should contain:
+
+- Link type
+- Title
+- URL
+- Description
+
+Example:
+
+GitHub:
+Project Source Code
+
+Live Demo:
+Working Application
+
+Documentation:
+Technical Documentation
+
+Validate URLs.
+
+Use safe external-link handling.
+
+==================================================
+7. PROJECT IMAGES
+==================================================
+
+Add:
+
+"Project Gallery"
+
+Student can upload project images/screenshots.
+
+Examples:
+
+- Application dashboard
+- UI screenshots
+- Architecture diagram
+- Output screenshots
+- Hardware setup
+- Prototype
+- Project presentation
+- Result screenshots
+
+Allow multiple images.
+
+Features:
+
+- Upload
+- Preview
+- Delete
+- Set Cover Image
+- Reorder images if supported by existing architecture
+
+Validate:
+
+- image type
+- file size
+- upload ownership
+
+Do not allow unsafe file types.
+
+==================================================
+8. PROJECT DOCUMENTS / EVIDENCE
+==================================================
+
+Add:
+
+"Project Evidence"
+
+Allow supported project evidence such as:
+
+- PDF
+- PPT
+- PPTX
+- DOC
+- DOCX
+- PNG
+- JPG
+- JPEG
+
+Examples:
+
+- Project report
+- Presentation
+- Research document
+- Architecture document
+- Testing report
+- Certificate related to project
+- Design document
+
+The student should be able to:
+
+Upload
+View
+Open
+Delete
+
+Use the existing secure file infrastructure.
+
+Do not expose files publicly without authorization.
+
+==================================================
+9. PROJECT ACTIVITIES
+==================================================
+
+THIS IS A MAJOR NEW FEATURE.
+
+Inside every project add:
+
+"PROJECT ACTIVITIES"
+
+Students can record actual activities performed during the project.
+
+Examples:
+
+- Requirement Analysis
+- Research
+- UI/UX Design
+- Database Design
+- Frontend Development
+- Backend Development
+- API Development
+- AI Model Development
+- Testing
+- Debugging
+- Deployment
+- Documentation
+- Presentation
+- Team Collaboration
+- Problem Solving
+
+Each activity should contain:
+
+- Activity title
+- Description
+- Activity category
+- Start date
+- End date
+- Status
+- Technologies used
+- Skills demonstrated
+- Evidence/link if available
+
+Statuses:
+
+- PLANNED
+- IN PROGRESS
+- COMPLETED
+
+IMPORTANT:
+
+Activity progress must come from actual student actions.
+
+Do NOT automatically mark activities completed.
+
+==================================================
+10. PROJECT ACTIVITY TIMELINE
+==================================================
+
+Add:
+
+"Project Timeline"
+
+Display activities chronologically.
+
+Example:
+
+March 2
+Requirement Analysis
+Completed
+
+March 5
+Database Design
+Completed
+
+March 9
+Frontend Development
+Completed
+
+March 15
+API Development
+In Progress
+
+March 20
+Testing
+Planned
+
+This creates real project activity telemetry.
+
+==================================================
+11. PROJECT PROGRESS
+==================================================
+
+Add:
+
+"Project Progress"
+
+Calculate from actual project activities.
+
+Example:
+
+Project Activities:
+8 total
+
+Completed:
+5
+
+In Progress:
+2
+
+Planned:
+1
+
+Progress should be calculated from actual activity records.
+
+Do NOT use a manually typed percentage as the primary source.
+
+If there are no activities:
+
+Progress = 0%
+
+==================================================
+12. PROJECT IMPACT
+==================================================
+
+Add:
+
+"Project Impact"
+
+Fields:
+
+- Users/target audience
+- Problem solved
+- Outcome
+- Performance improvement
+- Accuracy improvement
+- Efficiency improvement
+- Revenue/business impact if applicable
+- Social impact if applicable
+- Learning outcome
+
+Do not force students to provide numerical impact if it does not
+apply.
+
+Allow:
+
+"Not applicable"
+
+==================================================
+13. PROJECT ACHIEVEMENTS
+==================================================
+
+Add:
+
+"Achievements"
+
+Examples:
+
+- Hackathon participation
+- Hackathon finalist
+- Competition winner
+- Research publication
+- College showcase
+- Industry showcase
+- Open-source contribution
+- Project award
+
+Fields:
+
+- Achievement title
+- Organization
+- Date
+- Description
+- Evidence
+
+Never create fake achievements.
+
+==================================================
+14. TEAM COLLABORATION
+==================================================
+
+For team projects:
+
+Add:
+
+"Team Members"
+
+Student can record:
+
+- Team member name
+- Role
+- Contribution
+
+If the other student exists in SkillNexus:
+
+prefer linking to the existing student profile rather than creating
+duplicate people.
+
+Do not expose private student information.
+
+==================================================
+15. PROJECT STATUS
+==================================================
+
+Project statuses:
+
+DRAFT
+ONGOING
+COMPLETED
+ARCHIVED
+
+Student controls publication.
+
+Draft projects are visible only to the student.
+
+Published projects can appear on the student's professional profile
+according to the existing visibility/privacy model.
+
+==================================================
+16. PROJECT PUBLIC/PROFILE VIEW
+==================================================
+
+Create a professional project showcase page.
+
+Layout:
+
+PROJECT COVER
+
+Project Title
+Short Description
+
+Student Name
+Role
+Project Status
+
+[GitHub]
+[Live Demo]
+[Documentation]
+
+--------------------------------
+
+ABOUT PROJECT
+
+Problem
+Solution
+Objective
+Implementation
+Outcome
+
+--------------------------------
+
+TECHNOLOGIES
+
+Technology chips
+
+--------------------------------
+
+SKILLS DEMONSTRATED
+
+Skill chips
+
+--------------------------------
+
+MY CONTRIBUTION
+
+Student contribution
+
+--------------------------------
+
+PROJECT ACTIVITIES
+
+Timeline
+
+--------------------------------
+
+PROJECT GALLERY
+
+Images/screenshots
+
+--------------------------------
+
+PROJECT EVIDENCE
+
+Documents
+
+--------------------------------
+
+ACHIEVEMENTS
+
+Achievements
+
+--------------------------------
+
+TEAM
+
+Team members
+
+--------------------------------
+
+AI PROJECT INSIGHTS
+
+NEXUS AI analysis
+
+==================================================
+17. PROJECT → SKILL INTELLIGENCE
+==================================================
+
+Every project should be connected to Skill Intelligence.
+
+Flow:
+
+Project
+ ↓
+Technologies
+ ↓
+Skills Demonstrated
+ ↓
+Project Activities
+ ↓
+Evidence
+ ↓
+Activity Telemetry
+ ↓
+Skill Evidence
+ ↓
+Verified Skill Intelligence
+ ↓
+NEXUS AI
+
+IMPORTANT:
+
+Adding a skill manually does NOT automatically mean the skill is
+verified.
+
+The system should distinguish:
+
+Student Declared Skill
+Project Evidence
+Activity Evidence
+Verified Skill
+
+==================================================
+18. PROJECT SKILL EVIDENCE
+==================================================
+
+Example:
+
+Project:
+E-Commerce Application
+
+Student declared:
+
+React
+Node.js
+PostgreSQL
+
+Actual evidence:
+
+✓ GitHub repository
+✓ React frontend activity
+✓ Node.js backend activity
+✓ PostgreSQL database activity
+✓ API implementation
+✓ Testing activity
+
+NEXUS AI can determine:
+
+React:
+Strong project evidence
+
+Node.js:
+Strong project evidence
+
+PostgreSQL:
+Moderate project evidence
+
+This evidence can contribute to the student's Skill Intelligence.
+
+Do NOT assign arbitrary fixed percentages.
+
+==================================================
+19. NEXUS AI PROJECT ANALYSIS
+==================================================
+
+Add:
+
+"AI Project Insights"
+
+NEXUS AI should analyze actual project information:
+
+- Description
+- Technologies
+- Skills
+- Activities
+- GitHub/project links
+- Evidence
+- Outcomes
+- Assessments
+- Course progress
+- Certificates
+- Existing verified skills
+
+Then provide:
+
+PROJECT STRENGTHS
+
+TECHNICAL SKILLS DEMONSTRATED
+
+PROBLEM-SOLVING EVIDENCE
+
+TECHNOLOGY EXPERIENCE
+
+MISSING EVIDENCE
+
+POSSIBLE SKILL GAPS
+
+RECOMMENDED NEXT SKILLS
+
+RECOMMENDED PROJECT IMPROVEMENTS
+
+RECOMMENDED NEXT PROJECT
+
+==================================================
+20. GITHUB / EXTERNAL PROJECT LINK ANALYSIS
+==================================================
+
+If existing project architecture supports external-link analysis,
+NEXUS AI may use publicly accessible project information.
+
+Do not require external access if unavailable.
+
+If the link cannot be analyzed:
+
+show:
+
+"External project analysis unavailable."
+
+Do not invent repository details.
+
+Do not pretend to have inspected a repository when it was not
+actually accessible.
+
+==================================================
+21. PROJECT → SKILL GAP
+==================================================
+
+Use project evidence in the existing AI Skill Gap system.
+
+Example:
+
+Career Goal:
+AI Engineer
+
+Student projects show:
+
+✓ Python
+✓ React
+✓ REST API
+
+Industry requirements show:
+
+Python
+Machine Learning
+Deep Learning
+TensorFlow
+Data Processing
+Model Deployment
+
+NEXUS AI:
+
+Existing Evidence:
+Python
+
+Partial:
+Data Processing
+
+Missing:
+Machine Learning
+Deep Learning
+TensorFlow
+Model Deployment
+
+Recommended:
+
+1. Complete Machine Learning course
+2. Build an ML project
+3. Add model evaluation
+4. Deploy the model
+
+Recommendations must be based on actual data.
+
+==================================================
+22. PROJECT ACTIVITY → LEARNING INTELLIGENCE
+==================================================
+
+Project activities should contribute to the student's overall
+Learning Intelligence.
+
+For example:
+
+Completed API Development activity
+→ API development evidence
+
+Completed testing activity
+→ Testing evidence
+
+Completed database design
+→ Database design evidence
+
+Completed team collaboration
+→ Collaboration evidence
+
+Do not convert every activity into a fixed skill percentage.
+
+Evidence should accumulate according to the existing
+Skill Intelligence architecture.
+
+==================================================
+23. PROJECT DASHBOARD
+==================================================
+
+Add a top-level Project Dashboard.
+
+Show REAL metrics:
+
+Total Projects
+Ongoing Projects
+Completed Projects
+Published Projects
+Project Activities
+Technologies Used
+Skills Demonstrated
+Evidence Items
+
+Example:
+
+Projects: 4
+Ongoing: 1
+Completed: 3
+Activities: 27
+Technologies: 14
+Skills: 11
+
+For a new student:
+
+All values = 0.
+
+==================================================
+24. NEW FEATURE — PROFESSIONAL ACTIVITY FEED
+==================================================
+
+Add a new page:
+
+"ACTIVITY"
+
+This should be a SkillNexus professional activity feed inspired by
+LinkedIn, but focused on learning and technical growth.
+
+Students can see their own:
+
+- Course completion
+- Quiz completion
+- Assessment achievement
+- Project updates
+- Project activity
+- Certificate submission
+- Certificate verification
+- Skill updates
+- Learning milestones
+- Goals completed
+
+Example:
+
+"Completed React Fundamentals"
+
+"Added a new project: AI Recruitment Platform"
+
+"Completed API Development activity"
+
+"Added Python certificate"
+
+"Python certificate verified by institution"
+
+IMPORTANT:
+
+The feed must be generated from actual system events.
+
+No fake activity.
+
+==================================================
+25. NEW FEATURE — PROJECT MILESTONES
+==================================================
+
+Add:
+
+"Project Milestones"
+
+Students can create milestones:
+
+Example:
+
+Milestone 1:
+Requirement Analysis
+
+Milestone 2:
+UI Development
+
+Milestone 3:
+Backend API
+
+Milestone 4:
+Database Integration
+
+Milestone 5:
+Testing
+
+Milestone 6:
+Deployment
+
+Each milestone:
+
+- title
+- description
+- due date
+- status
+- evidence
+- completion date
+
+This should connect with Project Activities.
+
+==================================================
+26. NEW FEATURE — PROJECT PORTFOLIO SCORE
+==================================================
+
+Do NOT create a meaningless arbitrary score.
+
+Instead create:
+
+"Project Portfolio Strength"
+
+based on available evidence:
+
+- Project completeness
+- Technical detail
+- Activities
+- Evidence
+- Links
+- Technologies
+- Demonstrated skills
+- Outcomes
+
+If there is insufficient data:
+
+show:
+
+"Not enough project evidence to calculate portfolio strength."
+
+Do NOT show a fake percentage.
+
+==================================================
+27. NEW FEATURE — PROJECT RECOMMENDATIONS
+==================================================
+
+NEXUS AI should recommend future projects based on:
+
+- Current skills
+- Skill gaps
+- Career goals
+- Academic background
+- Existing projects
+- Industry opportunities
+- Industry-required technologies
+
+Example:
+
+Current:
+Frontend experience
+
+Gap:
+Backend
+
+Recommendation:
+
+"Build a REST API-based backend project using Node.js and PostgreSQL."
+
+The recommendation should explain WHY.
+
+==================================================
+28. INDUSTRY CONNECTION
+==================================================
+
+If the existing Industry portal has candidate/project visibility:
+
+allow authorized industry users to see published project information
+according to the existing privacy and authorization rules.
+
+Industry can view:
+
+- Project title
+- Description
+- Technologies
+- Skills
+- Role
+- Contribution
+- Activities
+- Outcomes
+- GitHub/demo links
+- Evidence that the student has chosen to make visible
+
+Do NOT expose private information.
+
+Do NOT allow unauthorized industry access.
+
+==================================================
+29. INSTITUTION CONNECTION
+==================================================
+
+Institution management can view project intelligence for students
+mapped to their institution, according to existing permissions.
+
+Institution can see:
+
+- Projects
+- Technologies
+- Skills demonstrated
+- Project activities
+- Project progress
+- Evidence
+- Project achievements
+
+Use real student data.
+
+No fake analytics.
+
+==================================================
+30. PRIVACY
+==================================================
+
+Add project visibility:
+
+PRIVATE
+INSTITUTION_ONLY
+PUBLIC_PROFILE
+INDUSTRY_VISIBLE
+
+Respect the student's selected visibility.
+
+Do not expose:
+
+- private projects
+- private documents
+- private links
+- private student information
+
+==================================================
+31. DATABASE
+==================================================
+
+Inspect existing project schema first.
+
+If missing, introduce appropriate structures such as:
+
+Project
+ProjectTechnology
+ProjectSkill
+ProjectLink
+ProjectImage
+ProjectEvidence
+ProjectActivity
+ProjectMilestone
+ProjectAchievement
+ProjectTeamMember
+
+Use existing naming conventions.
+
+Relationships:
+
+Student
+ ↓
+Projects
+ ↓
+Activities
+ ↓
+Evidence
+ ↓
+Skills
+ ↓
+Skill Intelligence
+
+Avoid duplicate models.
+
+==================================================
+32. API
+==================================================
+
+Reuse existing project APIs.
+
+If missing, create appropriate endpoints such as:
+
+POST /api/projects
+
+GET /api/projects/my
+
+GET /api/projects/:projectId
+
+PUT /api/projects/:projectId
+
+DELETE /api/projects/:projectId
+
+POST /api/projects/:projectId/publish
+
+POST /api/projects/:projectId/activities
+
+GET /api/projects/:projectId/activities
+
+PUT /api/projects/:projectId/activities/:activityId
+
+DELETE /api/projects/:projectId/activities/:activityId
+
+POST /api/projects/:projectId/milestones
+
+POST /api/projects/:projectId/links
+
+POST /api/projects/:projectId/images
+
+POST /api/projects/:projectId/evidence
+
+GET /api/projects/:projectId/ai-insights
+
+GET /api/projects/:projectId/skill-evidence
+
+Use existing API conventions instead if they already exist.
+
+==================================================
+33. ACTIVITY TELEMETRY
+==================================================
+
+Record real project activity events:
+
+PROJECT_CREATED
+PROJECT_UPDATED
+PROJECT_PUBLISHED
+PROJECT_ACTIVITY_CREATED
+PROJECT_ACTIVITY_COMPLETED
+PROJECT_MILESTONE_COMPLETED
+PROJECT_LINK_ADDED
+PROJECT_IMAGE_ADDED
+PROJECT_EVIDENCE_ADDED
+PROJECT_COMPLETED
+
+Telemetry:
+
+studentId
+projectId
+activityType
+timestamp
+metadata
+
+Use the existing telemetry infrastructure.
+
+Do not create fake events.
+
+==================================================
+34. LINKEDIN-STYLE PROFESSIONAL PROFILE
+==================================================
+
+Upgrade the Student Profile to include:
+
+ABOUT
+
+SKILLS
+
+LEARNING
+
+PROJECTS
+
+CERTIFICATES
+
+ASSESSMENTS
+
+ACHIEVEMENTS
+
+ACTIVITY
+
+GOALS
+
+EDUCATION
+
+TECHNOLOGIES
+
+PROJECT PORTFOLIO
+
+AI SKILL INTELLIGENCE
+
+The design can be inspired by professional networking platforms,
+but MUST remain an original SkillNexus interface.
+
+Do not copy another platform's exact UI.
+
+==================================================
+35. STUDENT PROFILE PROJECT CARD
+==================================================
+
+Each project card should show:
+
+Project image
+Project title
+Short description
+Role
+Technologies
+Skills
+Status
+Project progress
+Key outcome
+
+Actions:
+
+View Project
+Edit
+Share/Profile Visibility
+
+==================================================
+36. SHARE PROJECT
+==================================================
+
+Add:
+
+"Share Project"
+
+The student can share a project through a SkillNexus profile/project
+URL when the project is PUBLIC_PROFILE.
+
+If the project is private:
+
+do not expose the project publicly.
+
+Use secure project IDs/authorization.
+
+==================================================
+37. SEARCH/DISCOVERY
+==================================================
+
+If the existing platform has search functionality,
+allow searchable published projects by:
+
+- Technology
+- Skill
+- Project category
+- Role
+- Industry relevance
+
+Only show projects according to visibility permissions.
+
+==================================================
+38. REAL-TIME DATA RULE
+==================================================
+
+Everything must follow:
+
+AUTHENTICATED USER
+        ↓
+DATABASE
+        ↓
+EXISTING APIs
+        ↓
+EXISTING TELEMETRY
+        ↓
+SKILL INTELLIGENCE
+        ↓
+NEXUS AI
+
+Never use:
+
+- fake projects
+- random progress
+- hardcoded activities
+- fake GitHub links
+- fake technologies
+- fake skills
+- fake project statistics
+- fake AI insights
+
+New student with no projects:
+
+Projects = 0
+Activities = 0
+Evidence = 0
+Project skill evidence = 0
+
+==================================================
+39. SECURITY
+==================================================
+
+Students can modify only their own projects.
+
+Institution can access only mapped students.
+
+Industry can access only authorized/public project information.
+
+Validate ownership on every API request.
+
+Secure file uploads.
+
+Validate URLs.
+
+Prevent path traversal.
+
+Prevent unauthorized file access.
+
+Never expose passwords, hashes, OTPs or secrets.
+
+==================================================
+40. TESTING
+==================================================
+
+Test:
+
+1. Create project.
+2. Save project draft.
+3. Edit project.
+4. Publish project.
+5. Add technologies.
+6. Add skills.
+7. Add GitHub link.
+8. Add live demo link.
+9. Add multiple links.
+10. Upload project image.
+11. Set cover image.
+12. Upload project document.
+13. Open project evidence.
+14. Create project activity.
+15. Complete project activity.
+16. Create milestone.
+17. Complete milestone.
+18. Verify project progress.
+19. Verify activity telemetry.
+20. Verify project skill evidence.
+21. Verify Skill Intelligence update.
+22. Verify NEXUS AI analysis.
+23. Verify skill gap calculation.
+24. Verify project recommendation.
+25. Verify profile project card.
+26. Verify public/private visibility.
+27. Verify Institution access.
+28. Verify Industry access.
+29. Verify tenant isolation.
+30. Verify unauthorized project access is blocked.
+31. Verify new student zero state.
+32. Verify no fake data.
+33. Verify existing Learning page.
+34. Verify Certificates.
+35. Verify Verified Skills.
+36. Verify Student Dashboard.
+37. Verify Institution Dashboard.
+38. Verify Industry Dashboard.
+39. Verify frontend production build.
+40. Verify backend startup.
+
+==================================================
+41. FINAL USER EXPERIENCE
+==================================================
+
+Student opens:
+
+PROJECTS
+
+Dashboard:
+
+[Total Projects]
+[Ongoing]
+[Completed]
+[Activities]
+[Technologies]
+[Skills]
+
+Then:
+
++ ADD PROJECT
+
+Project card:
+
+[Cover Image]
+
+AI Recruitment Platform
+
+Full Stack Developer
+
+React • Node.js • PostgreSQL • Python
+
+Skills:
+React
+Node.js
+REST API
+Problem Solving
+
+Progress:
+75%
+
+Activities:
+12
+
+Evidence:
+5
+
+[View Project]
+
+==================================================
+42. PROJECT DETAIL EXPERIENCE
+==================================================
+
+When student opens:
+
+PROJECT DETAIL
+
+Cover Image
+
+AI Recruitment Platform
+
+Full Stack Developer
+
+Ongoing
+
+[GitHub]
+[Live Demo]
+[Documentation]
+
+ABOUT
+
+Problem
+Solution
+Implementation
+Outcome
+
+TECHNOLOGIES
+
+SKILLS
+
+MY CONTRIBUTION
+
+PROJECT ACTIVITIES
+
+PROJECT MILESTONES
+
+PROJECT GALLERY
+
+PROJECT EVIDENCE
+
+ACHIEVEMENTS
+
+TEAM
+
+AI PROJECT INSIGHTS
+
+SKILL EVIDENCE
+
+SKILL GAPS
+
+NEXT BEST ACTION
+
+==================================================
+43. CORE SKILLNEXUS CONNECTION
+==================================================
+
+Project information must connect with:
+
+STUDENT
+ ↓
+PROJECT
+ ↓
+TECHNOLOGIES
+ ↓
+ACTIVITIES
+ ↓
+EVIDENCE
+ ↓
+SKILLS
+ ↓
+LEARNING
+ ↓
+ASSESSMENTS
+ ↓
+CERTIFICATES
+ ↓
+VERIFIED SKILL INTELLIGENCE
+ ↓
+CAREER GOALS
+ ↓
+INDUSTRY REQUIREMENTS
+ ↓
+NEXUS AI
+ ↓
+SKILL GAP
+ ↓
+NEXT BEST ACTION
+
+This must become one connected ecosystem.
+
+==================================================
+44. FINAL VALIDATION REPORT
+==================================================
+
+After implementation provide:
+
+1. Existing architecture inspected
+2. Existing functionality preserved
+3. New pages created
+4. New components created
+5. Database changes
+6. API changes
+7. File upload changes
+8. Project activity telemetry
+9. Skill Intelligence integration
+10. NEXUS AI integration
+11. Industry integration
+12. Institution integration
+13. Privacy implementation
+14. Security implementation
+15. Test results
+16. Build result
+17. Backend result
+18. Any remaining issues
+
+MOST IMPORTANT RULE:
+
+DO NOT MAKE THIS A STATIC PROJECT FORM.
+
+MAKE IT A REAL PROJECT EVIDENCE SYSTEM.
+
+The student should be able to SHOW:
+
+WHAT I BUILT
+WHAT I USED
+WHAT I DID
+WHAT I CONTRIBUTED
+WHAT I LEARNED
+WHAT I DEMONSTRATED
+WHAT EVIDENCE I HAVE
+WHAT SKILLS I HAVE
+WHAT SKILLS I AM MISSING
+WHAT I SHOULD LEARN NEXT
+
+That information must continuously feed:
+
+SKILLNEXUS AI
++
+VERIFIED SKILL INTELLIGENCE
++
+AI SKILL GAP
++
+CAREER RECOMMENDATIONS.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-09T19:24:19+05:30.
+
+The user's current state is as follows:
+Active Document: d:\SIH V2\backend\src\db\relationalManager.js (LANGUAGE_JAVASCRIPT)
+Cursor is on line: 1
+Other open documents:
+- d:\SIH V2\backend\src\db\relationalManager.js (LANGUAGE_JAVASCRIPT)
+</ADDITIONAL_METADATA>

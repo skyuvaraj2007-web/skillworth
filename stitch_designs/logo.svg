@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" fill="none">
+  <!-- Symbol: Checkmark + Stepped Skill Horizon + Arch of Recognition -->
+  <g transform="translate(8, 8)">
+    <!-- Base Shield/Seal Arc -->
+    <path d="M 6 12 C 6 28 22 40 22 40 C 22 40 38 28 38 12 L 22 4 Z" stroke="#17212B" stroke-width="2.5" fill="#F7F5EF" stroke-linejoin="round"/>
+    <!-- Deep Teal stepped path representing experience stages -->
+    <path d="M 12 24 L 18 24 L 18 18 L 26 18 L 26 12 L 32 12" stroke="#176B68" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Warm Gold Recognition Star/Check mark vertex -->
+    <circle cx="22" cy="27" r="3" fill="#D7A84B" />
+    <path d="M 16 27 L 20 31 L 28 21" stroke="#32745B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="60" y="34" font-family="'Manrope', 'Inter', -apple-system, sans-serif" font-weight="800" font-size="22" fill="#17212B" letter-spacing="-0.03em">Skill<tspan fill="#176B68">Worth</tspan></text>
+  <text x="60" y="46" font-family="'Inter', -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#65727A" letter-spacing="0.16em">RECOGNITION OF PRIOR LEARNING</text>
+</svg>

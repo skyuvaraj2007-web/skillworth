@@ -1,0 +1,229 @@
+/* SKILLNEXUS AI — SIH DEMO LOGIN SECTION STYLES */
+
+.sih-demo-section-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 32px auto 24px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.sih-demo-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.sih-demo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #818cf8;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.sih-demo-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+}
+
+.sih-demo-subtitle {
+  font-size: 13.5px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Responsive Grid: 4 Desktop, 2 Tablet, 1 Mobile — No horizontal scrolling */
+.sih-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .sih-demo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sih-demo-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.sih-demo-card {
+  background: #111A2E;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sih-demo-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
+}
+
+.sih-demo-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.sih-demo-role-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sih-demo-pill-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sih-demo-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sih-demo-role-name {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-mono, monospace);
+  margin-bottom: 2px;
+}
+
+.sih-demo-user-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sih-demo-credential-box {
+  background: #0B1220;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sih-demo-credential-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.sih-demo-cred-label {
+  font-size: 9.5px;
+  color: #64748b;
+  text-transform: uppercase;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.sih-demo-cred-val {
+  font-size: 12px;
+  color: #cbd5e1;
+  font-family: var(--font-mono, monospace);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.sih-demo-copy-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 4px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.sih-demo-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+}
+
+.sih-demo-copy-btn.copied {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+
+.sih-demo-action-btn {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all 0.2s ease;
+  color: #070b14;
+}
+
+.sih-demo-action-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.sih-demo-action-btn:active {
+  transform: translateY(0);
+}

@@ -1,0 +1,1401 @@
+<USER_REQUEST>
+MASTER PROMPT — SKILLNEXUS AI
+CERTIFICATE SUBMISSION → INSTITUTION VERIFICATION → VERIFIED SKILLS → AI SKILL GAP INTELLIGENCE
+
+IMPORTANT:
+Do NOT rebuild the application from scratch.
+Do NOT remove or break any existing functionality.
+Do NOT change the existing authentication, OTP, registration, Student→Institution mapping, Institution↔Industry collaboration, learning system, skill system, NEXUS AI, navigation, database relationships, APIs, or dark mode.
+
+FIRST:
+1. Inspect the entire existing frontend and backend.
+2. Identify the existing:
+   - Student Verified Skills / Skill Intelligence page
+   - Student Learning page
+   - Student Profile
+   - Institution dashboard/profile
+   - Existing certificate-related models/APIs if any
+   - Existing skills and proficiency models
+   - Existing course/quiz/project/assessment data
+   - Existing NEXUS AI / matching / telemetry services
+   - Existing file upload infrastructure
+   - Existing database schema
+3. Reuse existing architecture and APIs wherever possible.
+4. Only add missing models, routes, services, components and pages.
+5. Maintain existing UI/navigation and improve only where required.
+
+==================================================
+1. STUDENT — VERIFIED SKILLS PAGE
+==================================================
+
+Inside the existing Student "Verified Skills / Skill Intelligence" area,
+add a new section/page:
+
+"CERTIFICATES"
+
+The student must be able to submit certificates that provide evidence
+for their skills, courses, projects, competitions, assessments,
+internships, training, workshops, etc.
+
+Add:
+
+- Upload Certificate
+- My Certificates
+- Certificate Details
+- Certificate Status
+- Verification Status
+- Related Skills
+- Skill Evidence
+- AI Skill Gap Analysis
+
+--------------------------------------------------
+2. STUDENT CERTIFICATE UPLOAD
+--------------------------------------------------
+
+Create an "Upload Certificate" option.
+
+Supported formats:
+
+- PDF
+- PPT
+- PPTX
+- DOC
+- DOCX
+- PNG
+- JPG
+- JPEG
+- WEBP
+- and other safe document/image formats already supported by the
+  existing application infrastructure.
+
+Do NOT blindly allow dangerous executable file types.
+
+Upload form should contain:
+
+Required:
+- Certificate title
+- Certificate/document file
+
+Optional:
+- Issuing organization
+- Certificate ID
+- Issue date
+- Expiry date
+- Description
+- Category
+- Related skill(s)
+- Course/program name
+- Project name
+- Credential URL if available
+
+The student must be able to select related skills from the
+existing Skill Intelligence/Skills database.
+
+If the student does not manually select skills,
+NEXUS AI may analyze the uploaded certificate and suggest relevant
+skills.
+
+IMPORTANT:
+Never automatically mark a certificate as verified merely because
+the student uploaded it.
+
+Initial status:
+
+SUBMITTED / PENDING VERIFICATION
+
+==================================================
+3. STUDENT CERTIFICATE LIST
+==================================================
+
+Create:
+
+"My Certificates"
+
+Display each certificate as a card/table item containing:
+
+- Certificate title
+- Issuing organization
+- Issue date
+- File type
+- Related skills
+- Uploaded date
+- Verification status
+- Verified by
+- Verification date
+- View
+- Open
+- Download if permitted
+- Edit metadata
+- Delete/withdraw if allowed
+
+Statuses:
+
+- PENDING
+- UNDER REVIEW
+- VERIFIED
+- REJECTED
+- NEEDS CORRECTION
+
+Use clear visual status badges.
+
+No fake certificates.
+
+For a newly registered student with no certificates:
+
+show:
+
+"No certificates submitted yet."
+
+==================================================
+4. CERTIFICATE VIEWER
+==================================================
+
+The student must be able to open their certificate directly
+inside the website.
+
+Create a reusable Certificate Viewer.
+
+For supported formats:
+
+PDF:
+- embedded PDF viewer
+
+Images:
+- image preview
+
+PPT/PPTX:
+- browser-compatible preview where technically supported
+- otherwise provide a secure "Open Document" / document preview
+  experience
+
+DOC/DOCX:
+- browser-compatible preview where technically supported
+- otherwise secure document opening/preview
+
+Do NOT force every file into an incorrect viewer.
+
+If browser preview is not technically possible for a specific format,
+provide a safe "Open" option or controlled document viewer.
+
+The important requirement:
+
+THE CERTIFICATE SHOULD BE VIEWABLE FROM INSIDE THE WEBSITE
+WITHOUT REQUIRING THE USER TO LEAVE THE APPLICATION WHEN POSSIBLE.
+
+==================================================
+5. SEND CERTIFICATE TO RESPECTED COLLEGE
+==================================================
+
+Inside the Student Certificate page add:
+
+"Send to College for Verification"
+
+The student can select:
+
+- Their mapped institution/college
+
+Do NOT allow the student to send the certificate to arbitrary
+institutions.
+
+The institution must come from the student's existing
+Student → Institution mapping.
+
+When submitted:
+
+Student
+   ↓
+Certificate
+   ↓
+Mapped College
+   ↓
+Institution Certificate Verification
+   ↓
+College Review
+   ↓
+VERIFIED / REJECTED / NEEDS CORRECTION
+   ↓
+Student Updated
+
+Create a verification request.
+
+Example:
+
+Certificate:
+"Python Programming Certification"
+
+Student:
+Current authenticated student
+
+Institution:
+Mapped college
+
+Status:
+PENDING
+
+Submitted:
+actual timestamp
+
+==================================================
+6. STUDENT CERTIFICATE VERIFICATION STATUS
+==================================================
+
+The student should clearly see:
+
+Certificate Verification
+
+Status:
+Pending Verification
+
+or
+
+Under Review
+
+or
+
+Verified
+
+or
+
+Rejected
+
+or
+
+Needs Correction
+
+If rejected or correction is required,
+display the actual reason provided by the institution.
+
+Example:
+
+"Certificate could not be verified because the certificate ID
+could not be validated."
+
+Do NOT invent verification reasons.
+
+==================================================
+7. INSTITUTION — NEW CERTIFICATE VERIFICATION PAGE
+==================================================
+
+Inside the Institution portal add a new navigation item:
+
+"CERTIFICATE VERIFICATION"
+
+This page is only accessible to authenticated institution users.
+
+The institution can see certificates submitted by students
+belonging to that institution.
+
+STRICT TENANT ISOLATION:
+
+Institution A must NEVER see certificates belonging to students
+mapped to Institution B.
+
+Use the existing Student → Institution relationship.
+
+==================================================
+8. INSTITUTION CERTIFICATE VERIFICATION DASHBOARD
+==================================================
+
+Show real database counts:
+
+- Total Certificates
+- Pending Verification
+- Under Review
+- Verified
+- Rejected
+- Needs Correction
+
+IMPORTANT:
+
+These values MUST come from real database records.
+
+No hardcoded numbers.
+No random numbers.
+No demo analytics.
+
+If there are no certificates:
+
+show zero state.
+
+==================================================
+9. INSTITUTION CERTIFICATE LIST
+==================================================
+
+Create searchable/filterable certificate table.
+
+Columns:
+
+- Student Name
+- Student ID
+- Certificate
+- Issuing Organization
+- Issue Date
+- Related Skills
+- File Type
+- Submitted Date
+- Status
+- Actions
+
+Filters:
+
+- Status
+- Student
+- Skill
+- Certificate category
+- Issuing organization
+- Date
+- File type
+
+Search:
+
+- Student name
+- Student ID
+- Certificate title
+- Certificate ID
+- Skill
+
+All filtering must operate on actual data.
+
+==================================================
+10. INSTITUTION CERTIFICATE VIEW
+==================================================
+
+Institution management must have:
+
+"View Certificate"
+
+The certificate should open on the website.
+
+Supported:
+
+- PDF
+- PPT
+- PPTX
+- DOC
+- DOCX
+- PNG
+- JPG
+- JPEG
+- WEBP
+- other safe supported formats
+
+Create a reusable document/certificate viewer.
+
+The institution should be able to inspect:
+
+Certificate document
++
+Student information
++
+Certificate metadata
++
+Related skills
++
+AI analysis
+
+Do NOT expose:
+
+- passwords
+- password hashes
+- OTPs
+- private secrets
+- unrelated student private information
+
+==================================================
+11. INSTITUTION VERIFICATION ACTIONS
+==================================================
+
+Institution management can select:
+
+VERIFY
+
+REJECT
+
+NEEDS CORRECTION
+
+Optionally:
+
+UNDER REVIEW
+
+Before rejection/correction:
+
+Require a reason.
+
+Verification confirmation:
+
+"Are you sure you want to verify this certificate?"
+
+After verification:
+
+status = VERIFIED
+verifiedBy = authenticated institution user
+verifiedAt = actual timestamp
+
+After rejection:
+
+status = REJECTED
+rejectionReason = institution-provided reason
+reviewedBy = authenticated institution user
+reviewedAt = actual timestamp
+
+After needs correction:
+
+status = NEEDS_CORRECTION
+correctionReason = institution-provided reason
+
+Never fabricate reviewer information.
+
+==================================================
+12. VERIFIED CERTIFICATE → VERIFIED SKILL EVIDENCE
+==================================================
+
+THIS IS CRITICAL.
+
+A certificate must NOT automatically create an arbitrary skill.
+
+After certificate verification:
+
+Certificate
+    ↓
+Related Skill Evidence
+    ↓
+Verified Skill Intelligence
+    ↓
+NEXUS AI
+
+If the certificate is linked to Python:
+
+the system may associate:
+
+Certificate
+→ Python skill evidence
+
+If the certificate is related to:
+
+- Communication
+- Java
+- Python
+- Data Analytics
+- Cloud Computing
+- Web Development
+- Problem Solving
+- etc.
+
+associate it with the existing skill taxonomy.
+
+Do NOT create duplicate skills.
+
+Reuse the existing Skill entity.
+
+==================================================
+13. VERIFIED SKILL INTELLIGENCE
+==================================================
+
+Update the Student Verified Skills / Skill Intelligence page.
+
+Each skill should distinguish between:
+
+SELF-ASSESSED
+ACTIVITY-BASED
+ASSESSMENT-BASED
+PROJECT-BASED
+CERTIFICATE-BASED
+VERIFIED
+
+Example:
+
+Python
+
+Self Assessment:
+Intermediate
+
+Course Evidence:
+Completed
+
+Project Evidence:
+2 projects
+
+Assessment Evidence:
+82%
+
+Certificate Evidence:
+2 verified certificates
+
+Verified Skill Intelligence:
+Calculated from actual evidence
+
+IMPORTANT:
+
+Do NOT simply add percentages together.
+
+Use the existing skill/proficiency architecture if one already exists.
+
+Certificate evidence should be one evidence source,
+not an automatic fixed percentage.
+
+==================================================
+14. CERTIFICATE EVIDENCE DETAILS
+==================================================
+
+When the student opens a skill:
+
+Show:
+
+Skill:
+Python
+
+Evidence:
+
+✓ Course Completion
+✓ Quiz/Assessment
+✓ Project
+✓ Verified Certificate
+✓ Activity Telemetry
+
+Each evidence item should be clickable.
+
+For certificate evidence show:
+
+- Certificate title
+- Issuer
+- Issue date
+- Verification status
+- Institution verification
+- Related skill
+- View certificate
+
+==================================================
+15. AI SKILL GAP ANALYSIS
+==================================================
+
+Add a new section:
+
+"AI Skill Gap"
+
+NEXUS AI must calculate skill gaps using REAL DATA.
+
+Analyze:
+
+1. Student verified skills
+2. Student activity-based skills
+3. Student self-assessed skills
+4. Course progress
+5. Quiz/test performance
+6. Assessment results
+7. Project evidence
+8. Verified certificates
+9. Academic background
+10. Career goals
+11. Existing Industry opportunities
+12. Industry-required skills
+13. Required technologies
+14. Target roles
+15. Learning history
+
+Then determine:
+
+- Current strengths
+- Missing skills
+- Weak skills
+- Partially developed skills
+- Required skills
+- Priority skill gaps
+- Recommended learning
+- Recommended projects
+- Recommended assessments
+- Recommended certifications
+- Readiness level
+
+==================================================
+16. SKILL GAP EXAMPLE
+==================================================
+
+Example:
+
+Target Role:
+Full Stack Developer
+
+Student Verified Skills:
+- HTML
+- CSS
+- JavaScript
+
+Evidence:
+- Course completed
+- 1 project
+- JavaScript assessment: 72%
+- No backend project
+- No verified Node.js evidence
+
+Industry Requirements:
+- HTML
+- CSS
+- JavaScript
+- React
+- Node.js
+- REST APIs
+- Database
+- Git
+
+NEXUS AI should produce:
+
+Strong:
+✓ HTML
+✓ CSS
+✓ JavaScript
+
+Skill Gaps:
+1. React
+2. Node.js
+3. REST APIs
+4. Database
+5. Git
+
+Recommended Action:
+
+"Learn React fundamentals and complete a React project."
+
+Then:
+
+"Build a Node.js + REST API project."
+
+Then:
+
+"Complete database and Git practice."
+
+The recommendations must be based on actual gaps.
+
+==================================================
+17. AI SKILL GAP PRIORITY
+==================================================
+
+Classify skill gaps:
+
+HIGH PRIORITY
+MEDIUM PRIORITY
+LOW PRIORITY
+
+Priority should consider:
+
+- Industry demand
+- Target role
+- Student goal
+- Existing proficiency
+- Missing evidence
+- Course availability
+- Opportunity requirements
+
+Do NOT use random scoring.
+
+==================================================
+18. CERTIFICATE + SKILL GAP CONNECTION
+==================================================
+
+When a new certificate becomes VERIFIED:
+
+Trigger/update:
+
+Certificate Evidence
+        ↓
+Verified Skill Intelligence
+        ↓
+Skill Gap Recalculation
+        ↓
+NEXUS AI Recommendations
+
+Example:
+
+Before:
+
+Python:
+No verified certificate
+
+After college verification:
+
+Python:
+Certificate Evidence ✓
+
+NEXUS AI recalculates the student's skill intelligence.
+
+If Python was previously a skill gap,
+the gap should decrease or disappear only if the evidence actually
+supports the required competency.
+
+DO NOT automatically assume a certificate proves expert-level skill.
+
+==================================================
+19. INSTITUTION AI SKILL INTELLIGENCE
+==================================================
+
+The institution should also receive aggregate certificate intelligence.
+
+Add:
+
+"Certificate & Skill Intelligence"
+
+Show real data:
+
+- Total verified certificates
+- Certificates by skill
+- Certificates by department
+- Certificates by specialization
+- Verified skill distribution
+- Emerging skill evidence
+- Common skill gaps
+- Industry-demand gaps
+
+Example:
+
+Python:
+42 students with verified evidence
+
+Cloud:
+18 students
+
+Data Analytics:
+25 students
+
+React:
+12 students
+
+Skill Gap:
+
+Industry requires React:
+60 students
+
+Students with verified React evidence:
+12
+
+Gap:
+48 students
+
+These values must be calculated from actual data.
+
+No fake analytics.
+
+==================================================
+20. INSTITUTION AI SKILL GAP
+==================================================
+
+NEXUS AI should analyze:
+
+Institution student skill evidence
++
+verified certificates
++
+courses
++
+assessments
++
+projects
++
+industry opportunities
+
+Then show:
+
+"Top Institution Skill Gaps"
+
+Example:
+
+1. Cloud Computing
+2. React
+3. Data Engineering
+4. Cybersecurity
+5. AI/ML
+
+For every gap show:
+
+- Number of students affected
+- Industry demand
+- Current evidence
+- Recommended courses
+- Recommended institution skill programs
+- Priority
+
+==================================================
+21. STUDENT → INSTITUTION NOTIFICATION
+==================================================
+
+When a student submits a certificate:
+
+Notify the mapped institution.
+
+Example:
+
+"New certificate submitted by Student X for verification."
+
+When institution verifies:
+
+Notify student.
+
+Example:
+
+"Your Python certificate has been verified by your institution."
+
+When rejected:
+
+Notify student with actual reason.
+
+Reuse existing notification infrastructure.
+
+Do NOT create duplicate notification systems if one already exists.
+
+==================================================
+22. ACTIVITY TELEMETRY
+==================================================
+
+Certificate activities should generate telemetry:
+
+- Certificate uploaded
+- Certificate submitted
+- Certificate opened
+- Certificate sent for verification
+- Certificate reviewed
+- Certificate verified
+- Certificate rejected
+- Certificate corrected
+
+Telemetry must contain:
+
+- studentId
+- institutionId
+- certificateId
+- action
+- timestamp
+
+Do not generate fake activity.
+
+==================================================
+23. DATA MODEL
+==================================================
+
+Inspect the existing database first.
+
+If equivalent models do not exist, create appropriate structures.
+
+Conceptual model:
+
+Student
+  ↓
+Certificate
+  ↓
+CertificateVerificationRequest
+  ↓
+Institution Review
+  ↓
+Verification Status
+  ↓
+Skill Evidence
+  ↓
+Verified Skill
+  ↓
+NEXUS AI Skill Gap
+
+Certificate fields may include:
+
+- id
+- studentId
+- institutionId
+- title
+- issuer
+- certificateNumber
+- issueDate
+- expiryDate
+- description
+- category
+- fileName
+- fileType
+- fileSize
+- filePath / storage reference
+- credentialUrl
+- status
+- submittedAt
+- verifiedAt
+- verifiedBy
+- rejectionReason
+- correctionReason
+- createdAt
+- updatedAt
+
+Use existing naming conventions and database architecture.
+
+==================================================
+24. FILE SECURITY
+==================================================
+
+Implement secure file handling.
+
+Validate:
+
+- MIME type
+- extension
+- file size
+- upload ownership
+
+Prevent:
+
+- executable uploads
+- path traversal
+- arbitrary file access
+- unauthorized certificate access
+
+Students can access their own certificates.
+
+Institutions can access certificates belonging to their mapped students.
+
+Do not expose files through insecure unrestricted paths.
+
+==================================================
+25. API REQUIREMENTS
+==================================================
+
+Reuse existing API patterns.
+
+If missing, create APIs similar to:
+
+POST
+/api/certificates
+
+GET
+/api/certificates/my
+
+GET
+/api/certificates/:certificateId
+
+PUT
+/api/certificates/:certificateId
+
+DELETE
+/api/certificates/:certificateId
+
+POST
+/api/certificates/:certificateId/send-to-institution
+
+GET
+/api/institution/certificates
+
+GET
+/api/institution/certificates/:certificateId
+
+POST
+/api/institution/certificates/:certificateId/verify
+
+POST
+/api/institution/certificates/:certificateId/reject
+
+POST
+/api/institution/certificates/:certificateId/request-correction
+
+GET
+/api/skills/intelligence
+
+GET
+/api/skills/gaps
+
+GET
+/api/nexus/skill-gap
+
+Use the existing route naming convention if different.
+
+Do NOT create duplicate APIs where equivalent endpoints already exist.
+
+==================================================
+26. REAL-TIME DATA RULE
+==================================================
+
+Everything must use:
+
+Authenticated user
+        ↓
+Database
+        ↓
+Existing API
+        ↓
+Existing services
+        ↓
+NEXUS AI calculation
+        ↓
+Real result
+
+Never use:
+
+- hardcoded certificate counts
+- fake students
+- random skill gaps
+- mock certificates
+- fake verification statuses
+- static percentages
+- fake AI recommendations
+
+For a new student:
+
+Certificates = 0
+Verified certificates = 0
+Certificate evidence = 0
+Verified skill evidence from certificates = 0
+Skill gaps calculated from actual available data
+
+==================================================
+27. STUDENT PAGE STRUCTURE
+==================================================
+
+Improve the existing Student Skill Intelligence page to contain:
+
+SKILL INTELLIGENCE
+
+[Verified Skills]
+
+[Self-Assessed Skills]
+
+[Skill Evidence]
+
+[Certificates]
+
+[Upload Certificate]
+
+[Certificate Verification Status]
+
+[AI Skill Gap]
+
+[Recommended Actions]
+
+[Learning Recommendations]
+
+Each section should link to actual data.
+
+==================================================
+28. INSTITUTION PAGE STRUCTURE
+==================================================
+
+Add:
+
+INSTITUTION WORKSPACE
+
+[Certificate Verification]
+
+Tabs:
+
+- Pending
+- Under Review
+- Verified
+- Rejected
+- Needs Correction
+
+Then:
+
+[Certificate Viewer]
+
+[Certificate Details]
+
+[Verification Actions]
+
+[Skill Evidence]
+
+[AI Skill Intelligence]
+
+[Institution Skill Gaps]
+
+==================================================
+29. NEXUS AI EXPLAINABILITY
+==================================================
+
+Never show only:
+
+"Skill Gap: React"
+
+Instead explain:
+
+"React is identified as a skill gap because your target role requires
+React, while your current verified/activity-based evidence does not
+contain sufficient React evidence."
+
+Show:
+
+WHY THIS GAP EXISTS
+
+WHAT EVIDENCE EXISTS
+
+WHAT IS MISSING
+
+WHAT TO DO NEXT
+
+WHY THIS ACTION IS RECOMMENDED
+
+Use actual student data.
+
+==================================================
+30. IMPORTANT DISTINCTION
+==================================================
+
+Maintain these separate concepts:
+
+SELF-ASSESSMENT
+= What the student says they know.
+
+LEARNING PROGRESS
+= What the student has completed learning.
+
+ACTIVITY EVIDENCE
+= What the student actually did.
+
+ASSESSMENT EVIDENCE
+= What the student demonstrated in tests.
+
+PROJECT EVIDENCE
+= What the student built.
+
+CERTIFICATE EVIDENCE
+= External/documented credential evidence.
+
+VERIFIED SKILL
+= Skill intelligence calculated from available evidence.
+
+AI SKILL GAP
+= Difference between demonstrated capability and required
+capability for the student's goals/opportunities.
+
+Never merge these into one field.
+
+==================================================
+31. UI/UX
+==================================================
+
+Follow the existing SkillNexus visual design.
+
+Use:
+
+- Light premium interface
+- Lavender/indigo accents
+- White cards
+- Soft shadows
+- Modern rounded components
+- Clear status badges
+- Progress indicators
+- Skill chips
+- AI insight cards
+- Certificate preview panel
+- Responsive layout
+
+Important:
+
+Do NOT modify dark mode.
+
+Keep all existing dark-mode styles and behavior unchanged.
+
+All light-mode text must have strong contrast.
+
+==================================================
+32. TESTING
+==================================================
+
+After implementation test the COMPLETE FLOW:
+
+TEST 1:
+Student uploads PDF certificate.
+
+TEST 2:
+Certificate appears in My Certificates.
+
+TEST 3:
+Status is PENDING.
+
+TEST 4:
+Student sends certificate to mapped college.
+
+TEST 5:
+Institution receives certificate.
+
+TEST 6:
+Institution opens PDF inside website.
+
+TEST 7:
+Institution sees correct student.
+
+TEST 8:
+Institution cannot see another institution's student certificate.
+
+TEST 9:
+Institution verifies certificate.
+
+TEST 10:
+Certificate status becomes VERIFIED.
+
+TEST 11:
+Student receives notification.
+
+TEST 12:
+Student sees VERIFIED status.
+
+TEST 13:
+Certificate becomes skill evidence.
+
+TEST 14:
+Verified Skill Intelligence updates.
+
+TEST 15:
+NEXUS AI recalculates skill gap.
+
+TEST 16:
+AI recommendation uses actual skill gap.
+
+TEST 17:
+Student uploads image certificate.
+
+TEST 18:
+Student uploads PPT/PPTX.
+
+TEST 19:
+Student uploads DOC/DOCX.
+
+TEST 20:
+Institution can view supported document formats.
+
+TEST 21:
+Rejected certificate remains rejected.
+
+TEST 22:
+Correction request shows institution reason.
+
+TEST 23:
+New student with no certificate shows zero state.
+
+TEST 24:
+No fake analytics appear.
+
+TEST 25:
+Certificate telemetry is recorded.
+
+TEST 26:
+Institution analytics use real verified certificates.
+
+TEST 27:
+Skill gap changes only when actual evidence changes.
+
+TEST 28:
+Student cannot access another student's certificate.
+
+TEST 29:
+Institution cannot access another institution's certificate.
+
+TEST 30:
+Existing Student/Institution/Industry functionality remains working.
+
+TEST 31:
+Frontend production build succeeds.
+
+TEST 32:
+Backend starts successfully.
+
+==================================================
+33. FINAL VALIDATION
+==================================================
+
+Before finishing:
+
+1. Inspect all changed files.
+2. Check frontend compilation.
+3. Check backend startup.
+4. Test certificate upload.
+5. Test document preview.
+6. Test student → institution submission.
+7. Test institution verification.
+8. Test notifications.
+9. Test skill evidence.
+10. Test AI skill gap.
+11. Test tenant isolation.
+12. Test all supported file types.
+13. Verify no fake/static/random data.
+14. Verify existing features still work.
+15. Verify dark mode is unchanged.
+
+Create a final implementation report containing:
+
+- Files changed
+- Components added
+- APIs added/updated
+- Database changes
+- Certificate workflow
+- Verification workflow
+- Skill evidence workflow
+- AI skill gap workflow
+- Security validation
+- Tenant isolation validation
+- Test results
+- Build result
+- Remaining issues, if any
+
+CORE SYSTEM FLOW:
+
+STUDENT
+   ↓
+UPLOAD CERTIFICATE
+   ↓
+CERTIFICATE RECORD
+   ↓
+SEND TO MAPPED COLLEGE
+   ↓
+INSTITUTION CERTIFICATE VERIFICATION
+   ↓
+VIEW CERTIFICATE
+   ↓
+VERIFY / REJECT / CORRECTION
+   ↓
+VERIFIED CERTIFICATE
+   ↓
+SKILL EVIDENCE
+   ↓
+VERIFIED SKILL INTELLIGENCE
+   ↓
+NEXUS AI
+   ↓
+SKILL GAP ANALYSIS
+   ↓
+PERSONALIZED RECOMMENDATION
+   ↓
+COURSE / PROJECT / ASSESSMENT / CERTIFICATION
+   ↓
+NEW ACTIVITY
+   ↓
+UPDATED SKILL INTELLIGENCE
+
+FINAL PRINCIPLE:
+
+WHAT THE STUDENT CLAIMS
+→ SELF-ASSESSMENT
+
+WHAT THE STUDENT LEARNS
+→ COURSE / LEARNING PROGRESS
+
+WHAT THE STUDENT DOES
+→ ACTIVITY TELEMETRY
+
+WHAT THE STUDENT DEMONSTRATES
+→ ASSESSMENTS / PROJECTS
+
+WHAT THE STUDENT PROVIDES AS CREDENTIAL EVIDENCE
+→ CERTIFICATES
+
+WHAT THE COLLEGE VALIDATES
+→ VERIFIED CERTIFICATE
+
+WHAT THE SYSTEM UNDERSTANDS
+→ VERIFIED SKILL INTELLIGENCE
+
+WHAT THE INDUSTRY REQUIRES
+→ ROLE / OPPORTUNITY SKILLS
+
+WHAT IS MISSING
+→ AI SKILL GAP
+
+WHAT THE STUDENT SHOULD DO NEXT
+→ NEXUS AI BEST ACTION
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-09T19:23:31+05:30.
+
+The user's current state is as follows:
+Active Document: d:\SIH V2\backend\src\db\relationalManager.js (LANGUAGE_JAVASCRIPT)
+Cursor is on line: 1
+Other open documents:
+- d:\SIH V2\backend\src\db\relationalManager.js (LANGUAGE_JAVASCRIPT)
+</ADDITIONAL_METADATA>

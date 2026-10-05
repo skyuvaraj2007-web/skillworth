@@ -1,0 +1,226 @@
+/* ==========================================================================
+   SKILLNEXUS AI - COMPACT DATA LIST & TABLE DESIGN SYSTEM
+   High-density rows (~48-64px), readable text contrast, glassmorphism
+   ========================================================================== */
+
+.compact-table-container {
+  width: 100%;
+  background: rgba(16, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  margin-bottom: 24px;
+}
+
+.compact-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.35) transparent;
+}
+
+.compact-table-scroll::-webkit-scrollbar {
+  height: 5px;
+}
+
+.compact-table-scroll::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 4px;
+}
+
+.compact-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 12.5px;
+}
+
+.compact-table thead {
+  background: rgba(10, 16, 30, 0.85);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.compact-table th {
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  color: #94A3B8;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.compact-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.compact-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.compact-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.compact-table td {
+  padding: 10px 14px;
+  vertical-align: middle;
+  color: #E2E8F0;
+  line-height: 1.35;
+}
+
+/* Primary Cell: Title + Subtitle */
+.compact-cell-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.compact-cell-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+.compact-title-text {
+  font-weight: 700;
+  color: #F8FAFC;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.compact-subtitle-text {
+  font-size: 11px;
+  color: #94A3B8;
+  margin-top: 1px;
+}
+
+/* Actions in Table */
+.compact-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.btn-compact-details {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(34, 211, 238, 0.1);
+  color: #22D3EE;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-compact-details:hover {
+  background: rgba(34, 211, 238, 0.2);
+  border-color: rgba(34, 211, 238, 0.6);
+  color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.25);
+}
+
+.btn-compact-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  color: #94A3B8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.15s ease;
+}
+
+.btn-compact-secondary:hover {
+  color: #F1F5F9;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Empty States */
+.compact-empty-state {
+  padding: 36px 20px;
+  text-align: center;
+  color: #94A3B8;
+  font-size: 13px;
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] .compact-table-container,
+html.light .compact-table-container {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(108, 92, 231, 0.16);
+  box-shadow: 0 4px 16px rgba(108, 92, 231, 0.06);
+}
+
+[data-theme="light"] .compact-table thead,
+html.light .compact-table thead {
+  background: rgba(245, 243, 255, 0.9);
+  border-color: rgba(108, 92, 231, 0.14);
+}
+
+[data-theme="light"] .compact-table th,
+html.light .compact-table th {
+  color: #5F668C;
+}
+
+[data-theme="light"] .compact-table tbody tr,
+html.light .compact-table tbody tr {
+  border-bottom-color: rgba(108, 92, 231, 0.06);
+}
+
+[data-theme="light"] .compact-table tbody tr:hover,
+html.light .compact-table tbody tr:hover {
+  background: rgba(108, 92, 231, 0.04);
+}
+
+[data-theme="light"] .compact-table td,
+html.light .compact-table td {
+  color: #25275F;
+}
+
+[data-theme="light"] .compact-title-text,
+html.light .compact-title-text {
+  color: #20245A;
+}
+
+[data-theme="light"] .compact-subtitle-text,
+html.light .compact-subtitle-text {
+  color: #5F668C;
+}
+
+[data-theme="light"] .btn-compact-details,
+html.light .btn-compact-details {
+  background: rgba(108, 92, 231, 0.1);
+  color: #6C5CE7;
+  border-color: rgba(108, 92, 231, 0.3);
+}
+
+[data-theme="light"] .btn-compact-details:hover,
+html.light .btn-compact-details:hover {
+  background: rgba(108, 92, 231, 0.18);
+  border-color: rgba(108, 92, 231, 0.6);
+  color: #20245A;
+}

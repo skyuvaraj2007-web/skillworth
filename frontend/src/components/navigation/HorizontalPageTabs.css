@@ -1,0 +1,217 @@
+/* ==========================================================================
+   SKILLNEXUS AI - HORIZONTAL PAGE TABS STYLING
+   High-Contrast, Responsive Horizontal Navigation for Portal Workspaces
+   ========================================================================== */
+
+.horizontal-page-tabs-wrapper {
+  width: 100%;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 10;
+}
+
+.horizontal-page-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(16, 23, 42, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.35) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Chrome / Safari / Edge scrollbar */
+.horizontal-page-tabs-bar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.horizontal-page-tabs-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.horizontal-page-tabs-bar::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 4px;
+}
+
+.horizontal-page-tabs-bar::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
+
+/* Individual Tab Item */
+.horizontal-page-tab-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #94A3B8;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  flex-shrink: 0;
+  outline: none;
+}
+
+/* Hover State - Inactive Tab */
+.horizontal-page-tab-item:hover:not(.active) {
+  color: #F1F5F9;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.horizontal-page-tab-item:focus-visible {
+  outline: 2px solid var(--cyber-cyan, #22D3EE);
+  outline-offset: 2px;
+}
+
+/* Active State - Strong SkillNexus Gradient & Glow */
+.horizontal-page-tab-item.active {
+  color: #FFFFFF;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.35) 0%, rgba(34, 211, 238, 0.25) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Tab Icon */
+.tab-icon {
+  flex-shrink: 0;
+  color: #94A3B8;
+  transition: all 0.2s ease;
+}
+
+.horizontal-page-tab-item:hover .tab-icon {
+  color: #E2E8F0;
+}
+
+.tab-icon-active {
+  color: #22D3EE !important;
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.6));
+}
+
+/* Tab Label */
+.tab-label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Micro Badges */
+.tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.tab-badge.badge-cyan {
+  background: rgba(34, 211, 238, 0.15);
+  color: #22D3EE;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+}
+
+.tab-badge.badge-emerald {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.tab-badge.badge-purple {
+  background: rgba(217, 70, 239, 0.15);
+  color: #E879F9;
+  border: 1px solid rgba(217, 70, 239, 0.35);
+}
+
+.tab-badge.badge-amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+/* Tab Count Indicator */
+.tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #E2E8F0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.horizontal-page-tab-item.active .tab-count {
+  background: rgba(34, 211, 238, 0.25);
+  color: #FFFFFF;
+  border-color: rgba(34, 211, 238, 0.4);
+}
+
+/* Light theme overrides */
+[data-theme="light"] .horizontal-page-tabs-bar,
+html.light .horizontal-page-tabs-bar {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(108, 92, 231, 0.15);
+  box-shadow: 0 4px 16px rgba(108, 92, 231, 0.08);
+}
+
+[data-theme="light"] .horizontal-page-tab-item,
+html.light .horizontal-page-tab-item {
+  color: #454A73;
+}
+
+[data-theme="light"] .horizontal-page-tab-item:hover:not(.active),
+html.light .horizontal-page-tab-item:hover:not(.active) {
+  color: #20245A;
+  background: rgba(108, 92, 231, 0.06);
+  border-color: rgba(108, 92, 231, 0.15);
+}
+
+[data-theme="light"] .horizontal-page-tab-item.active,
+html.light .horizontal-page-tab-item.active {
+  color: #20245A;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.15) 0%, rgba(34, 211, 238, 0.18) 100%);
+  border-color: rgba(108, 92, 231, 0.4);
+  box-shadow: 0 2px 10px rgba(108, 92, 231, 0.12);
+  text-shadow: none;
+}
+
+[data-theme="light"] .tab-icon,
+html.light .tab-icon {
+  color: #5F668C;
+}
+
+[data-theme="light"] .tab-icon-active,
+html.light .tab-icon-active {
+  color: #6C5CE7 !important;
+  filter: drop-shadow(0 0 4px rgba(108, 92, 231, 0.4));
+}
