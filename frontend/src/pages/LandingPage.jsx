@@ -77,7 +77,7 @@ export default function LandingPage({ setActivePage }) {
               className="sw-btn-outline sw-btn-block"
               onClick={() => setActivePage('register')}
             >
-              Start as Learner ?
+              Start as Learner &rarr;
             </button>
           </div>
 
@@ -104,7 +104,7 @@ export default function LandingPage({ setActivePage }) {
               className="sw-btn-outline sw-btn-block"
               onClick={() => setActivePage('register')}
             >
-              Partner as Institution ?
+              Partner as Institution &rarr;
             </button>
           </div>
 
@@ -131,7 +131,7 @@ export default function LandingPage({ setActivePage }) {
               className="sw-btn-outline sw-btn-block"
               onClick={() => setActivePage('register')}
             >
-              Join as Industry Partner ?
+              Join as Industry Partner &rarr;
             </button>
           </div>
         </div>
@@ -146,19 +146,19 @@ export default function LandingPage({ setActivePage }) {
             <h4>Register & Select Skill</h4>
             <p>Choose your technical domain and review required competencies.</p>
           </div>
-          <div className="sw-step-arrow">?</div>
+          <div className="sw-step-arrow">&rarr;</div>
           <div className="sw-step-item">
             <div className="sw-step-number">2</div>
             <h4>Submit Video & Evidence</h4>
             <p>Upload project code, documentation, and a recorded video walkthrough.</p>
           </div>
-          <div className="sw-step-arrow">?</div>
+          <div className="sw-step-arrow">&rarr;</div>
           <div className="sw-step-item">
             <div className="sw-step-number">3</div>
             <h4>AI & Human Assessment</h4>
             <p>Complete protocol questions while AI assists and authorized assessors verify.</p>
           </div>
-          <div className="sw-step-arrow">?</div>
+          <div className="sw-step-arrow">&rarr;</div>
           <div className="sw-step-item">
             <div className="sw-step-number">4</div>
             <h4>Official Credential</h4>

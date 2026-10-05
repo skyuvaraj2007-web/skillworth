@@ -15,8 +15,28 @@ export function LanguageProvider({ children }) {
   }, [lang]);
 
   const t = (key) => {
+    if (!key) return '';
     const dict = dictionaries[lang] || en;
-    return dict[key] || en[key] || key;
+    if (dict && dict[key] !== undefined) return dict[key];
+    
+    // Check nested key if dot present
+    if (typeof key === 'string' && key.includes('.')) {
+      const parts = key.split('.');
+      let val = dict;
+      for (const p of parts) {
+        val = val ? val[p] : undefined;
+      }
+      if (val !== undefined) return val;
+      
+      let fallbackVal = en;
+      for (const p of parts) {
+        fallbackVal = fallbackVal ? fallbackVal[p] : undefined;
+      }
+      if (fallbackVal !== undefined) return fallbackVal;
+    }
+
+    if (en && en[key] !== undefined) return en[key];
+    return key;
   };
 
   return (

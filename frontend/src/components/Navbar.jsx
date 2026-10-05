@@ -73,8 +73,8 @@ export default function Navbar({ activePage, setActivePage }) {
               aria-label="Select Language"
             >
               <option value="en">English</option>
-              <option value="ta">?????</option>
-              <option value="hi">??????</option>
+              <option value="ta">தமிழ் (Tamil)</option>
+              <option value="hi">हिन्दी (Hindi)</option>
             </select>
           </div>
 

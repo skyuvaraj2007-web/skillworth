@@ -48,7 +48,7 @@ export default function IndustryPortal({ setActivePage }) {
               <span className="sw-role-badge sw-badge-green">Verified Hiring Partner</span>
             </div>
             <p className="sw-profile-sub">
-              {user?.repDesignation || 'Head of Global University Talent'} ? {user?.repFullName || 'Karthik Narayanan'}
+              {user?.repDesignation || 'Head of Global University Talent'} &bull; {user?.repFullName || 'Karthik Narayanan'}
             </p>
             <div className="sw-profile-meta-tags">
               <span className="sw-meta-tag"><span className="material-symbols-outlined">location_on</span> {user?.city || 'Bengaluru'}, {user?.state || 'Karnataka'}</span>
@@ -172,7 +172,7 @@ export default function IndustryPortal({ setActivePage }) {
                   <h4>Arun Kumar</h4>
                   <span className="sw-badge-green">Credential: SW-884201</span>
                 </div>
-                <p>Python Software Engineering ? Intermediate</p>
+                <p>Python Software Engineering &bull; Intermediate</p>
                 <div className="sw-talent-tags">
                   <span>AsyncIO</span>
                   <span>Token Bucket Rate Limiter</span>
@@ -188,7 +188,7 @@ export default function IndustryPortal({ setActivePage }) {
                   <h4>Priya Ramanathan</h4>
                   <span className="sw-badge-blue">Pending Assessor Sign-Off</span>
                 </div>
-                <p>Full Stack Web Development ? Intermediate</p>
+                <p>Full Stack Web Development &bull; Intermediate</p>
                 <div className="sw-talent-tags">
                   <span>React</span>
                   <span>Node.js</span>

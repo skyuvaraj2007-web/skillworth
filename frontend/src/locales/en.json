@@ -1,18 +1,42 @@
 {
   "appName": "SkillWorth",
-  "tagline": "AI-Assisted Recognition of Prior Learning & Skill Verification",
-  "heroTitle": "Skills Earned. Experience Recognized.",
-  "heroSubtitle": "Demonstrate skills gained through real-world experience, upload video demonstrations, and complete standardized ISO 17024 assessments verified by accredited assessors.",
-  "startJourney": "Start Your Journey",
-  "signIn": "Sign In to Workspace",
-  "createAccount": "Create your SkillWorth account",
-  "whoAreYou": "Who are you?",
+  "tagline": "ISO/IEC 17024 Standardized Skill Verification & RPL Platform",
+  "navHome": "Home",
+  "howItWorks": "How It Works",
+  "verifyCredential": "Verify Credential",
+  "learnerDashboard": "Learner Dashboard",
+  "institutionPortal": "Institution Portal",
+  "industryPortal": "Industry Portal",
+  "login": "Sign In",
+  "register": "Register",
+  "logout": "Log Out",
+  "createAccountTitle": "Create your SkillWorth account",
+  "loginTitle": "Sign In to SkillWorth",
+  "roleLearner": "Learner / Student",
+  "roleInstitution": "Institution & Assessor",
+  "roleIndustry": "Industry & Hiring Partner",
+  "fullName": "Full Name",
+  "email": "Email Address",
+  "phone": "Mobile Number",
+  "college": "College / Institution",
+  "department": "Department / Faculty",
+  "primarySkill": "Primary Skill",
+  "skillLevel": "Skill Level",
+  "institutionName": "Institution Name",
+  "companyName": "Company / Enterprise Name",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "submit": "Create SkillWorth Account",
+  "heroTitle": "Verify Skills. Empower Talent.",
+  "heroSubtitle": "SkillWorth bridges academia, industry, and prior learning through transparent evidence evaluation, video demonstration analysis, and authorized human assessor verification.",
+  "startJourney": "Start as Learner",
+  "signIn": "Sign In",
   "roles": {
-    "learner": "Learner / Candidate",
-    "learnerDesc": "Demonstrate prior skills, submit video evidence, take assessments, and earn verifiable ISO 17024 credentials.",
-    "institution": "Institution / Assessor",
-    "institutionDesc": "Accredit assessors, review practical candidate evidence, evaluate competencies, and approve skill certificates.",
-    "industry": "Industry / Company",
+    "learner": "Learner & Student",
+    "learnerDesc": "Showcase practical skills through portfolio artifacts, code repositories, certificates, work evidence, and recorded video demonstrations.",
+    "institution": "Institution & Assessor",
+    "institutionDesc": "Create skills, define competencies, review video demonstrations, accredit assessors, and verify credentials.",
+    "industry": "Industry & Hiring Partner",
     "industryDesc": "Directly verify SkillWorth credentials (SW-XXXXXX), discover verified technical talent, and evaluate candidates."
   },
   "nav": {
@@ -33,9 +57,9 @@
     "evidenceType": "Evidence Category",
     "description": "Evidence Description & Technical Overview",
     "submitBtn": "Submit for AI Analysis & Assessor Review",
-    "aiAnalysisTitle": "AI Competency Telemetry",
+    "aiAnalysisTitle": "AI Preliminary Analysis",
     "pendingReview": "Pending Assessor Review",
-    "verified": "Verified Credential Granted"
+    "verified": "Authorized Assessor Approved"
   },
   "assessment": {
     "title": "Skill Verification Protocols",
@@ -51,7 +75,7 @@
     "level": "Proficiency Level",
     "verifiedBy": "Accredited Assessor",
     "institution": "Authorized Institution",
-    "status": "ISO 17024 Verified",
+    "status": "ISO/IEC 17024 Compliant",
     "verifyBtn": "Verify Credential Authenticity"
   },
   "industry": {
@@ -59,6 +83,6 @@
     "enterId": "Enter SkillWorth Credential ID (e.g. SW-884201)",
     "checkBtn": "Verify Credential",
     "validBadge": "VALID VERIFIED CREDENTIAL",
-    "invalidBadge": "INVALID OR UNVERIFIED CREDENTIAL"
+    "invalidBadge": "CREDENTIAL NOT FOUND / INVALID"
   }
 }

@@ -168,7 +168,7 @@ export default function LearnerDashboard({ setActivePage }) {
               <span className="sw-role-badge sw-badge-blue">Verified Candidate</span>
             </div>
             <p className="sw-profile-sub">
-              {user?.degree} ? {user?.department} ? {user?.collegeName || 'Autonomous Institution'}
+              {user?.degree} &bull; {user?.department} &bull; {user?.collegeName || 'Autonomous Institution'}
             </p>
             <div className="sw-profile-meta-tags">
               <span className="sw-meta-tag"><span className="material-symbols-outlined">badge</span> ID: {user?.studentId || '22CS104'}</span>
@@ -403,7 +403,7 @@ export default function LearnerDashboard({ setActivePage }) {
                           </span>
                           <div>
                             <h4>{ev.title}</h4>
-                            <span className="sw-ev-meta">{ev.skillName} ? {ev.evidenceType}</span>
+                            <span className="sw-ev-meta">{ev.skillName} &bull; {ev.evidenceType}</span>
                           </div>
                         </div>
                         <span className={`sw-status-badge ${ev.verificationStatus === 'VERIFIED' ? 'status-verified' : 'status-pending'}`}>
@@ -438,7 +438,7 @@ export default function LearnerDashboard({ setActivePage }) {
                             <span>Assessor Decision: {ev.assessorFeedback.decision}</span>
                           </div>
                           <p className="sw-feedback-text">"{ev.assessorFeedback.feedback}"</p>
-                          <small className="sw-feedback-author">? {ev.assessorFeedback.assessorName}</small>
+                          <small className="sw-feedback-author">&mdash; {ev.assessorFeedback.assessorName}</small>
                         </div>
                       )}
                     </div>
@@ -465,7 +465,7 @@ export default function LearnerDashboard({ setActivePage }) {
                       <div>
                         <h3>{asm.title}</h3>
                         <p className="sw-asm-meta">
-                          Domain: <strong>{asm.skillName}</strong> ? Passing Score: <strong>{asm.passingScore}%</strong> ? Duration: <strong>{asm.durationMinutes} mins</strong>
+                          Domain: <strong>{asm.skillName}</strong> &bull; Passing Score: <strong>{asm.passingScore}%</strong> &bull; Duration: <strong>{asm.durationMinutes} mins</strong>
                         </p>
                       </div>
                       <button
@@ -476,7 +476,7 @@ export default function LearnerDashboard({ setActivePage }) {
                           setAssessmentResult(null);
                         }}
                       >
-                        Start Assessment Protocol ?
+                        Start Assessment Protocol &rarr;
                       </button>
                     </div>
                   </div>
@@ -494,7 +494,7 @@ export default function LearnerDashboard({ setActivePage }) {
                   className="sw-btn-outline"
                   onClick={() => setActiveAssessment(null)}
                 >
-                  ? Back to Protocols
+                  &larr; Back to Protocols
                 </button>
               </div>
 

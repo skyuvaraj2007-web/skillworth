@@ -90,7 +90,7 @@ export default function InstitutionPortal({ setActivePage }) {
               </span>
             </div>
             <p className="sw-profile-sub">
-              {user?.repDesignation || 'Director of Assessor Accreditation'} ? {user?.repFullName || 'Dr. S. Meenakshi Sundaram'}
+              {user?.repDesignation || 'Director of Assessor Accreditation'} &bull; {user?.repFullName || 'Dr. S. Meenakshi Sundaram'}
             </p>
             <div className="sw-profile-meta-tags">
               <span className="sw-meta-tag"><span className="material-symbols-outlined">location_on</span> {user?.city || 'Chennai'}, {user?.state || 'Tamil Nadu'}</span>
@@ -159,7 +159,7 @@ export default function InstitutionPortal({ setActivePage }) {
                     </div>
                     <div className="sw-queue-title">{ev.title}</div>
                     <div className="sw-queue-meta">
-                      <span>{ev.skillName}</span> ? <span>{ev.evidenceType}</span>
+                      <span>{ev.skillName}</span> &bull; <span>{ev.evidenceType}</span>
                     </div>
                   </div>
                 ))}
@@ -174,7 +174,7 @@ export default function InstitutionPortal({ setActivePage }) {
                     <div>
                       <h3 className="sw-card-title">{selectedEv.title}</h3>
                       <p className="sw-card-sub">
-                        Candidate: <strong>{selectedEv.learnerName}</strong> ? Skill: <strong>{selectedEv.skillName}</strong>
+                        Candidate: <strong>{selectedEv.learnerName}</strong> &bull; Skill: <strong>{selectedEv.skillName}</strong>
                       </p>
                     </div>
                     <span className="sw-badge-pill">{selectedEv.competency}</span>
