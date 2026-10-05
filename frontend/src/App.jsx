@@ -9,6 +9,7 @@ import LearnerDashboard from './pages/LearnerDashboard';
 import InstitutionPortal from './pages/InstitutionPortal';
 import IndustryPortal from './pages/IndustryPortal';
 import PublicAssessmentVerification from './components/PublicAssessmentVerification';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 
 export default function App() {
   const { user, loading } = useAuth();
@@ -65,6 +66,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <PWAInstallPrompt />
     </div>
   );
 }
